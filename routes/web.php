@@ -85,10 +85,26 @@ Route::prefix('admin')
 	});
 });
 
-Route::prefix('siswa')
-->middleware(['auth', 'role:siswa'])
-->group(function(){
-	Route::get('pembayaran-parmas', 'PembayaranParmasController@index')->name('siswa.pembayaran-parmas.index');
+Route::prefix('siswa')->middleware(['auth', 'role:siswa'])->group(function() {
+
+    Route::prefix('permas')->group(function () {
+
+        Route::prefix('pembayaran')->group(function () {
+            Route::get('/', 'PembayaranPermasController@pembayaran')->name('siswa.pembayaran-permas.index');
+            Route::get('{spp:tahun}', 'PembayaranPermasController@pembayaranShow')->name('siswa.pembayaran-permas.show');
+        });
+
+        Route::prefix('history')->group(function () {
+            Route::get('/', 'PembayaranPermasController@history')->name('siswa.history-permas.index');
+            Route::get('{id}', 'PembayaranPermasController@historyShow')->name('siswa.history-permas.show');
+        });
+
+        Route::prefix('laporan')->group(function () {
+            Route::get('/', 'PembayaranPermasController@laporan')->name('siswa.laporan-permas.index');
+	        Route::post('print-laporan', 'PembayaranPermasController@laporanshow')->name('siswa.laporan-permas.show');
+        });
+    });
+
 	Route::get('pembayaran-spp', 'SiswaController@pembayaranSpp')->name('siswa.pembayaran-spp');
 	Route::get('pembayaran-spp/{spp:tahun}', 'SiswaController@pembayaranSppShow')->name('siswa.pembayaran-spp.pembayaranSppShow');
 	Route::get('history-pembayaran', 'SiswaController@historyPembayaran')->name('siswa.history-pembayaran');
