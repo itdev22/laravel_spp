@@ -17,6 +17,7 @@ class AddNewColumnPembayaran extends Migration
             $table->string('order_id')->after('petugas_id')->unique()->nullable();
             $table->after('jumlah_bayar', function ($table) {
                 $table->enum('type', ['Online', 'Offline'])->nullable();
+                $table->enum('jenis', ['Parmas', 'SPP'])->nullable();
                 $table->enum('status', ['Pending', 'Failed', 'Success'])->nullable();
             });
         });
