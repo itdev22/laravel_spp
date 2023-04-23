@@ -39,14 +39,14 @@ class SiswaController extends Controller
         if ($request->ajax()) {
             $siswa = Siswa::where('user_id', Auth::user()->id)
                 ->first();
-            
+
             $data = Pembayaran::with(['petugas', 'siswa' => function($query) {
                 $query->with(['kelas']);
             }])
                 ->where('siswa_id', $siswa->id)
                 ->latest()
                 ->get();
-            
+
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function($row) {
@@ -58,7 +58,7 @@ class SiswaController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         }
-    	
+
     	return view('siswa.history-pembayaran');
     }
 
@@ -66,12 +66,12 @@ class SiswaController extends Controller
     {
         $data['siswa'] = Siswa::where('user_id', Auth::user()->id)
             ->first();
-        
+
         $data['pembayaran'] = Pembayaran::with(['petugas', 'siswa'])
             ->where('id', $id)
             ->where('siswa_id', $data['siswa']->id)
             ->first();
-        
+
         $pdf = PDF::loadView('siswa.history-pembayaran-preview',$data);
         return $pdf->stream();
     }

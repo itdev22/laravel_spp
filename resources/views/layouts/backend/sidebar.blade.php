@@ -245,7 +245,7 @@
         @role('siswa')
         <li class="nav-header">PEMBAYARAN</li>
         <li class="nav-item">
-            <a href="{{ route('pembayaran.index') }}" class="nav-link {{ Request::segment(2) == 'bayar' ? 'active' : '' }}">
+            <a href="{{ route('siswa.pembayaran-parmas.index') }}" class="nav-link {{ Request::segment(2) == 'pembayaran-parmas' ? 'active' : '' }}">
               <i class="nav-icon fas fa-money-check"></i>
               <p>
                 Pembayaran Parmas
