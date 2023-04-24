@@ -86,11 +86,15 @@ class PembayaranTagihanController extends Controller
                         'kode_pembayaran' => 'PARMAS'.Str::upper(Str::random(5)),
                         'petugas_id' => $petugas->id,
                         'siswa_id' => $request->siswa_id,
+                        'order_id' => $request->order_id,
                         'nisn' => $request->nisn,
                         'tanggal_bayar' => Carbon::now('Asia/Jakarta'),
                         'tahun_bayar' => $request->tahun_bayar,
                         'bulan_bayar' => $bulan,
                         'jumlah_bayar' => $request->jumlah_bayar,
+                        'type' => $request->type,
+                        'jenis' => $request->jenis,
+                        'status' => $request->status,
                     ]);
                 }
             });
