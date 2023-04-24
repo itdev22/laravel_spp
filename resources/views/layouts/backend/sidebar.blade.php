@@ -281,7 +281,7 @@
                             style="{{ Request::segment(2) == 'permas' ? 'display: block;' : 'display: none;' }}">
                             <li class="nav-item pt-2">
                                 <a href="{{ route('siswa.pembayaran-permas.index') }}"
-                                    class="nav-link {{ Request::segment(3) == 'pembayaran' ? 'active' : '' }}">
+                                    class="nav-link {{ Request::is('siswa/permas/pembayaran*') ? 'active' : '' }}">
                                     <i class="nav-icon fas fa-money-bill-wave-alt"></i>
                                     <p>
                                         Pembayaran
@@ -290,7 +290,7 @@
                             </li>
                             <li class="nav-item pt-2">
                                 <a href="{{ route('siswa.history-permas.index') }}"
-                                    class="nav-link {{ Request::segment(3) == 'history' ? 'active' : '' }}">
+                                    class="nav-link {{ Request::is('siswa/permas/history*') ? 'active' : '' }}">
                                     <i class="nav-icon fas fa-history"></i>
                                     <p>
                                         History
@@ -299,7 +299,47 @@
                             </li>
                             <li class="nav-item pt-2">
                                 <a href="{{ route('siswa.laporan-permas.index') }}"
-                                    class="nav-link {{ Request::segment(3) == 'laporan' ? 'active' : '' }}">
+                                    class="nav-link {{ Request::is('siswa/permas/laporan*') ? 'active' : '' }}">
+                                    <i class="nav-icon fas fa-file"></i>
+                                    <p>
+                                        Laporan
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item {{ Request::segment(2) == 'tagihan' ? 'menu-is-opening menu-open' : '' }}">
+                        <a href="#" class="nav-link {{ Request::segment(2) == 'tagihan' ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-money-check"></i>
+                            <p>
+                                Tagihan
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview"
+                            style="{{ Request::segment(2) == 'tagihan' ? 'display: block;' : 'display: none;' }}">
+                            <li class="nav-item pt-2">
+                                <a href="{{ route('siswa.pembayaran-tagihan.index') }}"
+                                    class="nav-link {{ Request::is('siswa/tagihan/pembayaran*') ? 'active' : '' }}">
+                                    <i class="nav-icon fas fa-money-bill-wave-alt"></i>
+                                    <p>
+                                        Pembayaran
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item pt-2">
+                                <a href="{{ route('siswa.history-tagihan.index') }}"
+                                    class="nav-link {{ Request::is('siswa/tagihan/history*') ? 'active' : '' }}">
+                                    <i class="nav-icon fas fa-history"></i>
+                                    <p>
+                                        History
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item pt-2">
+                                <a href="{{ route('siswa.laporan-tagihan.index') }}"
+                                    class="nav-link {{ Request::is('siswa/tagihan/laporan*') ? 'active' : '' }}">
                                     <i class="nav-icon fas fa-file"></i>
                                     <p>
                                         Laporan
@@ -337,45 +377,6 @@
                             </p>
                         </a>
                     </li>
-
-                    {{-- <li class="nav-item {{ Request::segment(2) == 'permas' ? 'menu-is-opening menu-open' : '' }}">
-                        <a href="#" class="nav-link {{ Request::segment(2) == 'permas' ? 'active' : '' }}">
-                            <i class="nav-icon fas fa-money-check"></i>
-                            <p>
-                                Tagihan
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview" style="{{ Request::segment(2) == 'permas' ? 'display: block;' : 'display: none;' }}">
-                            <li class="nav-item pt-2">
-                                <a href="{{ route('siswa.pembayaran-permas.index') }}"
-                                    class="nav-link {{ Request::segment(3) == 'pembayaran' ? 'active' : '' }}">
-                                    <i class="nav-icon fas fa-money-bill-wave-alt"></i>
-                                    <p>
-                                        Pembayaran
-                                    </p>
-                                </a>
-                            </li>
-                            <li class="nav-item pt-2">
-                                <a href="{{ route('siswa.history-permas.index') }}"
-                                    class="nav-link {{ Request::segment(3) == 'history' ? 'active' : '' }}">
-                                    <i class="nav-icon fas fa-history"></i>
-                                    <p>
-                                        History
-                                    </p>
-                                </a>
-                            </li>
-                            <li class="nav-item pt-2">
-                                <a href="{{ route('siswa.laporan-permas.index') }}"
-                                    class="nav-link {{ Request::segment(3) == 'laporan' ? 'active' : '' }}">
-                                    <i class="nav-icon fas fa-file"></i>
-                                    <p>
-                                        Laporan
-                                    </p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li> --}}
                 @endrole
 
                 @role('admin')

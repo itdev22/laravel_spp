@@ -211,5 +211,94 @@ class PembayaranTagihanController extends Controller
                 Carbon::parse($request->tanggal_selesai)->format('d-m-Y').' Tidak Tersedia');
         }
     }
+
+    public function pembayaran() {
+        $spp = Spp::all();
+        return view('siswa.pembayaran.tagihan.pembayaran.index', compact('spp'));
+    }
+
+    public function pembayaranShow(Spp $spp) {
+        $siswa = Siswa::where('user_id', Auth::user()->id)
+            ->first();
+
+        $pembayaran = Pembayaran::with(['petugas', 'siswa'])
+            ->where('siswa_id', $siswa->id)
+            ->where('tahun_bayar', $spp->tahun)
+            ->oldest()
+            ->get();
+        return view('siswa.pembayaran.tagihan.pembayaran.show', compact('pembayaran', 'siswa', 'spp'));
+    }
+
+    public function history(Request $request)
+    {
+        if ($request->ajax()) {
+            $siswa = Siswa::where('user_id', Auth::user()->id)
+                ->first();
+
+            $data = Pembayaran::with(['petugas', 'siswa' => function($query) {
+                $query->with(['kelas']);
+            }])
+                ->where('siswa_id', $siswa->id)
+                ->latest()
+                ->get();
+
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('action', function($row) {
+                    dd($row);
+                    $btn = '<div class="row"><a href="'.route('siswa.history-tagihan.show', $row->id).'"class="btn btn-danger btn-sm ml-2" target="_blank">
+                    <i class="fas fa-print fa-fw"></i>
+                    </a>';
+                    return $btn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+
+    	return view('siswa.pembayaran.tagihan.history.index');
+    }
+
+    public function historyShow($id)
+    {
+        $data['siswa'] = Siswa::where('user_id', Auth::user()->id)
+            ->first();
+
+        $data['pembayaran'] = Pembayaran::with(['petugas', 'siswa'])
+            ->where('id', $id)
+            ->where('siswa_id', $data['siswa']->id)
+            ->first();
+
+        $pdf = PDF::loadView('siswa.history-tagihan.show', $data);
+        return $pdf->stream();
+    }
+
+    public function laporanPembayaran()
+    {
+        $spp = Spp::all();
+        return view('siswa.pembayaran.tagihan.laporan.index', compact('spp'));
+    }
+
+    public function laporanshow(Request $request)
+    {
+        $siswa = Siswa::where('user_id', Auth::user()->id)
+            ->first();
+
+        $data['pembayaran'] = Pembayaran::with(['petugas', 'siswa'])
+            ->where('siswa_id', $siswa->id)
+            ->where('tahun_bayar', $request->tahun_bayar)
+            ->get();
+
+        $data['data_siswa'] = $siswa;
+
+        if ($data['pembayaran']->count() > 0) {
+            $pdf = PDF::loadView('siswa.tagihan.laporan.show', $data);
+            return $pdf->download('pembayaran-tagihan-'.$siswa->nama_siswa.'-'.
+                $siswa->nisn.'-'.
+                $request->tahun_bayar.'-'.
+                Str::random(9).'.pdf');
+        }else{
+            return back()->with('error', 'Data Pembayaran Tagihan Anda Tahun '.$request->tahun_bayar.' tidak tersedia');
+        }
+    }
 }
 
