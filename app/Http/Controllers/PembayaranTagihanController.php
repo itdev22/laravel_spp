@@ -81,7 +81,7 @@ class PembayaranTagihanController extends Controller
 
         if (!$pembayaran) {
             $status_pembayaran = "Pending";
-            $order_id = $request->type . "-" . Carbon::now()->timestamp;
+            $order_id = $request->jenis . "-" . Carbon::now()->timestamp;
             DB::transaction(function() use($request, $petugas) {
                 foreach ($request->bulan_bayar as $bulan) {
                     Pembayaran::create([
