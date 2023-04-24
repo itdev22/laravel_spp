@@ -80,12 +80,14 @@ class PembayaranTagihanController extends Controller
             ->toArray();
 
         if (!$pembayaran) {
+            $status_pembayaran = "Pending";
+            $order_id = $request->type . "-" . Carbon::now()->timestamp;
             DB::transaction(function() use($request, $petugas) {
                 foreach ($request->bulan_bayar as $bulan) {
                     Pembayaran::create([
                         'kode_pembayaran' => 'PARMAS'.Str::upper(Str::random(5)),
                         'petugas_id' => $petugas->id,
-                        'siswa_id' => $request->siswa_id,
+                        'siswa_id' => $order_id,
                         'order_id' => $request->order_id,
                         'nisn' => $request->nisn,
                         'tanggal_bayar' => Carbon::now('Asia/Jakarta'),
@@ -94,7 +96,7 @@ class PembayaranTagihanController extends Controller
                         'jumlah_bayar' => $request->jumlah_bayar,
                         'type' => $request->type,
                         'jenis' => $request->jenis,
-                        'status' => $request->status,
+                        'status' => $status_pembayaran,
                     ]);
                 }
             });
