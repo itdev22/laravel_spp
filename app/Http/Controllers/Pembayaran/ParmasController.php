@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Pembayaran;
 
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -16,10 +16,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Validator;
 use App\Helpers\Bulan;
+use App\Http\Controllers\Controller;
 use PDF;
 use DataTables;
 
-class PembayaranController extends Controller
+class ParmasController extends Controller
 {
     public function index(Request $request)
     {
@@ -28,7 +29,7 @@ class PembayaranController extends Controller
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    $btn = '<div class="row"><a href="' . route('pembayaran.bayar', $row->nisn) . '"class="btn btn-primary btn-sm ml-2">
+                    $btn = '<div class="row"><a href="' . route('parmas.pembayaran.bayar', $row->nisn) . '"class="btn btn-primary btn-sm ml-2">
                     <i class="fas fa-money-check"></i> BAYAR
                     </a>';
                     return $btn;
@@ -95,7 +96,7 @@ class PembayaranController extends Controller
                 }
             });
 
-            return redirect()->route('pembayaran.history-pembayaran')
+            return redirect()->route('parmas.pembayaran.history-pembayaran')
                 ->with('success', 'Pembayaran berhasil disimpan!');
         } else {
             return back()
@@ -115,7 +116,7 @@ class PembayaranController extends Controller
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    $btn = '<div class="row"><a href="' . route('pembayaran.status-pembayaran.show', $row->nisn) .
+                    $btn = '<div class="row"><a href="' . route('parmas.pembayaran.status-pembayaran.show', $row->nisn) .
                         '"class="btn btn-primary btn-sm">DETAIL</a>';
                     return $btn;
                 })
@@ -159,7 +160,7 @@ class PembayaranController extends Controller
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    $btn = '<div class="row"><a href="' . route('pembayaran.history-pembayaran.print', $row->id) . '"class="btn btn-danger btn-sm ml-2" target="_blank">
+                    $btn = '<div class="row"><a href="' . route('parmas.pembayaran.history-pembayaran.print', $row->id) . '"class="btn btn-danger btn-sm ml-2" target="_blank">
                     <i class="fas fa-print fa-fw"></i></a>';
                     return $btn;
                 })

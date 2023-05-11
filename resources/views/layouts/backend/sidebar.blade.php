@@ -134,7 +134,7 @@
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('tagihan.index') }}"
-                            class="nav-link {{ Request::segment(2) == 'tagihan' ? 'active' : '' }}">
+                            class="nav-link {{ Request::segment(1) == 'admin' && Request::segment(2) == 'tagihan' ? 'active' : '' }}">
                             <i class="nav-icon fas fa-money-bill"></i>
                             <p>
                                 Tagihan
@@ -195,8 +195,8 @@
                 @role('admin|petugas')
                     <li class="nav-header">PEMBAYARAN PARMAS</li>
                     <li class="nav-item">
-                        <a href="{{ route('pembayaran.index') }}"
-                            class="nav-link {{ Request::segment(2) == 'bayar' ? 'active' : '' }}">
+                        <a href="{{ route('parmas.pembayaran.index') }}"
+                            class="nav-link {{ Request::segment(2) == 'parmas' && Request::segment(3) == 'bayar' ? 'active' : '' }}">
                             <i class="nav-icon fas fa-money-check"></i>
                             <p>
                                 Pembayaran Parmas
@@ -204,8 +204,8 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('pembayaran.status-pembayaran') }}"
-                            class="nav-link {{ Request::segment(2) == 'status-pembayaran' ? 'active' : '' }}">
+                        <a href="{{ route('parmas.pembayaran.status-pembayaran') }}"
+                            class="nav-link {{ Request::segment(2) == 'parmas' && Request::segment(3) == 'status-pembayaran' ? 'active' : '' }}">
                             <i class="nav-icon fas fa-money-bill"></i>
                             <p>
                                 Status Pembayaran
@@ -213,8 +213,8 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('pembayaran.history-pembayaran') }}"
-                            class="nav-link {{ Request::segment(2) == 'history-pembayaran' ? 'active' : '' }}">
+                        <a href="{{ route('parmas.pembayaran.history-pembayaran') }}"
+                            class="nav-link {{ Request::segment(2) == 'parmas' && Request::segment(3) == 'history-pembayaran' ? 'active' : '' }}">
                             <i class="nav-icon fas fa-history"></i>
                             <p>
                                 History Pembayaran
@@ -226,8 +226,8 @@
                 @role('admin|petugas')
                     <li class="nav-header">PEMBAYARAN TAGIHAN</li>
                     <li class="nav-item">
-                        <a href="{{ route('pembayaran.index') }}"
-                            class="nav-link {{ Request::segment(2) == 'bayar' ? 'active' : '' }}">
+                        <a href="{{ route('tagihan.pembayaran.index') }}"
+                            class="nav-link {{ Request::segment(2) == 'tagihan' && Request::segment(3) == 'bayar' ? 'active' : '' }}">
                             <i class="nav-icon fas fa-money-check"></i>
                             <p>
                                 Pembayaran Tagihan
@@ -235,8 +235,8 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('pembayaran.status-pembayaran') }}"
-                            class="nav-link {{ Request::segment(2) == 'status-pembayaran' ? 'active' : '' }}">
+                        <a href="{{ route('tagihan.pembayaran.status-pembayaran') }}"
+                            class="nav-link {{ Request::segment(2) == 'tagihan' && Request::segment(3) == 'status-pembayaran' ? 'active' : '' }}">
                             <i class="nav-icon fas fa-money-bill"></i>
                             <p>
                                 Status Pembayaran
@@ -244,8 +244,8 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('pembayaran.history-pembayaran') }}"
-                            class="nav-link {{ Request::segment(2) == 'history-pembayaran' ? 'active' : '' }}">
+                        <a href="{{ route('tagihan.pembayaran.history-pembayaran') }}"
+                            class="nav-link {{ Request::segment(2) == 'tagihan' && Request::segment(3) == 'history-pembayaran' ? 'active' : '' }}">
                             <i class="nav-icon fas fa-history"></i>
                             <p>
                                 History Pembayaran
@@ -257,11 +257,20 @@
                 @role('admin|petugas')
                     <li class="nav-header">LAPORAN</li>
                     <li class="nav-item">
-                        <a href="{{ route('pembayaran.laporan') }}"
+                        <a href="{{ route('parmas.pembayaran.laporan') }}"
                             class="nav-link {{ Request::segment(2) == 'laporan' ? 'active' : '' }}">
                             <i class="nav-icon fas fa-file"></i>
                             <p>
-                                Laporan Pembayaran
+                                Laporan Pembayaran Parmas
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('tagihan.pembayaran.laporan') }}"
+                            class="nav-link {{ Request::segment(2) == 'laporan' ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-file"></i>
+                            <p>
+                                Laporan Pembayaran Tagihan
                             </p>
                         </a>
                     </li>
