@@ -2,21 +2,29 @@
 
 namespace App\Models;
 
-use App\Models\Kelas;
-use App\Models\Siswa;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Tagihan extends Model
+class TagihanSiswa extends Model
 {
     use HasFactory;
-    protected $table = 'tagihan';
+
+    protected $table = 'tagihan_siswa';
 
     protected $fillable = [
-        'kode_tagihan',
         'siswa_id',
         'tagihan_id',
         'nominal',
         'status',
     ];
+
+    public function siswa()
+    {
+        return $this->belongsTo(Siswa::class);
+    }
+
+    public function tagihan()
+    {
+        return $this->belongsTo(Tagihan::class);
+    }
 }

@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Pembayaran\ParmasController;
+use App\Http\Controllers\Pembayaran\TagihanController;
+use App\Http\Controllers\PembayaranController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -71,10 +73,11 @@ Route::prefix('pembayaran')->middleware(['auth', 'role:admin|petugas'])->group(f
     });
 
     Route::group(['prefix' => 'tagihan', 'as' => 'tagihan.'], function () {
-        Route::get('bayar', 'PembayaranController@index')->name('pembayaran.index');
-        Route::get('bayar/{nisn}', 'PembayaranController@bayar')->name('pembayaran.bayar');
-        Route::get('spp/{tahun}', 'PembayaranController@spp')->name('pembayaran.spp');
-        Route::post('bayar/{nisn}', 'PembayaranController@prosesBayar')->name('pembayaran.proses-bayar');
+        Route::get('bayar', [TagihanController::class, 'index'])->name('pembayaran.index');
+        Route::get('detailtagihan/{tagihanid}', [TagihanController::class, 'detailsiswa'])->name('pembayaran.detailtagihan');
+        Route::get('bayar/{nisn}', [TagihanController::class, 'bayar'])->name('pembayaran.bayar');
+        Route::get('tagihan/{id}', [TagihanController::class, 'tagihan'])->name('pembayaran.tagihan');
+        Route::post('bayar/{nisn}', [TagihanController::class, 'prosesBayar'])->name('pembayaran.proses-bayar');
         Route::get('status-pembayaran', 'PembayaranController@statusPembayaran')
             ->name('pembayaran.status-pembayaran');
 

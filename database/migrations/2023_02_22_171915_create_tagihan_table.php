@@ -16,15 +16,12 @@ class CreateTagihanTable extends Migration
         Schema::create('tagihan', function (Blueprint $table) {
             $table->id();
             $table->string('nama_tagihan')->nullable();
-            $table->string('nominal')->nullable();
-            $table->string('max_angsuran')->nullable();
+            $table->integer('nominal')->nullable();
             // $table->string('kelas')->nullable();
             $table->timestamps();
 
             // $table->foreign('kelas_id')->references('id')->on('spp');
             // $table->foreignId('siswa')->constrained('siswa')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('kelas_id')->constrained('kelas')->onUpdate('cascade')->onDelete('cascade');
-
         });
     }
 

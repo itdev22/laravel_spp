@@ -18,7 +18,7 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Nama Tagihan</th>
+                                <th>Nama Siswa</th>
                                 <th>Nominal</th>
                                 <th>Detail</th>
                             </tr>
@@ -60,18 +60,18 @@
                 processing: true,
                 serverSide: true,
                 "responsive": true,
-                ajax: "{{ route('tagihan.pembayaran.index') }}",
+                ajax: "{{ route('tagihan.pembayaran.detailtagihan', request()->segment(4)) }}",
                 columns: [{
                         data: 'DT_RowIndex',
                         name: 'id'
                     },
                     {
-                        data: 'nama_tagihan',
-                        name: 'nama_tagihan'
+                        data: 'siswa.nama_siswa',
+                        name: 'siswa.nama_siswa'
                     },
                     {
-                        data: 'nominal',
-                        name: 'nominal'
+                        data: 'tagihan.nominal',
+                        name: 'tagihan.nominal'
                     },
                     {
                         data: 'action',

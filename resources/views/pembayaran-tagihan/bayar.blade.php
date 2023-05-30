@@ -19,7 +19,7 @@
                     </a>
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('pembayaran.proses-bayar', $siswa->nisn) }}">
+                    <form method="POST" action="{{ route('tagihan.pembayaran.proses-bayar', $siswa->nisn) }}">
                         @csrf
                         <div class="row">
                             <div class="col-lg-3">
@@ -69,19 +69,22 @@
                         <div class="row">
                             <div class="col-lg-3">
                                 <div class="form-group">
-                                    <label for="tahun_bayar">Untuk Tahun:</label>
+                                    <label for="tahun_bayar">Untuk Tagihan:</label>
                                     <select required="" name="tahun_bayar" id="tahun_bayar"
                                         class="form-control select2bs4">
-                                        <option disabled="" selected="">- PILIH TAHUN -</option>
-                                        @foreach ($spp as $row)
-                                            <option value="{{ $row->tahun }}">{{ $row->tahun }}</option>
+                                        <option disabled="" selected="">- PILIH TAGIHAN -</option>
+                                        {{ $tagihans }}
+                                        @foreach ($tagihans as $tagihan)
+                                            <option value="{{ $tagihan->tagihan->id }}">
+                                                {{ $tagihan->tagihan->nama_tagihan }}
+                                            </option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
                             <div class="col-lg-3">
                                 <div class="form-group">
-                                    <label for="jumlah_bayar" id="nominal_spp_label">Nominal Parmas:</label>
+                                    <label for="jumlah_bayar" id="nominal_spp_label">Nominal Tagihan:</label>
                                     <input type="" name="nominal" readonly="" id="nominal" class="form-control">
                                     <input required="" type="hidden" name="jumlah_bayar" readonly=""
                                         id="jumlah_bayar" class="form-control">
@@ -92,30 +95,24 @@
                             </div>
                             <div class="col-lg-3">
                                 <div class="form-group select2-purple">
-                                    <label for="bulan_bayar">Untuk Bulan:</label>
-                                    <select required="" name="bulan_bayar[]" id="bulan_bayar" class="select2"
-                                        multiple="multiple" data-dropdown-css-class="select2-purple"
-                                        data-placeholder="Pilih Bulan" style="width: 100%;">
-                                        @php
-                                            $bulanExcept = App\Models\Pembayaran::where('siswa_id', '=', $siswa->id)
-                                                ->get()
-                                                ->pluck('bulan_bayar')
-                                                ->toArray();
-                                        @endphp
-                                        @foreach (Universe::bulanAll() as $bulan)
-                                            @if (!in_array($bulan['nama_bulan'], $bulanExcept))
-                                                <option value="{{ $bulan['nama_bulan'] }}">{{ $bulan['nama_bulan'] }}
-                                                </option>
-                                            @endif
-                                        @endforeach
-                                    </select>
+                                    <label for="dibayar">Dibayar :</label>
+                                    <input required="" type="number" name="dibayar" id="dibayar" class="form-control">
                                 </div>
                             </div>
                             <div class="col-lg-3">
                                 <div class="form-group">
-                                    <label for="total_bayar">Total Bayar:</label>
-                                    <input required="" type="" name="total_bayar" readonly=""
-                                        id="total_bayar" class="form-control">
+                                    <label for="total_kekurangan">Total Kekurangan:</label>
+                                    <input required="" type="" name="total_kekurangan" readonly=""
+                                        id="total_kekurangan" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="form-group">
+                                    <label for="type_pembayaran">Type Pembayaran:</label>
+                                    <select name="type_pembayaran" id="type_pembayaran" class="form-control">
+                                        <option value="Offline">Offline</option>
+                                        <option value="Online">Online</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -152,31 +149,41 @@
         }
 
         $(document).on("change", "#tahun_bayar", function() {
-            var tahun = $(this).val()
+            var id = $(this).val()
 
             $.ajax({
-                url: "/pembayaran/spp/" + tahun,
+                url: "/pembayaran/tagihan/tagihan/" + id,
                 method: "GET",
                 success: function(response) {
-                    $("#nominal_spp_label").html(`Nominal Parmas Tahun ` + tahun + ':')
+                    $("#nominal_spp_label").html(`Nominal Tagihan ` + response.data.nama_tagihan +
+                        ':')
                     $("#nominal").val(response.nominal_rupiah)
                     $("#jumlah_bayar").val(response.data.nominal)
+                    $("#dibayar").val(response.data.nominal)
+
+                    var dibayar = $("#dibayar").val()
+                    var total_bayar = $("#jumlah_bayar").val()
+                    var hasil_bayar = (total_bayar - dibayar)
+
+                    var formatter = new Intl.NumberFormat('ID', {
+                        style: 'currency',
+                        currency: 'idr',
+                    })
+                    $("#total_kekurangan").val(formatter.format(hasil_bayar))
                 }
             })
         })
 
-        $(document).on("change", "#bulan_bayar", function() {
-            var bulan = $(this).val()
-            var total_bulan = bulan.length
+        $(document).on("change", "#dibayar", function() {
+            var dibayar = $("#dibayar").val()
             var total_bayar = $("#jumlah_bayar").val()
-            var hasil_bayar = (total_bulan * total_bayar)
+            var hasil_bayar = (total_bayar - dibayar)
 
             var formatter = new Intl.NumberFormat('ID', {
                 style: 'currency',
                 currency: 'idr',
             })
-
-            $("#total_bayar").val(formatter.format(hasil_bayar))
+            $("#total_kekurangan").val(formatter.format(hasil_bayar))
         })
     </script>
 @endpush

@@ -78,7 +78,7 @@
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a href="{{ route('pembayaran-spp.index') }}"
                             class="nav-link {{ Request::segment(2) == 'pembayaran-spp' ? 'active' : '' }}">
                             <i class="nav-icon fas fa-list"></i>
@@ -86,7 +86,7 @@
                                 Pembayaran
                             </p>
                         </a>
-                    </li>
+                    </li> --}}
                     <li class="nav-item">
                         <a href="{{ route('kelas.index') }}"
                             class="nav-link {{ Request::segment(2) == 'kelas' ? 'active' : '' }}">

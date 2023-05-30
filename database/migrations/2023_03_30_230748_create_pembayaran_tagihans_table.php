@@ -15,6 +15,12 @@ class CreatePembayaranTagihansTable extends Migration
     {
         Schema::create('pembayaran_tagihans', function (Blueprint $table) {
             $table->id();
+            $table->string('kode_pembayaran')->nullable();
+            $table->foreignId('petugas_id')->constrained('petugas')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('siswa_id')->constrained('siswa')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('tagihansiswa_id')->constrained('siswa')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('nisn')->nullable();
+            $table->enum('status', ['finish', 'pending'])->default('pending');
             $table->timestamps();
         });
     }

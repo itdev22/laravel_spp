@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Validator;
 use App\Helpers\Bulan;
+use App\Models\Tagihan;
 use PDF;
 use DataTables;
 
@@ -24,11 +25,11 @@ class PembayaranController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = Siswa::with(['kelas'])->latest();
+            $data = Tagihan::with(['kelas'])->latest();
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    $btn = '<div class="row"><a href="' . route('pembayaran.bayar', $row->nisn) . '"class="btn btn-primary btn-sm ml-2">
+                    $btn = '<div class="row"><a href="' . route('tagihan.pembayaran.bayar', $row->nisn) . '"class="btn btn-primary btn-sm ml-2">
                     <i class="fas fa-money-check"></i> BAYAR
                     </a>';
                     return $btn;
@@ -37,7 +38,7 @@ class PembayaranController extends Controller
                 ->make(true);
         }
 
-        return view('pembayaran-parmas.index');
+        return view('pembayaran-tagihan.index');
     }
 
     public function bayar($nisn)
