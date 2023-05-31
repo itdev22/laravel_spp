@@ -69,14 +69,14 @@
                         <div class="row">
                             <div class="col-lg-3">
                                 <div class="form-group">
-                                    <label for="tahun_bayar">Untuk Tagihan:</label>
-                                    <select required="" name="tahun_bayar" id="tahun_bayar"
+                                    <label for="tagihansiswa_id">Untuk Tagihan:</label>
+                                    <select required="" name="tagihansiswa_id" id="tagihansiswa_id"
                                         class="form-control select2bs4">
                                         <option disabled="" selected="">- PILIH TAGIHAN -</option>
-                                        {{ $tagihans }}
-                                        @foreach ($tagihans as $tagihan)
-                                            <option value="{{ $tagihan->tagihan->id }}">
-                                                {{ $tagihan->tagihan->nama_tagihan }}
+                                        {{ $tagihansiswas }}
+                                        @foreach ($tagihansiswas as $tagihansiswa)
+                                            <option value="{{ $tagihansiswa->tagihan->id }}">
+                                                {{ $tagihansiswa->tagihan->nama_tagihan }}
                                             </option>
                                         @endforeach
                                     </select>
@@ -148,7 +148,7 @@
             return formatter.format(number)
         }
 
-        $(document).on("change", "#tahun_bayar", function() {
+        $(document).on("change", "#tagihansiswa_id", function() {
             var id = $(this).val()
 
             $.ajax({

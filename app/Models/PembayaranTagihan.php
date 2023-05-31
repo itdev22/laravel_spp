@@ -17,6 +17,7 @@ class PembayaranTagihan extends Model
         'siswa_id',
         'tagihansiswa_id',
         'nisn',
+        'nominal',
         'status'
     ];
 }

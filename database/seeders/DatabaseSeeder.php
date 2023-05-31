@@ -328,12 +328,13 @@ class DatabaseSeeder extends Seeder
             'status' => 'belum lunas',
         ]);
 
-        PembayaranTagihan::create([
-            'kode_pembayaran' => '',
-            'petugas_id' => '',
-            'siswa_id' => '',
-            'tagihansiswa_id' => '',
-            'nisn' => '',
-        ]);
+        // PembayaranTagihan::create([
+        //     'kode_pembayaran' => 'Tagihan' . Str::upper(Str::random(5)),
+        //     'petugas_id' => 1,
+        //     'siswa_id' => 1,
+        //     'tagihansiswa_id' => 1,
+        //     'nominal' => 1000,
+        //     'nisn' => '08909978'
+        // ]);
     }
 }
