@@ -20,6 +20,7 @@
                                 <th>No</th>
                                 <th>Nama Siswa</th>
                                 <th>Nominal</th>
+                                <th>Status</th>
                                 <th>Detail</th>
                             </tr>
                         </thead>
@@ -70,8 +71,12 @@
                         name: 'siswa.nama_siswa'
                     },
                     {
-                        data: 'tagihan.nominal',
-                        name: 'tagihan.nominal'
+                        data: 'nominal',
+                        name: 'nominal'
+                    },
+                    {
+                        data: 'status',
+                        name: 'status'
                     },
                     {
                         data: 'action',

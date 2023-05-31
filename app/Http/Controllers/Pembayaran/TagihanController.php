@@ -99,7 +99,9 @@ class TagihanController extends Controller
 
         if ($pembayaran->count() == 0) {
             if ($request->type_pembayaran == 'Offline') {
-                DB::transaction(function () use ($request, $petugas) {
+                DB::beginTransaction();
+                try {
+                    //code..
                     PembayaranTagihan::create([
                         'kode_pembayaran' => 'Tagihan' . Str::upper(Str::random(5)),
                         'petugas_id' => $petugas->id,
@@ -125,13 +127,19 @@ class TagihanController extends Controller
                         ]);
 
                     $tagihansiswa = TagihanSiswa::with(['tagihan'])->where('siswa_id', '=', $request->siswa_id)->where('id', '=', $request->tagihansiswa_id)->first();
-                    dd($tagihansiswa);
                     $tagihansiswa->nominal = $sum_nominal;
-                    if ($tagihansiswa->nominal == $tagihansiswa->nominal) {
+                    if ($tagihansiswa->nominal == $tagihansiswa->tagihan->nominal) {
                         $tagihansiswa->status = 'lunas';
+                    } else {
+                        $tagihansiswa->status = 'belum lunas';
                     }
                     $tagihansiswa->save();
-                });
+                    DB::commit();
+                } catch (\Throwable $th) {
+                    //throw $th;
+                    DB::rollback();
+                    return back()->with('error', 'Pembayaran gagal disimpan!');
+                }
             } else if ($request->type_pembayaran == 'Online') {
                 DB::transaction(function () use ($request, $petugas) {
                     PembayaranTagihan::create([
