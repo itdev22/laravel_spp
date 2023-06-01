@@ -78,23 +78,23 @@ Route::prefix('pembayaran')->middleware(['auth', 'role:admin|petugas'])->group(f
         Route::get('bayar/{nisn}', [TagihanController::class, 'bayar'])->name('pembayaran.bayar');
         Route::get('tagihan/{id}', [TagihanController::class, 'tagihan'])->name('pembayaran.tagihan');
         Route::post('bayar/{nisn}', [TagihanController::class, 'prosesBayar'])->name('pembayaran.proses-bayar');
-        Route::get('status-pembayaran', 'PembayaranController@statusPembayaran')
+        Route::get('status-pembayaran', [TagihanController::class, 'statusPembayaran'])
             ->name('pembayaran.status-pembayaran');
 
-        Route::get('status-pembayaran/{siswa:nisn}', 'PembayaranController@statusPembayaranShow')
+        Route::get('status-pembayaran/{siswa:nisn}', [TagihanController::class, 'statusPembayaranShow'])
             ->name('pembayaran.status-pembayaran.show');
 
-        Route::get('status-pembayaran/{nisn}/{tahun}', 'PembayaranController@statusPembayaranShowStatus')
+        Route::get('status-pembayaran/{nisn}/{tahun}', [TagihanController::class, 'statusPembayaranShowStatus'])
             ->name('pembayaran.status-pembayaran.show-status');
 
-        Route::get('history-pembayaran', 'PembayaranController@historyPembayaran')
+        Route::get('history-pembayaran', [TagihanController::class, 'historyPembayaran'])
             ->name('pembayaran.history-pembayaran');
 
-        Route::get('history-pembayaran/preview/{id}', 'PembayaranController@printHistoryPembayaran')
+        Route::get('history-pembayaran/preview/{id}', [TagihanController::class, 'printHistoryPembayaran'])
             ->name('pembayaran.history-pembayaran.print');
 
-        Route::get('laporan', 'PembayaranController@laporan')->name('pembayaran.laporan');
-        Route::post('laporan', 'PembayaranController@printPdf')->name('pembayaran.print-pdf');
+        Route::get('laporan', [TagihanController::class, 'laporan'])->name('pembayaran.laporan');
+        Route::post('laporan', [TagihanController::class, 'printPdf'])->name('pembayaran.print-pdf');
     });
 });
 

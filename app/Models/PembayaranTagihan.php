@@ -20,4 +20,14 @@ class PembayaranTagihan extends Model
         'nominal',
         'status'
     ];
+
+    public function petugas()
+    {
+        return $this->belongsTo(Petugas::class, 'petugas_id');
+    }
+
+    public function siswa()
+    {
+        return $this->belongsTo(Siswa::class, 'siswa_id');
+    }
 }

@@ -116,7 +116,12 @@ class TagihanController extends Controller
                         ->where('tagihansiswa_id', '=', $request->tagihansiswa_id)
                         ->get();
 
-                    $sum_nominal = $pembayaranTagihan->sum('nominal');
+                    $sum_nominal = 0;
+                    if ($pembayaranTagihan->count() > 0) {
+                        $sum_nominal = $pembayaranTagihan->sum('nominal');
+                    } else {
+                        $sum_nominal = $request->dibayar;
+                    }
 
 
                     TagihanSiswa::where('siswa_id', '=', $request->siswa_id)
@@ -126,9 +131,10 @@ class TagihanController extends Controller
                             'status' => 'lunas'
                         ]);
 
-                    $tagihansiswa = TagihanSiswa::with(['tagihan'])->where('siswa_id', '=', $request->siswa_id)->where('id', '=', $request->tagihansiswa_id)->first();
+                    $tagihansiswa = TagihanSiswa::with(['tagihan'])->where('siswa_id', '=', $request->siswa_id)->where('tagihan_id', '=', $request->tagihansiswa_id)->first();
+                    // dd($tagihansiswa, $request->tagihansiswa_id, $request->siswa_id);
                     $tagihansiswa->nominal = $sum_nominal;
-                    if ($tagihansiswa->nominal == $tagihansiswa->tagihan->nominal) {
+                    if ($tagihansiswa->nominal >= $tagihansiswa->tagihan->nominal) {
                         $tagihansiswa->status = 'lunas';
                     } else {
                         $tagihansiswa->status = 'belum lunas';
@@ -136,7 +142,7 @@ class TagihanController extends Controller
                     $tagihansiswa->save();
                     DB::commit();
                 } catch (\Throwable $th) {
-                    //throw $th;
+                    throw $th;
                     DB::rollback();
                     return back()->with('error', 'Pembayaran gagal disimpan!');
                 }
@@ -157,5 +163,52 @@ class TagihanController extends Controller
         } else {
             return back()->with('error', 'Pembayaran gagal disimpan!');
         }
+    }
+
+    public function historyPembayaran(Request $request)
+    {
+        if ($request->ajax()) {
+            $data = PembayaranTagihan::with(['petugas', 'siswa.kelas'])
+                ->latest()->get();
+
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('action', function ($row) {
+                    $btn = '<div class="row"><a href="' . route('tagihan.pembayaran.history-pembayaran.print', $row->id) . '"class="btn btn-danger btn-sm ml-2" target="_blank">
+                    <i class="fas fa-print fa-fw"></i></a>';
+                    return $btn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+
+        return view('pembayaran-tagihan.history-pembayaran');
+    }
+
+    public function statusPembayaran(Request $request)
+    {
+        if ($request->ajax()) {
+            $data = Siswa::with(['kelas'])
+                ->latest()
+                ->get();
+
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('action', function ($row) {
+                    $btn = '<div class="row"><a href="' . route('tagihan.pembayaran.status-pembayaran.show', $row->nisn) .
+                        '"class="btn btn-primary btn-sm">DETAIL</a>';
+                    return $btn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+
+        return view('pembayaran-tagihan.status-pembayaran');
+    }
+
+    public function statusPembayaranShow(Siswa $siswa)
+    {
+        $spp = TagihanSiswa::with(['tagihan'])->where('siswa_id', $siswa->id)->get();
+        return view('pembayaran-tagihan.status-pembayaran-tahun', compact('siswa', 'spp'));
     }
 }

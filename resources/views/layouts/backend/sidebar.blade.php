@@ -193,65 +193,90 @@
                 @endrole
 
                 @role('admin|petugas')
-                    <li class="nav-header">PEMBAYARAN PARMAS</li>
-                    <li class="nav-item">
-                        <a href="{{ route('parmas.pembayaran.index') }}"
-                            class="nav-link {{ Request::segment(2) == 'parmas' && Request::segment(3) == 'bayar' ? 'active' : '' }}">
+                    <li class="nav-header">PEMBAYARAN</li>
+                    <li class="nav-item {{ Request::segment(2) == 'parmas' ? 'menu-is-opening menu-open' : '' }}">
+                        <a href="#" class="nav-link {{ Request::segment(2) == 'parmas' ? 'active' : '' }}">
                             <i class="nav-icon fas fa-money-check"></i>
                             <p>
-                                Pembayaran Parmas
+                                Permas
+                                <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
+                        <ul class="nav nav-treeview"
+                            style="{{ Request::segment(2) == 'parmas' ? 'display: block;' : 'display: none;' }}">
+                            <li class="nav-item">
+                                <a href="{{ route('parmas.pembayaran.index') }}"
+                                    class="nav-link {{ Request::segment(2) == 'parmas' && Request::segment(3) == 'bayar' ? 'active' : '' }}">
+                                    <i class="nav-icon fas fa-money-check"></i>
+                                    <p>
+                                        Pembayaran Parmas
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('parmas.pembayaran.status-pembayaran') }}"
+                                    class="nav-link {{ Request::segment(2) == 'parmas' && Request::segment(3) == 'status-pembayaran' ? 'active' : '' }}">
+                                    <i class="nav-icon fas fa-money-bill"></i>
+                                    <p>
+                                        Status Pembayaran
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('parmas.pembayaran.history-pembayaran') }}"
+                                    class="nav-link {{ Request::segment(2) == 'parmas' && Request::segment(3) == 'history-pembayaran' ? 'active' : '' }}">
+                                    <i class="nav-icon fas fa-history"></i>
+                                    <p>
+                                        History Pembayaran
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
-                    <li class="nav-item">
-                        <a href="{{ route('parmas.pembayaran.status-pembayaran') }}"
-                            class="nav-link {{ Request::segment(2) == 'parmas' && Request::segment(3) == 'status-pembayaran' ? 'active' : '' }}">
-                            <i class="nav-icon fas fa-money-bill"></i>
+
+                    <li class="nav-item {{ Request::segment(2) == 'tagihan' ? 'menu-is-opening menu-open' : '' }}">
+                        <a href="#" class="nav-link {{ Request::segment(2) == 'tagihan' ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-money-check"></i>
                             <p>
-                                Status Pembayaran
+                                Tagihan
+                                <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('parmas.pembayaran.history-pembayaran') }}"
-                            class="nav-link {{ Request::segment(2) == 'parmas' && Request::segment(3) == 'history-pembayaran' ? 'active' : '' }}">
-                            <i class="nav-icon fas fa-history"></i>
-                            <p>
-                                History Pembayaran
-                            </p>
-                        </a>
+                        <ul class="nav nav-treeview"
+                            style="{{ Request::segment(2) == 'tagihan' ? 'display: block;' : 'display: none;' }}">
+                            <li class="nav-item">
+                                <a href="{{ route('tagihan.pembayaran.index') }}"
+                                    class="nav-link {{ Request::segment(2) == 'tagihan' && Request::segment(3) == 'bayar' ? 'active' : '' }}">
+                                    <i class="nav-icon fas fa-money-check"></i>
+                                    <p>
+                                        Pembayaran Tagihan
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('tagihan.pembayaran.status-pembayaran') }}"
+                                    class="nav-link {{ Request::segment(2) == 'tagihan' && Request::segment(3) == 'status-pembayaran' ? 'active' : '' }}">
+                                    <i class="nav-icon fas fa-money-bill"></i>
+                                    <p>
+                                        Status Pembayaran
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('tagihan.pembayaran.history-pembayaran') }}"
+                                    class="nav-link {{ Request::segment(2) == 'tagihan' && Request::segment(3) == 'history-pembayaran' ? 'active' : '' }}">
+                                    <i class="nav-icon fas fa-history"></i>
+                                    <p>
+                                        History Pembayaran
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                 @endrole
 
                 @role('admin|petugas')
-                    <li class="nav-header">PEMBAYARAN TAGIHAN</li>
-                    <li class="nav-item">
-                        <a href="{{ route('tagihan.pembayaran.index') }}"
-                            class="nav-link {{ Request::segment(2) == 'tagihan' && Request::segment(3) == 'bayar' ? 'active' : '' }}">
-                            <i class="nav-icon fas fa-money-check"></i>
-                            <p>
-                                Pembayaran Tagihan
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('tagihan.pembayaran.status-pembayaran') }}"
-                            class="nav-link {{ Request::segment(2) == 'tagihan' && Request::segment(3) == 'status-pembayaran' ? 'active' : '' }}">
-                            <i class="nav-icon fas fa-money-bill"></i>
-                            <p>
-                                Status Pembayaran
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('tagihan.pembayaran.history-pembayaran') }}"
-                            class="nav-link {{ Request::segment(2) == 'tagihan' && Request::segment(3) == 'history-pembayaran' ? 'active' : '' }}">
-                            <i class="nav-icon fas fa-history"></i>
-                            <p>
-                                History Pembayaran
-                            </p>
-                        </a>
-                    </li>
+                    {{-- <li class="nav-header">PEMBAYARAN TAGIHAN</li> --}}
                 @endrole
 
                 @role('admin|petugas')
