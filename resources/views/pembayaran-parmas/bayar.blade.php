@@ -96,18 +96,10 @@
                                     <select required="" name="bulan_bayar[]" id="bulan_bayar" class="select2"
                                         multiple="multiple" data-dropdown-css-class="select2-purple"
                                         data-placeholder="Pilih Bulan" style="width: 100%;">
-                                        @php
-                                            $bulanExcept = App\Models\Pembayaran::where('siswa_id', '=', $siswa->id)
-                                                ->get()
-                                                ->pluck('bulan_bayar')
-                                                ->toArray();
-                                        @endphp
-                                        @foreach (Universe::bulanAll() as $bulan)
-                                            @if (!in_array($bulan['nama_bulan'], $bulanExcept))
-                                                <option value="{{ $bulan['nama_bulan'] }}">{{ $bulan['nama_bulan'] }}
-                                                </option>
-                                            @endif
-                                        @endforeach
+                                        {{-- @foreach (Universe::bulanAll() as $bulan)
+                                            <option value="{{ $bulan['nama_bulan'] }}">{{ $bulan['nama_bulan'] }}
+                                            </option>
+                                        @endforeach --}}
                                     </select>
                                 </div>
                             </div>
@@ -161,6 +153,8 @@
                     $("#nominal_spp_label").html(`Nominal Parmas Tahun ` + tahun + ':')
                     $("#nominal").val(response.nominal_rupiah)
                     $("#jumlah_bayar").val(response.data.nominal)
+                    $("#bulan_bayar").html(response.bulan_bayar)
+                    console.log(response);
                 }
             })
         })

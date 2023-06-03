@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Validator;
 use App\Helpers\Bulan;
+use App\Helpers\Universe;
 use App\Http\Controllers\Controller;
 use PDF;
 use DataTables;
@@ -57,9 +58,21 @@ class ParmasController extends Controller
         $spp = Spp::where('tahun', $tahun)
             ->first();
 
+
+        $bulans = Universe::bulanAll();
+
+        $bulan_bayar = '';
+        foreach ($bulans as $key => $bulan) {
+            if (!Pembayaran::where('bulan_bayar', $bulan['nama_bulan'])->where('tahun_bayar', $tahun)->first()) {
+                $bulan_bayar .= '<option value="' . $bulan['nama_bulan'] . '">' . $bulan['nama_bulan'] . '</option>';
+            }
+        }
+
+        // $bulan_bayar = 'asd';
         return response()->json([
             'data' => $spp,
             'nominal_rupiah' => 'Rp ' . number_format($spp->nominal, 0, 2, '.'),
+            'bulan_bayar' => $bulan_bayar
         ]);
     }
 
