@@ -13,10 +13,17 @@ class Tagihan extends Model
     protected $table = 'tagihan';
 
     protected $fillable = [
+        'nama_tagihan',
         'kode_tagihan',
+        'kelas_id',
         'siswa_id',
         'tagihan_id',
         'nominal',
         'status',
     ];
+
+    public function kelas()
+    {
+        return $this->belongsTo(Kelas::class);
+    }
 }

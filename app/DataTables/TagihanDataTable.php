@@ -9,7 +9,7 @@ class TagihanDataTable
 {
     public function data()
     {
-        $data = Tagihan::with([])->latest();
+        $data = Tagihan::with(['kelas'])->latest();
         // $data = Tagihan::oldest('nama_tagihan');
         return DataTables::of($data)
             ->addIndexColumn()

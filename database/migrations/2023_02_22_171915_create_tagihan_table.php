@@ -18,9 +18,9 @@ class CreateTagihanTable extends Migration
             $table->string('nama_tagihan')->nullable();
             $table->integer('nominal')->nullable();
             // $table->string('kelas')->nullable();
+            $table->foreignId('kelas_id')->references('id')->on('kelas');
             $table->timestamps();
 
-            // $table->foreign('kelas_id')->references('id')->on('spp');
             // $table->foreignId('siswa')->constrained('siswa')->onUpdate('cascade')->onDelete('cascade');
         });
     }

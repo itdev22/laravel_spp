@@ -302,11 +302,13 @@ class DatabaseSeeder extends Seeder
         // dev seeder
         Tagihan::create([
             'nama_tagihan' => 'Skal',
-            'nominal' => 10000
+            'nominal' => 10000,
+            'kelas_id' => 1
         ]);
         Tagihan::create([
             'nama_tagihan' => 'Parkir',
-            'nominal' => 10000
+            'nominal' => 10000,
+            'kelas_id' => 2
         ]);
 
         TagihanSiswa::create([

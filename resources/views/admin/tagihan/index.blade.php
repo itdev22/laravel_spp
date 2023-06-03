@@ -101,14 +101,14 @@
           <input required="" type="text" name="max_angsuran" id="max_angsuran" class="form-control">
         </div> --}}
                         <!-- <div class="form-group">
-                  <label for="created_at">Tanggal Bayar:</label>
-                  <input required="" type="date" name="created_at" id="created_at" class="form-control">
-                </div>
-                <div class="form-group">
-                  <label for="updates_at">Tanggal Diperbarui:</label>
-                  <input required="" type="date" name="updates_at" id="updates_at" class="form-control">
-                </div>
-              </div> -->
+                      <label for="created_at">Tanggal Bayar:</label>
+                      <input required="" type="date" name="created_at" id="created_at" class="form-control">
+                    </div>
+                    <div class="form-group">
+                      <label for="updates_at">Tanggal Diperbarui:</label>
+                      <input required="" type="date" name="updates_at" id="updates_at" class="form-control">
+                    </div>
+                  </div> -->
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">CLOSE</button>
                             <button type="submit" class="btn btn-primary">
@@ -157,11 +157,11 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="max_angsuran_edit">Minimal Angsuran:</label>
                             <input required="" type="text" name="max_angsuran" id="max_angsuran_edit"
                                 class="form-control">
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">CLOSE</button>
