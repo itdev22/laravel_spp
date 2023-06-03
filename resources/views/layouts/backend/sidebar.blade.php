@@ -194,8 +194,10 @@
 
                 @role('admin|petugas')
                     <li class="nav-header">PEMBAYARAN</li>
-                    <li class="nav-item {{ Request::segment(2) == 'parmas' ? 'menu-is-opening menu-open' : '' }}">
-                        <a href="#" class="nav-link {{ Request::segment(2) == 'parmas' ? 'active' : '' }}">
+                    <li
+                        class="nav-item {{ Request::segment(2) == 'parmas' && Request::segment(3) != 'laporan' ? 'menu-is-opening menu-open' : '' }}">
+                        <a href="#"
+                            class="nav-link {{ Request::segment(2) == 'parmas' && Request::segment(3) != 'laporan' ? 'active' : '' }}">
                             <i class="nav-icon fas fa-money-check"></i>
                             <p>
                                 Permas
@@ -283,7 +285,7 @@
                     <li class="nav-header">LAPORAN</li>
                     <li class="nav-item">
                         <a href="{{ route('parmas.pembayaran.laporan') }}"
-                            class="nav-link {{ Request::segment(2) == 'laporan' ? 'active' : '' }}">
+                            class="nav-link {{ Request::segment(2) == 'parmas' && Request::segment(3) == 'laporan' ? 'active' : '' }}">
                             <i class="nav-icon fas fa-file"></i>
                             <p>
                                 Laporan Pembayaran Parmas
@@ -413,7 +415,7 @@
                     </li>
                 @endrole
 
-                @role('admin')
+                {{-- @role('admin')
                     <li class="nav-header">ROLES - PERMISSIONS</li>
                     <li class="nav-item">
                         <a href="{{ route('roles.index') }}"
@@ -460,7 +462,7 @@
                             </p>
                         </a>
                     </li>
-                @endrole
+                @endrole --}}
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

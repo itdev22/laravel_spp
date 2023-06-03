@@ -32,7 +32,7 @@ class TagihanController extends Controller
         }
 
         $kelas = Kelas::all();
-        $tagihan = Tagihan::all();
+        // $tagihan = Tagihan::all();
 
         return view('admin.tagihan.index', compact('kelas'));
     }
@@ -49,10 +49,10 @@ class TagihanController extends Controller
             'nama_tagihan' => ['required', 'unique:tagihan'],
             'nominal' => ['required'],
             'max_angsuran' => ['required'],
-            
+
         ]);
 
-        if ($validator->passes()) {            
+        if ($validator->passes()) {
             Tagihan::create([
                 'nama_tagihan' => $request->nama_tagihan,
                 'nominal' => $request->nominal,
@@ -89,7 +89,7 @@ class TagihanController extends Controller
         $validator = Validator::make($request->all(), [
             'nama_tagihan' => ['required'],
             'nominal' => ['required'],
-            'max_angsuran' => ['required'],            
+            'max_angsuran' => ['required'],
         ]);
 
         if ($validator->passes()) {
@@ -100,7 +100,7 @@ class TagihanController extends Controller
                 'max_angsuran' => $request->max_angsuran,
                 'kelas_id' => $request->kelas_id,
             ]);
-            return response()->json(['message' => 'Data berhasil diupdate!']); 
+            return response()->json(['message' => 'Data berhasil diupdate!']);
         }
 
         return response()->json(['error' => $validator->errors()->all()]);
