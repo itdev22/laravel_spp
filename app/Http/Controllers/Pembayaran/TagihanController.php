@@ -14,6 +14,7 @@ use DataTables;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use PDF;
 
 
 class TagihanController extends Controller
@@ -210,5 +211,15 @@ class TagihanController extends Controller
     {
         $spp = TagihanSiswa::with(['tagihan'])->where('siswa_id', $siswa->id)->get();
         return view('pembayaran-tagihan.status-pembayaran-tahun', compact('siswa', 'spp'));
+    }
+
+    public function printHistoryPembayaran($id)
+    {
+        $data['pembayaran'] = PembayaranTagihan::with(['petugas', 'siswa'])
+            ->where('id', $id)
+            ->first();
+
+        $pdf = PDF::loadView('pembayaran-tagihan.history-pembayaran-preview', $data);
+        return $pdf->stream();
     }
 }
