@@ -189,7 +189,7 @@ class ParmasController extends Controller
             ->where('id', $id)
             ->first();
 
-        $pdf = PDF::loadView('pembayaran.history-pembayaran-preview', $data);
+        $pdf = PDF::loadView('pembayaran-parmas.history-pembayaran-preview', $data);
         return $pdf->stream();
     }
 
