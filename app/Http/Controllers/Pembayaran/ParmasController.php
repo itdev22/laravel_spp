@@ -154,8 +154,7 @@ class ParmasController extends Controller
         if ($request->ajax()) {
             $data = Pembayaran::with(['petugas', 'siswa' => function ($query) {
                 $query->with('kelas');
-            }])
-                ->latest()->get();
+            }])->latest()->get();
 
             return DataTables::of($data)
                 ->addIndexColumn()
@@ -200,7 +199,7 @@ class ParmasController extends Controller
             ->whereBetween('tanggal_bayar', $tanggal)->get();
         //print
         if ($data['pembayaran']->count() > 0) {
-            $pdf = PDF::loadView('pembayaran.laporan-preview', $data);
+            $pdf = PDF::loadView('pembayaran-parmas.laporan-preview', $data);
             return $pdf->download('pembayaran-parmas-' .
                 Carbon::parse($request->tanggal_mulai)->format('d-m-Y') . '-' .
                 Carbon::parse($request->tanggal_selesai)->format('d-m-Y') .
