@@ -113,7 +113,6 @@ class TagihanController extends Controller
         $validator = Validator::make($request->all(), [
             'nama_tagihan' => ['required'],
             'nominal' => ['required'],
-            'max_angsuran' => ['required'],
         ]);
 
         if ($validator->passes()) {
@@ -121,8 +120,6 @@ class TagihanController extends Controller
             Tagihan::findOrFail($id)->update([
                 'nama_tagihan' => $request->nama_tagihan,
                 'nominal' => $request->nominal,
-                'max_angsuran' => $request->max_angsuran,
-                'kelas_id' => $request->kelas_id,
             ]);
             return response()->json(['message' => 'Data berhasil diupdate!']);
         }

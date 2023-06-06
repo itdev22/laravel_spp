@@ -17,7 +17,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    @can('create-tagihan')
+                    @can('create-parmas')
                         <a href="javascript:void(0)" class="btn btn-primary btn-sm" data-toggle="modal"
                             data-target="#createModal">
                             <i class="fas fa-plus fa-fw"></i> Tambah Data
@@ -33,9 +33,8 @@
                                 <th>Nama Tagihan</th>
                                 <th>Nominal</th>
                                 <th>Kelas</th>
-                                {{-- <th>Min Angsuran</th> --}}
-                                <th>Tanggal Bayar</th>
-                                <th>Tanggal Diperbarui</th>
+                                <th>Created</th>
+                                <th>Updated</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -45,7 +44,6 @@
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                {{-- <td></td> --}}
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -78,43 +76,20 @@
                             <ul></ul>
                         </div>
                         <div class="form-group">
-                            <label for="nama_tagihan">Nama Tagihan:</label>
-                            <input required="" type="text" name="nama_tagihan" id="nama_tagihan" class="form-control">
+                            <label for="tahun">Tahun:</label>
+                            <input required="" type="text" name="tahun" id="tahun" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="nominal">Nominal:</label>
                             <input required="" type="text" name="nominal" id="nominal" class="form-control">
                         </div>
-                        <div class="col-lg-5">
-                            <div class="form-group">
-                                <label for="kelas_id">Kelas:</label>
-                                <select required="" name="kelas_id" id="kelas_id" class="form-control select2bs4">
-                                    <option disabled="" selected="">- PILIH KELAS -</option>
-                                    @foreach ($kelas as $row)
-                                        <option value="{{ $row->id }}">{{ $row->nama_kelas }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        {{-- <div class="form-group">
-          <label for="max_angsuran">Minimal Angsuran:</label>
-          <input required="" type="text" name="max_angsuran" id="max_angsuran" class="form-control">
-        </div> --}}
-                        <!-- <div class="form-group">
-                      <label for="created_at">Tanggal Bayar:</label>
-                      <input required="" type="date" name="created_at" id="created_at" class="form-control">
                     </div>
-                    <div class="form-group">
-                      <label for="updates_at">Tanggal Diperbarui:</label>
-                      <input required="" type="date" name="updates_at" id="updates_at" class="form-control">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save fa-fw"></i> SIMPAN
+                        </button>
                     </div>
-                  </div> -->
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">CLOSE</button>
-                            <button type="submit" class="btn btn-primary">
-                                <i class="fas fa-save fa-fw"></i> SIMPAN
-                            </button>
-                        </div>
                 </form>
             </div>
         </div>
@@ -145,26 +120,12 @@
                                 class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="nominal_edit">Nominal Tagihan:</label>
+                            <label for="nominal_edit">Nominal:</label>
                             <input required="" type="text" name="nominal" id="nominal_edit" class="form-control">
                         </div>
-                        <div class="form-group">
-                            <label for="kelas_id_edit">Kelas:</label>
-                            <select required="" name="kelas_id" id="kelas_id_edit" class="form-control">
-                                <option disabled="" selected="">- PILIH KELAS -</option>
-                                @foreach ($kelas as $row)
-                                    <option value="{{ $row->id }}">{{ $row->nama_kelas }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        {{-- <div class="form-group">
-                            <label for="max_angsuran_edit">Minimal Angsuran:</label>
-                            <input required="" type="text" name="max_angsuran" id="max_angsuran_edit"
-                                class="form-control">
-                        </div> --}}
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">CLOSE</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary">
                             <i class="fas fa-save fa-fw"></i> UPDATE
                         </button>

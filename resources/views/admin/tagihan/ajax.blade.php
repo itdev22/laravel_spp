@@ -21,7 +21,6 @@
                     data: 'kelas.nama_kelas',
                     name: 'kelas.nama_kelas'
                 },
-                //   {data: 'max_angsuran', name: 'max_angsuran'},
                 {
                     data: 'created_at',
                     name: 'created_at'
@@ -91,16 +90,15 @@
     // Edit
     $('body').on("click", ".btn-edit", function() {
         var id = $(this).attr("id")
+
         $.ajax({
             url: "/admin/tagihan/" + id + "/edit",
             method: "GET",
             success: function(response) {
-                $("#id_edit").val(response.data.id)
-                $("#nama_tagihan_edit").val(response.data.nama_tagihan)
-                $("#nominal_edit").val(response.data.nominal)
-                $("#kelas_id_edit").val(response.data.kelas_id)
-                $("#max_angsuran_edit").val(response.data.max_angsuran)
                 $("#editModal").modal("show")
+                $("#id_edit").val(response.data.id)
+                $("#nominal_edit").val(response.data.nominal)
+                $("#nama_tagihan_edit").val(response.data.nama_tagihan)
             },
             error: function(err) {
                 if (err.status == 403) {
@@ -124,8 +122,8 @@
             data: $(this).serialize(),
             success: function(response) {
                 if ($.isEmptyObject(response.error)) {
-                    $("#editModal").modal("hide")
                     $('#dataTable2').DataTable().ajax.reload();
+                    $("#editModal").modal("hide")
                     Swal.fire(
                         '',
                         response.message,
