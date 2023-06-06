@@ -18,7 +18,8 @@ class PembayaranTagihan extends Model
         'tagihansiswa_id',
         'nisn',
         'nominal',
-        'status'
+        'status',
+        'metode'
     ];
 
     public function petugas()

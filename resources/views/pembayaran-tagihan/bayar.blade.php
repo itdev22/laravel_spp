@@ -150,20 +150,28 @@
 
         $(document).on("change", "#tagihansiswa_id", function() {
             var id = $(this).val()
+            var idSiswa = $("#siswa_id").val()
 
             $.ajax({
-                url: "/pembayaran/tagihan/tagihan/" + id,
+                url: "/pembayaran/tagihan/tagihan/" + id + "/" + idSiswa,
                 method: "GET",
                 success: function(response) {
+                    console.log(response)
                     $("#nominal_spp_label").html(`Nominal Tagihan ` + response.data.nama_tagihan +
                         ':')
                     $("#nominal").val(response.nominal_rupiah)
                     $("#jumlah_bayar").val(response.data.nominal)
-                    $("#dibayar").val(response.data.nominal)
+                    // $("#dibayar").val(response.data.nominal)
+
 
                     var dibayar = $("#dibayar").val()
                     var total_bayar = $("#jumlah_bayar").val()
-                    var hasil_bayar = (total_bayar - dibayar)
+                    var nominaltagihan = response.data_tagihansiswa.nominal
+                    var hasil_bayar = (total_bayar - nominaltagihan)
+
+                    if (hasil_bayar < 0) {
+                        hasil_bayar = 0;
+                    }
 
                     var formatter = new Intl.NumberFormat('ID', {
                         style: 'currency',
@@ -175,15 +183,27 @@
         })
 
         $(document).on("change", "#dibayar", function() {
-            var dibayar = $("#dibayar").val()
-            var total_bayar = $("#jumlah_bayar").val()
-            var hasil_bayar = (total_bayar - dibayar)
+            var id = $('#tagihansiswa_id').val()
+            var idSiswa = $("#siswa_id").val()
 
-            var formatter = new Intl.NumberFormat('ID', {
-                style: 'currency',
-                currency: 'idr',
+            let nominaltagihan = 0;
+            $.ajax({
+                url: "/pembayaran/tagihan/tagihan/" + id + "/" + idSiswa,
+                method: "GET",
+                success: function(response) {
+                    console.log(response)
+                    nominaltagihan = response.data_tagihansiswa.nominal
+                    var dibayar = $("#dibayar").val()
+                    var total_bayar = $("#jumlah_bayar").val()
+                    var hasil_bayar = (nominaltagihan - dibayar)
+
+                    var formatter = new Intl.NumberFormat('ID', {
+                        style: 'currency',
+                        currency: 'idr',
+                    })
+                    $("#total_kekurangan").val(formatter.format(hasil_bayar))
+                }
             })
-            $("#total_kekurangan").val(formatter.format(hasil_bayar))
         })
     </script>
 @endpush

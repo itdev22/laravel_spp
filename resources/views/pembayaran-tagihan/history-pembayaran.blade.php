@@ -28,6 +28,7 @@
                                 <th>Tanggal Bayar</th>
                                 <th>Nama Petugas</th>
                                 <th>Nominal</th>
+                                <th>Metode</th>
                                 <th>Print</th>
                             </tr>
                         </thead>
@@ -100,6 +101,10 @@
                     {
                         data: 'nominal',
                         name: 'nominal'
+                    },
+                    {
+                        data: 'metode',
+                        name: 'metode'
                     },
                     {
                         data: 'action',

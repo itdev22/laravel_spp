@@ -50,8 +50,11 @@
                                 @if ($row->status == 'lunas')
                                     <p class="list-group-item list-group-item-action bg-success m-auto">{{ $row->status }}
                                     </p>
+                                @elseif ($row->status == 'dicicil')
+                                    <p class="list-group-item list-group-item-action bg-warning m-auto">{{ $row->status }}
+                                    </p>
                                 @else
-                                    <p class="list-group-item list-group-item-action bg-danger m-auto">{{ $row->status }}
+                                    <p class="list-group-item list-group-item-action bg-success m-auto">{{ $row->status }}
                                     </p>
                                 @endif
                             </a>

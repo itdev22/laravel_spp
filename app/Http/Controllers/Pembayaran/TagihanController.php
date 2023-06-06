@@ -63,18 +63,22 @@ class TagihanController extends Controller
             ->where('nisn', $nisn)
             ->first();
 
-        $tagihansiswas = TagihanSiswa::with(['tagihan'])->where('siswa_id', '=', $siswa->id)->get();
+        $tagihansiswas = TagihanSiswa::with(['tagihan'])->where('siswa_id', '=', $siswa->id)->where('status', '!=', 'lunas')->get();
 
         return view('pembayaran-tagihan.bayar', compact(['siswa', 'tagihansiswas']));
     }
 
-    public function tagihan($id)
+    public function tagihan($id, $idsiswa)
     {
         $tagihan = Tagihan::where('id', $id)
             ->first();
 
+        $tagihanSiswa = TagihanSiswa::where('tagihan_id', $id)->where('siswa_id', $idsiswa)
+            ->first();
+
         return response()->json([
             'data' => $tagihan,
+            'data_tagihansiswa' => $tagihanSiswa,
             'nominal_rupiah' => 'Rp ' . number_format($tagihan->nominal, 0, 2, '.'),
         ]);
     }
@@ -110,7 +114,8 @@ class TagihanController extends Controller
                         'tagihansiswa_id' => $request->tagihansiswa_id,
                         'nisn' =>  $request->nisn,
                         'nominal' => $request->dibayar,
-                        'status' => 'finish'
+                        'status' => 'finish',
+                        'metode' => 'offline'
                     ]);
 
                     $pembayaranTagihan = PembayaranTagihan::where('siswa_id', '=', $request->siswa_id)
@@ -137,8 +142,10 @@ class TagihanController extends Controller
                     $tagihansiswa->nominal = $sum_nominal;
                     if ($tagihansiswa->nominal >= $tagihansiswa->tagihan->nominal) {
                         $tagihansiswa->status = 'lunas';
-                    } else {
+                    } else if ($tagihansiswa->nominal <= 0) {
                         $tagihansiswa->status = 'belum lunas';
+                    } else {
+                        $tagihansiswa->status = 'dicicil';
                     }
                     $tagihansiswa->save();
                     DB::commit();

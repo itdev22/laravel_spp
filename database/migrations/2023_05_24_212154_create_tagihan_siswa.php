@@ -18,7 +18,7 @@ class CreateTagihanSiswa extends Migration
             $table->foreignId('siswa_id')->constrained('siswa')->onDelete('cascade');
             $table->foreignId('tagihan_id')->constrained('tagihan')->onDelete('cascade');
             $table->integer('nominal');
-            $table->enum('status', ['lunas', 'belum lunas']);
+            $table->enum('status', ['lunas', 'belum lunas', 'dicicil']);
             $table->timestamps();
         });
     }
