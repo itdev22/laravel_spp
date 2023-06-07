@@ -29,6 +29,7 @@
                                 <th>Nama Petugas</th>
                                 <th>Nominal</th>
                                 <th>Metode</th>
+                                <th>Payment</th>
                                 <th>Print</th>
                             </tr>
                         </thead>
@@ -105,6 +106,10 @@
                     {
                         data: 'metode',
                         name: 'metode'
+                    },
+                    {
+                        data: 'url_payment',
+                        name: 'url_payment'
                     },
                     {
                         data: 'action',
