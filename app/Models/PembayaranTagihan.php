@@ -19,7 +19,8 @@ class PembayaranTagihan extends Model
         'nisn',
         'nominal',
         'status',
-        'metode'
+        'metode',
+        'url_payment'
     ];
 
     public function petugas()

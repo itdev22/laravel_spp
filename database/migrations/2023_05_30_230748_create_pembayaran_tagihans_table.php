@@ -23,6 +23,7 @@ class CreatePembayaranTagihansTable extends Migration
             $table->integer('nominal');
             $table->enum('status', ['finish', 'pending'])->default('pending');
             $table->enum('metode', ['online', 'offline']);
+            $table->text('url_payment')->nullable();
             $table->timestamps();
         });
     }

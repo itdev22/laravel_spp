@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Pembayaran;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Payment\MidtrandsController;
 use App\Models\PembayaranTagihan;
 use App\Models\Petugas;
 use App\Models\Siswa;
@@ -155,15 +156,62 @@ class TagihanController extends Controller
                     return back()->with('error', 'Pembayaran gagal disimpan!');
                 }
             } else if ($request->type_pembayaran == 'Online') {
-                DB::transaction(function () use ($request, $petugas) {
+                DB::beginTransaction();
+                try {
+                    //code..
+                    $kodePembayaran = 'Tagihan' . Str::upper(Str::random(5));
+                    $result = MidtrandsController::NewTransaction($kodePembayaran, $request->dibayar);
+                    $data = json_decode($result, true);
                     PembayaranTagihan::create([
-                        'kode_pembayaran' => 'Tagihan' . $request->siswa_id . $request->tagihan_id . $request->nisn,
+                        'kode_pembayaran' => $kodePembayaran,
                         'petugas_id' => $petugas->id,
                         'siswa_id' => $request->siswa_id,
-                        'tagihansiswa_id' => $request->tagihan_id,
+                        'tagihansiswa_id' => $request->tagihansiswa_id,
                         'nisn' =>  $request->nisn,
+                        'nominal' => $request->dibayar,
+                        'status' => 'pending',
+                        'metode' => 'online',
+                        'url_payment' => $data["redirect_url"]
                     ]);
-                });
+
+
+
+                    // $pembayaranTagihan = PembayaranTagihan::where('siswa_id', '=', $request->siswa_id)
+                    //     ->where('tagihansiswa_id', '=', $request->tagihansiswa_id)
+                    //     ->get();
+
+                    // $sum_nominal = 0;
+                    // if ($pembayaranTagihan->count() > 0) {
+                    //     $sum_nominal = $pembayaranTagihan->sum('nominal');
+                    // } else {
+                    //     $sum_nominal = $request->dibayar;
+                    // }
+
+
+                    // TagihanSiswa::where('siswa_id', '=', $request->siswa_id)
+                    //     ->where('id', '=', $request->tagihansiswa_id)
+                    //     ->update([
+                    //         'nominal' => $sum_nominal,
+                    //         'status' => 'lunas'
+                    //     ]);
+
+                    // $tagihansiswa = TagihanSiswa::with(['tagihan'])->where('siswa_id', '=', $request->siswa_id)->where('tagihan_id', '=', $request->tagihansiswa_id)->first();
+                    // // dd($tagihansiswa, $request->tagihansiswa_id, $request->siswa_id);
+                    // $tagihansiswa->nominal = $sum_nominal;
+                    // if ($tagihansiswa->nominal >= $tagihansiswa->tagihan->nominal) {
+                    //     $tagihansiswa->status = 'lunas';
+                    // } else if ($tagihansiswa->nominal <= 0) {
+                    //     $tagihansiswa->status = 'belum lunas';
+                    // } else {
+                    //     $tagihansiswa->status = 'dicicil';
+                    // }
+                    // $tagihansiswa->save();
+                    DB::commit();
+                } catch (\Throwable $th) {
+                    throw $th;
+                    DB::rollback();
+                    // return back()->with('error', 'Pembayaran gagal disimpan!');
+                }
             }
 
             return redirect()->route('tagihan.pembayaran.history-pembayaran')
