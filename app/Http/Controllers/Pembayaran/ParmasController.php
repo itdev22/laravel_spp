@@ -53,7 +53,7 @@ class ParmasController extends Controller
         return view('pembayaran-parmas.bayar', compact('siswa', 'spp'));
     }
 
-    public function spp($tahun)
+    public function spp($tahun, $nisn)
     {
         $spp = Spp::where('tahun', $tahun)
             ->first();
@@ -63,7 +63,7 @@ class ParmasController extends Controller
 
         $bulan_bayar = '';
         foreach ($bulans as $key => $bulan) {
-            if (!Pembayaran::where('bulan_bayar', $bulan['nama_bulan'])->where('tahun_bayar', $tahun)->first()) {
+            if (!Pembayaran::where('bulan_bayar', $bulan['nama_bulan'])->where('tahun_bayar', $tahun)->where('nisn', $nisn)->first()) {
                 $bulan_bayar .= '<option value="' . $bulan['nama_bulan'] . '">' . $bulan['nama_bulan'] . '</option>';
             }
         }

@@ -51,7 +51,7 @@ Route::prefix('pembayaran')->middleware(['auth', 'role:admin|petugas'])->group(f
     Route::group(['prefix' => 'parmas', 'as' => 'parmas.'], function () {
         Route::get('bayar', [ParmasController::class, 'index'])->name('pembayaran.index');
         Route::get('bayar/{nisn}', [ParmasController::class, 'bayar'])->name('pembayaran.bayar');
-        Route::get('spp/{tahun}', [ParmasController::class, 'spp'])->name('pembayaran.spp');
+        Route::get('spp/{tahun}/{nisn}', [ParmasController::class, 'spp'])->name('pembayaran.spp');
         Route::post('bayar/{nisn}', [ParmasController::class, 'prosesBayar'])->name('pembayaran.proses-bayar');
         Route::get('status-pembayaran', [ParmasController::class, 'statusPembayaran'])
             ->name('pembayaran.status-pembayaran');

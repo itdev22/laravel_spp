@@ -145,9 +145,10 @@
 
         $(document).on("change", "#tahun_bayar", function() {
             var tahun = $(this).val()
+            var nisn = $('#nisn').val()
 
             $.ajax({
-                url: "/pembayaran/parmas/spp/" + tahun,
+                url: "/pembayaran/parmas/spp/" + tahun + "/" + nisn,
                 method: "GET",
                 success: function(response) {
                     $("#nominal_spp_label").html(`Nominal Parmas Tahun ` + tahun + ':')
