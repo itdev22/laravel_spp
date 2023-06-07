@@ -60,7 +60,7 @@ class MidtrandsController extends Controller
         //update status by order id
         Log::debug($result->order_id);
         Pembayaran::where('kode_pembayaran', $result->order_id)->update(['status' => 'Success']);
-        $cekPembayaranTagihan = PembayaranTagihan::where('kode_pembayaran', $result->order_id)->first();
+        $cekPembayaranTagihan = PembayaranTagihan::where('kode_pembayaran', $result->order_id)->where('status', 'pending')->first();
         if ($cekPembayaranTagihan) {
             DB::beginTransaction();
             try {
