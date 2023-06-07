@@ -109,7 +109,10 @@
                     },
                     {
                         data: 'url_payment',
-                        name: 'url_payment'
+                        name: 'url_payment',
+                        render: function(data, type, row) {
+                            return `<a href="${data}" target="_blank">Payment</a>`;
+                        }
                     },
                     {
                         data: 'action',
