@@ -6,9 +6,11 @@ use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Petugas;
 use App\Models\Kelas;
+use App\Models\PembayaranTagihan;
 use App\Models\Siswa;
 use App\Models\Spp;
 use App\Models\Tagihan;
+use App\Models\TagihanSiswa;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Spatie\Permission\Models\Role;
@@ -22,7 +24,7 @@ class DatabaseSeeder extends Seeder
      * @return void
      */
     public function run()
-    {   
+    {
         // seed permission
 
         // siswa
@@ -183,7 +185,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $role1->syncPermissions([
-            'create-siswa', 'read-siswa', 'update-siswa', 'delete-siswa', 
+            'create-siswa', 'read-siswa', 'update-siswa', 'delete-siswa',
             'create-kelas', 'read-kelas', 'update-kelas', 'delete-kelas',
             'create-parmas', 'read-parmas', 'update-parmas', 'delete-parmas',
             'create-tagihan', 'read-tagihan', 'update-tagihan', 'delete-tagihan',
@@ -225,47 +227,47 @@ class DatabaseSeeder extends Seeder
             'kompetensi_keahlian' => 'Multimedia',
         ]);
 
-    	$user1 = User::create([
-    		'username' => 'admin123',
-    		'email' => 'admin@example.com',
-    		'password' => Hash::make('password'),
-    	]);
+        $user1 = User::create([
+            'username' => 'admin123',
+            'email' => 'admin@example.com',
+            'password' => Hash::make('password'),
+        ]);
 
         $user1->assignRole('admin');
 
         $petugas1 = Petugas::create([
             'user_id' => $user1->id,
-            'kode_petugas' => 'PTG'.Str::upper(Str::random(5)),
+            'kode_petugas' => 'PTG' . Str::upper(Str::random(5)),
             'nama_petugas' => 'Administrator',
             'jenis_kelamin' => 'Laki-laki',
         ]);
 
-		$user2 = User::create([
-    		'username' => 'elaina123',
-    		'email' => 'elaina@example.com',
-    		'password' => Hash::make('password'),
-    	]);
+        $user2 = User::create([
+            'username' => 'elaina123',
+            'email' => 'elaina@example.com',
+            'password' => Hash::make('password'),
+        ]);
 
         $user2->assignRole('petugas');
 
         $petugas2 = Petugas::create([
             'user_id' => $user2->id,
-            'kode_petugas' => 'PTG'.Str::upper(Str::random(5)),
+            'kode_petugas' => 'PTG' . Str::upper(Str::random(5)),
             'nama_petugas' => 'Elaina San',
             'jenis_kelamin' => 'Perempuan',
         ]);
 
-    	$user3 = User::create([
-    		'username' => 'diva123',
-    		'email' => 'diva@example.com',
-    		'password' => Hash::make('password'),
-    	]);
+        $user3 = User::create([
+            'username' => 'diva123',
+            'email' => 'diva@example.com',
+            'password' => Hash::make('password'),
+        ]);
 
         $user3->assignRole('siswa');
 
         Siswa::create([
             'user_id' => $user3->id,
-            'kode_siswa' => 'SSW'.Str::upper(Str::random(5)),
+            'kode_siswa' => 'SSW' . Str::upper(Str::random(5)),
             'nisn' => '08909978',
             'nis' => '08909955',
             'nama_siswa' => 'Diva',
@@ -275,17 +277,17 @@ class DatabaseSeeder extends Seeder
             'kelas_id' => $kelas1->id,
         ]);
 
-    	$user4 = User::create([
-    		'username' => 'yuu123',
-    		'email' => 'yuu@example.com',
-    		'password' => Hash::make('password'),
-    	]);    	
+        $user4 = User::create([
+            'username' => 'yuu123',
+            'email' => 'yuu@example.com',
+            'password' => Hash::make('password'),
+        ]);
 
         $user4->assignRole('siswa');
 
         Siswa::create([
             'user_id' => $user4->id,
-            'kode_siswa' => 'SSW'.Str::upper(Str::random(5)),
+            'kode_siswa' => 'SSW' . Str::upper(Str::random(5)),
             'nisn' => '08909096',
             'nis' => '08909842',
             'nama_siswa' => 'Sonoda Yuu',
@@ -294,7 +296,47 @@ class DatabaseSeeder extends Seeder
             'no_telepon' => '08599865056',
             'kelas_id' => $kelas2->id,
         ]);
-    	
+
         // \App\Models\User::factory(10)->create();
+
+        // dev seeder
+        Tagihan::create([
+            'nama_tagihan' => 'Skal',
+            'nominal' => 10000,
+            'kelas_id' => 1
+        ]);
+        Tagihan::create([
+            'nama_tagihan' => 'Parkir',
+            'nominal' => 10000,
+            'kelas_id' => 2
+        ]);
+
+        TagihanSiswa::create([
+            'siswa_id' => 1,
+            'tagihan_id' => 1,
+            'nominal' => 0,
+            'status' => 'belum lunas',
+        ]);
+        TagihanSiswa::create([
+            'siswa_id' => 2,
+            'tagihan_id' => 1,
+            'nominal' => 0,
+            'status' => 'belum lunas',
+        ]);
+        TagihanSiswa::create([
+            'siswa_id' => 1,
+            'tagihan_id' => 2,
+            'nominal' => 0,
+            'status' => 'belum lunas',
+        ]);
+
+        // PembayaranTagihan::create([
+        //     'kode_pembayaran' => 'Tagihan' . Str::upper(Str::random(5)),
+        //     'petugas_id' => 1,
+        //     'siswa_id' => 1,
+        //     'tagihansiswa_id' => 1,
+        //     'nominal' => 1000,
+        //     'nisn' => '08909978'
+        // ]);
     }
 }

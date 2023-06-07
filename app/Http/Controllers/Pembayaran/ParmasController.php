@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Pembayaran;
 
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -16,20 +16,21 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Validator;
 use App\Helpers\Bulan;
-use App\Models\Tagihan;
+use App\Helpers\Universe;
+use App\Http\Controllers\Controller;
 use PDF;
 use DataTables;
 
-class PembayaranController extends Controller
+class ParmasController extends Controller
 {
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = Tagihan::with(['kelas'])->latest();
+            $data = Siswa::with(['kelas'])->latest();
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    $btn = '<div class="row"><a href="' . route('tagihan.pembayaran.bayar', $row->nisn) . '"class="btn btn-primary btn-sm ml-2">
+                    $btn = '<div class="row"><a href="' . route('parmas.pembayaran.bayar', $row->nisn) . '"class="btn btn-primary btn-sm ml-2">
                     <i class="fas fa-money-check"></i> BAYAR
                     </a>';
                     return $btn;
@@ -38,7 +39,7 @@ class PembayaranController extends Controller
                 ->make(true);
         }
 
-        return view('pembayaran-tagihan.index');
+        return view('pembayaran-parmas.index');
     }
 
     public function bayar($nisn)
@@ -52,14 +53,26 @@ class PembayaranController extends Controller
         return view('pembayaran-parmas.bayar', compact('siswa', 'spp'));
     }
 
-    public function spp($tahun)
+    public function spp($tahun, $nisn)
     {
         $spp = Spp::where('tahun', $tahun)
             ->first();
 
+
+        $bulans = Universe::bulanAll();
+
+        $bulan_bayar = '';
+        foreach ($bulans as $key => $bulan) {
+            if (!Pembayaran::where('bulan_bayar', $bulan['nama_bulan'])->where('tahun_bayar', $tahun)->where('nisn', $nisn)->first()) {
+                $bulan_bayar .= '<option value="' . $bulan['nama_bulan'] . '">' . $bulan['nama_bulan'] . '</option>';
+            }
+        }
+
+        // $bulan_bayar = 'asd';
         return response()->json([
             'data' => $spp,
             'nominal_rupiah' => 'Rp ' . number_format($spp->nominal, 0, 2, '.'),
+            'bulan_bayar' => $bulan_bayar
         ]);
     }
 
@@ -96,7 +109,7 @@ class PembayaranController extends Controller
                 }
             });
 
-            return redirect()->route('pembayaran.history-pembayaran')
+            return redirect()->route('parmas.pembayaran.history-pembayaran')
                 ->with('success', 'Pembayaran berhasil disimpan!');
         } else {
             return back()
@@ -116,7 +129,7 @@ class PembayaranController extends Controller
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    $btn = '<div class="row"><a href="' . route('pembayaran.status-pembayaran.show', $row->nisn) .
+                    $btn = '<div class="row"><a href="' . route('parmas.pembayaran.status-pembayaran.show', $row->nisn) .
                         '"class="btn btn-primary btn-sm">DETAIL</a>';
                     return $btn;
                 })
@@ -154,13 +167,12 @@ class PembayaranController extends Controller
         if ($request->ajax()) {
             $data = Pembayaran::with(['petugas', 'siswa' => function ($query) {
                 $query->with('kelas');
-            }])
-                ->latest()->get();
+            }])->latest()->get();
 
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    $btn = '<div class="row"><a href="' . route('pembayaran.history-pembayaran.print', $row->id) . '"class="btn btn-danger btn-sm ml-2" target="_blank">
+                    $btn = '<div class="row"><a href="' . route('parmas.pembayaran.history-pembayaran.print', $row->id) . '"class="btn btn-danger btn-sm ml-2" target="_blank">
                     <i class="fas fa-print fa-fw"></i></a>';
                     return $btn;
                 })
@@ -177,7 +189,7 @@ class PembayaranController extends Controller
             ->where('id', $id)
             ->first();
 
-        $pdf = PDF::loadView('pembayaran.history-pembayaran-preview', $data);
+        $pdf = PDF::loadView('pembayaran-parmas.history-pembayaran-preview', $data);
         return $pdf->stream();
     }
 
@@ -200,7 +212,7 @@ class PembayaranController extends Controller
             ->whereBetween('tanggal_bayar', $tanggal)->get();
         //print
         if ($data['pembayaran']->count() > 0) {
-            $pdf = PDF::loadView('pembayaran.laporan-preview', $data);
+            $pdf = PDF::loadView('pembayaran-parmas.laporan-preview', $data);
             return $pdf->download('pembayaran-parmas-' .
                 Carbon::parse($request->tanggal_mulai)->format('d-m-Y') . '-' .
                 Carbon::parse($request->tanggal_selesai)->format('d-m-Y') .

@@ -9,6 +9,9 @@ use App\Models\tagihan;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 use App\DataTables\TagihanDataTable;
+use App\Models\Siswa;
+use App\Models\TagihanSiswa;
+use Illuminate\Support\Facades\DB;
 
 class TagihanController extends Controller
 {
@@ -32,7 +35,7 @@ class TagihanController extends Controller
         }
 
         $kelas = Kelas::all();
-        $tagihan = Tagihan::all();
+        // $tagihan = Tagihan::all();
 
         return view('admin.tagihan.index', compact('kelas'));
     }
@@ -48,17 +51,38 @@ class TagihanController extends Controller
         $validator = Validator::make($request->all(), [
             'nama_tagihan' => ['required', 'unique:tagihan'],
             'nominal' => ['required'],
-            'max_angsuran' => ['required'],
-            
+            'kelas_id' => 'required'
+
         ]);
 
-        if ($validator->passes()) {            
-            Tagihan::create([
-                'nama_tagihan' => $request->nama_tagihan,
-                'nominal' => $request->nominal,
-                'max_angsuran' => $request->max_angsuran,
-                'kelas_id' => $request->kelas_id,
-            ]);
+        if ($validator->passes()) {
+
+            DB::beginTransaction();
+            try {
+                $tagihan = Tagihan::create([
+                    'nama_tagihan' => $request->nama_tagihan,
+                    'nominal' => $request->nominal,
+                    'kelas_id' => $request->kelas_id,
+                ]);
+
+                $siswas = Siswa::where('kelas_id', $request->kelas_id)->get();
+                foreach ($siswas as $key => $siswa) {
+                    TagihanSiswa::create([
+                        'siswa_id' => $siswa->id,
+                        'tagihan_id' => $tagihan->id,
+                        'nominal' => 0,
+                        'status' => 'belum lunas',
+                    ]);
+                }
+
+                DB::commit();
+            } catch (\Throwable $th) {
+                // throw $th;
+                DB::rollBack();
+                return response()->json(['message' => 'Data Gagal disimpan!' . $th]);
+            }
+
+
             return response()->json(['message' => 'Data berhasil disimpan!']);
         }
 
@@ -89,7 +113,6 @@ class TagihanController extends Controller
         $validator = Validator::make($request->all(), [
             'nama_tagihan' => ['required'],
             'nominal' => ['required'],
-            'max_angsuran' => ['required'],            
         ]);
 
         if ($validator->passes()) {
@@ -97,10 +120,8 @@ class TagihanController extends Controller
             Tagihan::findOrFail($id)->update([
                 'nama_tagihan' => $request->nama_tagihan,
                 'nominal' => $request->nominal,
-                'max_angsuran' => $request->max_angsuran,
-                'kelas_id' => $request->kelas_id,
             ]);
-            return response()->json(['message' => 'Data berhasil diupdate!']); 
+            return response()->json(['message' => 'Data berhasil diupdate!']);
         }
 
         return response()->json(['error' => $validator->errors()->all()]);
