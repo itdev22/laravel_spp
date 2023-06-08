@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Kelas;
-use App\Models\tagihan;
+use App\Models\Tagihan;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 use App\DataTables\TagihanDataTable;
