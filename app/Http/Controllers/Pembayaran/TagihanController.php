@@ -153,7 +153,7 @@ class TagihanController extends Controller
                 } catch (\Throwable $th) {
                     throw $th;
                     DB::rollback();
-                    return back()->with('error', 'Pembayaran gagal disimpan!');
+                    // return back()->with('error', 'Pembayaran gagal disimpan!');
                 }
             } else if ($request->type_pembayaran == 'Online') {
                 DB::beginTransaction();
@@ -270,7 +270,7 @@ class TagihanController extends Controller
 
     public function printHistoryPembayaran($id)
     {
-        $data['pembayaran'] = PembayaranTagihan::with(['petugas', 'siswa'])
+        $data['pembayaran'] = PembayaranTagihan::with(['petugas', 'siswa', 'tagihansiswa.tagihan'])
             ->where('id', $id)
             ->first();
 
