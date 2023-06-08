@@ -76,12 +76,23 @@
                             <ul></ul>
                         </div>
                         <div class="form-group">
-                            <label for="tahun">Tahun:</label>
-                            <input required="" type="text" name="tahun" id="tahun" class="form-control">
+                            <label for="nama_tagihan">Nama Tagihan:</label>
+                            <input required="" type="text" name="nama_tagihan" id="nama_tagihan" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="nominal">Nominal:</label>
                             <input required="" type="text" name="nominal" id="nominal" class="form-control">
+                        </div>
+                        <div class="col-lg-5">
+                            <div class="form-group">
+                                <label for="kelas_id">Kelas:</label>
+                                <select required="" name="kelas_id" id="kelas_id" class="form-control select2bs4">
+                                    <option disabled="" selected="">- PILIH KELAS -</option>
+                                    @foreach ($kelas as $row)
+                                        <option value="{{ $row->id }}">{{ $row->nama_kelas }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">
