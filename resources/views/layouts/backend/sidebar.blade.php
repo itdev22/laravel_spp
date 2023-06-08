@@ -237,7 +237,8 @@
                     </li>
 
                     <li class="nav-item {{ Request::segment(2) == 'tagihan' ? 'menu-is-opening menu-open' : '' }}">
-                        <a href="#" class="nav-link {{ Request::segment(2) == 'tagihan' ? 'active' : '' }}">
+                        <a href="#"
+                            class="nav-link {{ Request::segment(2) == 'tagihan' && Request::segment(3) != '' ? 'active' : '' }}">
                             <i class="nav-icon fas fa-money-check"></i>
                             <p>
                                 Tagihan
