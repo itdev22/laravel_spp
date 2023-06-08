@@ -25,6 +25,6 @@ class TagihanSiswa extends Model
 
     public function tagihan()
     {
-        return $this->belongsTo(Tagihan::class);
+        return $this->belongsTo(Tagihan::class, 'tagihan_id');
     }
 }
