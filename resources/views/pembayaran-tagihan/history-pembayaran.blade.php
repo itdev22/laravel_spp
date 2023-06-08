@@ -30,6 +30,7 @@
                                 <th>Nominal</th>
                                 <th>Metode</th>
                                 <th>Payment</th>
+                                <th>Status</th>
                                 <th>Print</th>
                             </tr>
                         </thead>
@@ -113,6 +114,10 @@
                         render: function(data, type, row) {
                             return `<a href="${data}" target="_blank">Payment</a>`;
                         }
+                    },
+                    {
+                        data: 'status',
+                        name: 'status'
                     },
                     {
                         data: 'action',

@@ -277,4 +277,35 @@ class TagihanController extends Controller
         $pdf = PDF::loadView('pembayaran-tagihan.history-pembayaran-preview', $data);
         return $pdf->stream();
     }
+
+    public function laporan()
+    {
+        // $kelas_id = $request->validate([
+        //         'kelas_id' => $request->kelas_id,
+        // ]);
+        return view('pembayaran-tagihan.laporan');
+    }
+
+    public function printPdf(Request $request)
+    {
+        $tanggal = $request->validate([
+            'tanggal_mulai' => 'required',
+            'tanggal_selesai' => 'required',
+        ]);
+
+        $data['pembayaran'] = PembayaranTagihan::with(['petugas', 'siswa'])
+            ->whereBetween('tanggal_bayar', $tanggal)->get();
+        //print
+        if ($data['pembayaran']->count() > 0) {
+            $pdf = PDF::loadView('pembayaran-tagihan.laporan-preview', $data);
+            return $pdf->download('pembayaran-tagihan-' .
+                Carbon::parse($request->tanggal_mulai)->format('d-m-Y') . '-' .
+                Carbon::parse($request->tanggal_selesai)->format('d-m-Y') .
+                Str::random(9) . '.pdf');
+        } else {
+            return back()->with('error', 'Data pembayaran TAGIHAN tanggal ' .
+                Carbon::parse($request->tanggal_mulai)->format('d-m-Y') . ' sampai dengan ' .
+                Carbon::parse($request->tanggal_selesai)->format('d-m-Y') . ' Tidak Tersedia');
+        }
+    }
 }
