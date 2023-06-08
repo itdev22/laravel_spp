@@ -247,7 +247,7 @@
                             </p>
                         </a>
                         <ul class="nav nav-treeview"
-                            style="{{ Request::segment(2) == 'tagihan' ? 'display: block;' : 'display: none;' }}">
+                            style="{{ Request::segment(2) == 'tagihan' && Request::segment(3) != '' ? 'display: block;' : 'display: none;' }}">
                             <li class="nav-item">
                                 <a href="{{ route('tagihan.pembayaran.index') }}"
                                     class="nav-link {{ Request::segment(2) == 'tagihan' && Request::segment(3) == 'bayar' ? 'active' : '' }}">
