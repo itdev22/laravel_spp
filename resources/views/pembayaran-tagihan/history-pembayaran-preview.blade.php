@@ -26,6 +26,7 @@
                 <th scope="col" style="font-family: sans-serif;">Untuk Tagihan</th>
                 <th scope="col" style="font-family: sans-serif;">Jumlah Bayar</th>
                 <th scope="col" style="font-family: sans-serif;">Kode Pembayaran</th>
+                <th scope="col" style="font-family: sans-serif;">Metode Pembayaran</th>
                 <th scope="col" style="font-family: sans-serif;">Tanggal Bayar</th>
             </tr>
         </thead>
@@ -35,6 +36,7 @@
                 <td style="font-family: sans-serif;">{{ $pembayaran->tagihansiswa->tagihan->nama_tagihan }}</td>
                 <td style="font-family: sans-serif;">{{ $pembayaran->tagihansiswa->tagihan->nominal }}</td>
                 <td style="font-family: sans-serif;">{{ $pembayaran->kode_pembayaran }}</td>
+                <td style="font-family: sans-serif;">{{ $pembayaran->metode }}</td>
                 <td style="font-family: sans-serif;">
                     {{ \Carbon\Carbon::parse($pembayaran->tanggal_bayar)->format('d-m-Y') }}</td>
             </tr>
