@@ -37,14 +37,4 @@ class PembayaranTagihan extends Model
     {
         return $this->belongsTo(TagihanSiswa::class, 'tagihansiswa_id');
     }
-
-    public function getCreatedAtAttribute($date)
-    {
-        return Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('Y-m-d');
-    }
-
-    public function getUpdatedAtAttribute($date)
-    {
-        return Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('Y-m-d');
-    }
 }
