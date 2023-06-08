@@ -138,7 +138,7 @@ class TagihanController extends Controller
                             'status' => 'lunas'
                         ]);
 
-                    $tagihansiswa = TagihanSiswa::with(['tagihan'])->where('siswa_id', '=', $request->siswa_id)->where('tagihan_id', '=', $request->tagihansiswa_id)->first();
+                    $tagihansiswa = TagihanSiswa::with(['tagihan'])->where('siswa_id', '=', $request->siswa_id)->where('id', '=', $request->tagihansiswa_id)->first();
                     // dd($tagihansiswa, $request->tagihansiswa_id, $request->siswa_id);
                     $tagihansiswa->nominal = $sum_nominal;
                     if ($tagihansiswa->nominal >= $tagihansiswa->tagihan->nominal) {

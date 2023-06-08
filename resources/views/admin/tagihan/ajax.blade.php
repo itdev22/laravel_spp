@@ -32,6 +32,19 @@
                 {
                     data: 'action',
                     name: 'action',
+                    render: function(data, type, row) {
+                        //sum nominal
+                        var sum = 0;
+                        for (const tagihanSiswa of row.tagihan_siswa) {
+                            sum += tagihanSiswa.nominal
+                        }
+
+                        if (sum != 0) {
+                            return '';
+                        } else {
+                            return data;
+                        }
+                    },
                     orderable: false,
                     searchable: true
                 },
