@@ -124,6 +124,7 @@ class ParmasController extends Controller
                     $kodePembayaran = 'PARMAS' . Str::upper(Str::random(5));
                     $result = MidtrandsController::NewTransaction($kodePembayaran, $request->jumlah_bayar);
                     $data = json_decode($result, true);
+                    dd($data);
                     Pembayaran::create([
                         'kode_pembayaran' => $kodePembayaran,
                         'petugas_id' => $petugas->id,
