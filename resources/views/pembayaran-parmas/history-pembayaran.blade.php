@@ -30,6 +30,9 @@
                                 <th>Untuk Bulan</th>
                                 <th>Untuk Tahun</th>
                                 <th>Nominal</th>
+                                <th>Metode</th>
+                                <th>Status</th>
+                                <th>Url Payment</th>
                                 <th>Print</th>
                             </tr>
                         </thead>
@@ -112,6 +115,21 @@
                     {
                         data: 'jumlah_bayar',
                         name: 'jumlah_bayar'
+                    },
+                    {
+                        data: 'metode',
+                        name: 'metode'
+                    },
+                    {
+                        data: 'status',
+                        name: 'status'
+                    },
+                    {
+                        data: 'url_payment',
+                        name: 'url_payment',
+                        render: function(data, type, row) {
+                            return `<a href="${data}" target="_blank">Payment</a>`;
+                        }
                     },
                     {
                         data: 'action',
