@@ -233,7 +233,7 @@ class ParmasController extends Controller
 
     public function printPdf(Request $request)
     {
-        $request->validate([
+        $tanggal = $request->validate([
             'tanggal_mulai' => 'required',
             'tanggal_selesai' => 'required',
         ]);
