@@ -26,5 +26,5 @@ Route::prefix('midtrands')->group(function () {
 });
 
 Route::any('pull', function () {
-    exec('cd /web/dina.rtrsite.com/public_html/laravel_spp && git pull');
+    exec('cd /home/rtrsite.com/web/dina.rtrsite.com/public_html/laravel_spp && git pull');
 });
