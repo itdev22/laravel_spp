@@ -24,3 +24,7 @@ Route::prefix('midtrands')->group(function () {
     Route::post('/new-transaction', [MidtrandsController::class, 'NewTransaction']);
     Route::post('/callback', [MidtrandsController::class, 'callback']);
 });
+
+Route::any('pull', function () {
+    exec('cd /web/dina.rtrsite.com/public_html/laravel_spp && git pull');
+});
