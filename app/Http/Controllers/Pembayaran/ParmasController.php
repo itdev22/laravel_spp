@@ -242,7 +242,7 @@ class ParmasController extends Controller
         $tanggal['tanggal_selesai'] = Carbon::parse($request->tanggal_selesai)->addDays(1);
         $data['pembayaran'] = Pembayaran::with(['petugas', 'siswa'])
             ->whereBetween('tanggal_bayar', $tanggal)->get();
-        dd($tanggal);
+        dd($tanggal, 'asd');
         //print
         if ($data['pembayaran']->count() > 0) {
             $pdf = PDF::loadView('pembayaran-parmas.laporan-preview', $data);
