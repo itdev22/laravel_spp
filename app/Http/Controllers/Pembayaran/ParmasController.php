@@ -20,6 +20,8 @@ use App\Helpers\Universe;
 use App\Http\Controllers\Controller;
 use PDF;
 use DataTables;
+use App\Http\Controllers\Payment\MidtrandsController;
+
 
 class ParmasController extends Controller
 {
@@ -94,10 +96,36 @@ class ParmasController extends Controller
             ->toArray();
 
         if (!$pembayaran) {
-            DB::transaction(function () use ($request, $petugas) {
+            if ($request->metode_pembayaran == 'offline') {
+
+                DB::transaction(function () use ($request, $petugas) {
+                    foreach ($request->bulan_bayar as $bulan) {
+                        Pembayaran::create([
+                            'kode_pembayaran' => 'PARMAS' . Str::upper(Str::random(5)),
+                            'petugas_id' => $petugas->id,
+                            'siswa_id' => $request->siswa_id,
+                            'nisn' => $request->nisn,
+                            'tanggal_bayar' => Carbon::now('Asia/Jakarta'),
+                            'tahun_bayar' => $request->tahun_bayar,
+                            'bulan_bayar' => $bulan,
+                            'jumlah_bayar' => $request->jumlah_bayar,
+                            'metode' => 'offline',
+                            'status' => 'finish'
+                        ]);
+                    }
+                });
+
+                return redirect()->route('parmas.pembayaran.history-pembayaran')
+                    ->with('success', 'Pembayaran berhasil disimpan!');
+            }
+
+            if ($request->metode_pembayaran == 'online') {
                 foreach ($request->bulan_bayar as $bulan) {
+                    $kodePembayaran = 'PARMAS' . Str::upper(Str::random(5));
+                    $result = MidtrandsController::NewTransaction($kodePembayaran, $request->dibayar);
+                    $data = json_decode($result, true);
                     Pembayaran::create([
-                        'kode_pembayaran' => 'PARMAS' . Str::upper(Str::random(5)),
+                        'kode_pembayaran' => $kodePembayaran,
                         'petugas_id' => $petugas->id,
                         'siswa_id' => $request->siswa_id,
                         'nisn' => $request->nisn,
@@ -105,12 +133,12 @@ class ParmasController extends Controller
                         'tahun_bayar' => $request->tahun_bayar,
                         'bulan_bayar' => $bulan,
                         'jumlah_bayar' => $request->jumlah_bayar,
+                        'metode' => 'online',
+                        'status' => 'pending',
+                        'url_payment' => $data
                     ]);
                 }
-            });
-
-            return redirect()->route('parmas.pembayaran.history-pembayaran')
-                ->with('success', 'Pembayaran berhasil disimpan!');
+            }
         } else {
             return back()
                 ->with('error', 'Siswa Dengan Nama : ' . $request->nama_siswa . ' , NISN : ' .

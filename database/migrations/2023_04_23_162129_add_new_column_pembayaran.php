@@ -16,9 +16,9 @@ class AddNewColumnPembayaran extends Migration
         Schema::table('pembayaran', function (Blueprint $table) {
             $table->string('order_id')->after('petugas_id')->unique()->nullable();
             $table->after('jumlah_bayar', function ($table) {
-                $table->enum('metode', ['Online', 'Offline'])->nullable();
-                $table->enum('jenis', ['Parmas', 'Tagihan'])->nullable();
-                $table->enum('status', ['Pending', 'Failed', 'Success'])->nullable();
+                $table->enum('metode', ['online', 'offline'])->nullable();
+                $table->enum('status', ['pending', 'failed', 'finish'])->nullable();
+                $table->text('url_payment')->nullable();
             });
         });
     }

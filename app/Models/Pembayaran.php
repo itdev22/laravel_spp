@@ -15,14 +15,16 @@ class Pembayaran extends Model
     protected $table = 'pembayaran';
 
     protected $fillable = [
-    	'kode_pembayaran',
-    	'petugas_id',
+        'kode_pembayaran',
+        'petugas_id',
         'siswa_id',
-    	'nisn',
-    	'tanggal_bayar',
-    	'bulan_bayar',
-    	'tahun_bayar',
-    	'jumlah_bayar',
+        'nisn',
+        'tanggal_bayar',
+        'bulan_bayar',
+        'tahun_bayar',
+        'jumlah_bayar',
+        'metode',
+        'status'
     ];
 
     public function getTanggalBayarAttribute($value)
@@ -32,7 +34,7 @@ class Pembayaran extends Model
 
     public function getJumlahBayarAttribute($value)
     {
-        return "Rp ".number_format($value, 0, 2, '.');
+        return "Rp " . number_format($value, 0, 2, '.');
     }
 
     public function petugas()
