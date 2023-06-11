@@ -138,6 +138,8 @@ class ParmasController extends Controller
                         'url_payment' => $data
                     ]);
                 }
+                return redirect()->route('parmas.pembayaran.history-pembayaran')
+                    ->with('success', 'Pembayaran berhasil disimpan!');
             }
         } else {
             return back()

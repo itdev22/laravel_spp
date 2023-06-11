@@ -24,7 +24,8 @@ class Pembayaran extends Model
         'tahun_bayar',
         'jumlah_bayar',
         'metode',
-        'status'
+        'status',
+        'url_payment'
     ];
 
     public function getTanggalBayarAttribute($value)
