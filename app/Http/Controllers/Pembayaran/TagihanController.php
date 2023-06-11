@@ -10,6 +10,7 @@ use App\Models\Siswa;
 use App\Models\Spp;
 use App\Models\Tagihan;
 use App\Models\TagihanSiswa;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use DataTables;
 use Illuminate\Support\Facades\Auth;
@@ -293,6 +294,7 @@ class TagihanController extends Controller
             'tanggal_selesai' => 'required',
         ]);
 
+        $tanggal['tanggal_selesai'] = Carbon::parse($request->tanggal_selesai)->endOfDay();
         $data['pembayaran'] = PembayaranTagihan::with(['petugas', 'siswa'])
             ->whereBetween('tanggal_bayar', $tanggal)->get();
         //print
