@@ -124,7 +124,6 @@ class ParmasController extends Controller
                     $kodePembayaran = 'PARMAS' . Str::upper(Str::random(5));
                     $result = MidtrandsController::NewTransaction($kodePembayaran, $request->jumlah_bayar);
                     $data = json_decode($result, true);
-                    dd($data);
                     Pembayaran::create([
                         'kode_pembayaran' => $kodePembayaran,
                         'petugas_id' => $petugas->id,
@@ -136,7 +135,7 @@ class ParmasController extends Controller
                         'jumlah_bayar' => $request->jumlah_bayar,
                         'metode' => 'online',
                         'status' => 'pending',
-                        'url_payment' => $data
+                        'url_payment' => $data["redirect_url"]
                     ]);
                 }
                 return redirect()->route('parmas.pembayaran.history-pembayaran')
