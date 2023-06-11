@@ -122,7 +122,7 @@ class ParmasController extends Controller
             if ($request->metode_pembayaran == 'online') {
                 foreach ($request->bulan_bayar as $bulan) {
                     $kodePembayaran = 'PARMAS' . Str::upper(Str::random(5));
-                    $result = MidtrandsController::NewTransaction($kodePembayaran, $request->dibayar);
+                    $result = MidtrandsController::NewTransaction($kodePembayaran, $request->jumlah_bayar);
                     $data = json_decode($result, true);
                     Pembayaran::create([
                         'kode_pembayaran' => $kodePembayaran,
