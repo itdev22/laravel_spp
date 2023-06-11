@@ -238,8 +238,8 @@ class ParmasController extends Controller
             'tanggal_selesai' => 'required',
         ]);
 
-        $tanggal['tanggal_mulai'] = Carbon::parse($request->tanggal_mulai)->subDays(1);
-        $tanggal['tanggal_selesai'] = Carbon::parse($request->tanggal_selesai)->addDays(1);
+        // $tanggal['tanggal_mulai'] = Carbon::parse($request->tanggal_mulai)->addDays(-1);
+        // $tanggal['tanggal_selesai'] = Carbon::parse($request->tanggal_selesai)->addDays(1);
         $data['pembayaran'] = Pembayaran::with(['petugas', 'siswa'])
             ->whereBetween('tanggal_bayar', $tanggal)->get();
 
