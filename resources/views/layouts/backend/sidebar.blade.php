@@ -237,9 +237,9 @@
                     </li>
 
                     <li
-                        class="nav-item {{ Request::segment(2) == 'tagihan' && Request::segment(3) != '' ? 'menu-is-opening menu-open' : '' }}">
+                        class="nav-item {{ Request::segment(2) == 'tagihan' && Request::segment(3) != 'laporan' ? 'menu-is-opening menu-open' : '' }}">
                         <a href="#"
-                            class="nav-link {{ Request::segment(2) == 'tagihan' && Request::segment(3) != '' ? 'active' : '' }}">
+                            class="nav-link {{ Request::segment(2) == 'tagihan' && Request::segment(3) != 'laporan' ? 'active' : '' }}">
                             <i class="nav-icon fas fa-money-check"></i>
                             <p>
                                 Tagihan
@@ -296,7 +296,7 @@
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('tagihan.pembayaran.laporan') }}"
-                            class="nav-link {{ Request::segment(2) == 'laporan' ? 'active' : '' }}">
+                            class="nav-link {{ Request::segment(2) == 'tagihan' && Request::segment(3) == 'laporan' ? 'active' : '' }}">
                             <i class="nav-icon fas fa-file"></i>
                             <p>
                                 Laporan Pembayaran Tagihan

@@ -240,8 +240,18 @@ class ParmasController extends Controller
 
         // $tanggal['tanggal_mulai'] = Carbon::parse($request->tanggal_mulai)->addDays(-1);
         $tanggal['tanggal_selesai'] = Carbon::parse($request->tanggal_selesai)->endOfDay();
-        $data['pembayaran'] = Pembayaran::with(['petugas', 'siswa'])
-            ->whereBetween('tanggal_bayar', $tanggal)->get();
+        $q = Pembayaran::with(['petugas', 'siswa'])
+            ->whereBetween('tanggal_bayar', $tanggal);
+        if ($request->kelas) {
+            $q->where('kelas_id', $request->kelas);
+        };
+        if ($request->kelas) {
+            $q->where('tahun_bayar', $request->tahun);
+        };
+        if ($request->bulan) {
+            $q->where('bulan_bayar', $request->bulan);
+        };
+        $data['pembayaran'] =  $q->get();
 
         //print
         if ($data['pembayaran']->count() > 0) {

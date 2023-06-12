@@ -296,7 +296,11 @@ class TagihanController extends Controller
 
         $tanggal['tanggal_selesai'] = Carbon::parse($request->tanggal_selesai)->endOfDay();
         $data['pembayaran'] = PembayaranTagihan::with(['petugas', 'siswa'])
-            ->whereBetween('tanggal_bayar', $tanggal)->get();
+            ->whereBetween('tanggal_bayar', $tanggal)
+            ->where('kelas_id', $request->kelas)
+            // ->where('tagihan_id', $request->kelas)
+            ->where('status', $request->status_tagihan)
+            ->get();
         //print
         if ($data['pembayaran']->count() > 0) {
             $pdf = PDF::loadView('pembayaran-tagihan.laporan-preview', $data);
