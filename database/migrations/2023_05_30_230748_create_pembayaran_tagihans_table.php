@@ -20,6 +20,7 @@ class CreatePembayaranTagihansTable extends Migration
             $table->foreignId('siswa_id')->constrained('siswa')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('tagihansiswa_id')->constrained('tagihan_siswa')->onUpdate('cascade')->onDelete('cascade');
             $table->string('nisn')->nullable();
+            $table->string('tanggal_bayar')->nullable();
             $table->integer('nominal');
             $table->enum('status', ['finish', 'pending'])->default('pending');
             $table->enum('metode', ['online', 'offline']);

@@ -16,6 +16,7 @@ class PembayaranTagihan extends Model
         'petugas_id',
         'siswa_id',
         'tagihansiswa_id',
+        'tanggal_bayar',
         'nisn',
         'nominal',
         'status',
