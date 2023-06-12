@@ -228,7 +228,8 @@ class ParmasController extends Controller
         // $kelas_id = $request->validate([
         //         'kelas_id' => $request->kelas_id,
         // ]);
-        return view('pembayaran-parmas.laporan');
+        $kelass = Kelas::all();
+        return view('pembayaran-parmas.laporan', compact(['kelass']));
     }
 
     public function printPdf(Request $request)
@@ -237,15 +238,18 @@ class ParmasController extends Controller
             'tanggal_mulai' => 'required',
             'tanggal_selesai' => 'required',
         ]);
-
+        // dd($request);
         // $tanggal['tanggal_mulai'] = Carbon::parse($request->tanggal_mulai)->addDays(-1);
         $tanggal['tanggal_selesai'] = Carbon::parse($request->tanggal_selesai)->endOfDay();
         $q = Pembayaran::with(['petugas', 'siswa'])
             ->whereBetween('tanggal_bayar', $tanggal);
         if ($request->kelas) {
-            $q->where('kelas_id', $request->kelas);
+            // $q->where('kelas_id', $request->kelas);
+            $q->whereHas('siswa', function ($q) use ($request) {
+                $q->where('kelas_id', $request->kelas);
+            });
         };
-        if ($request->kelas) {
+        if ($request->tahun) {
             $q->where('tahun_bayar', $request->tahun);
         };
         if ($request->bulan) {
@@ -263,7 +267,7 @@ class ParmasController extends Controller
         } else {
             return back()->with('error', 'Data pembayaran PARMAS tanggal ' .
                 Carbon::parse($request->tanggal_mulai)->format('d-m-Y') . ' sampai dengan ' .
-                Carbon::parse($request->tanggal_selesai)->format('d-m-Y') . ' Tidak Tersedia');
+                Carbon::parse($request->tanggal_selesai)->format('d-m-Y') . ' Tahun ' . $request->tahun . ' Tidak Tersedia');
         }
     }
 }

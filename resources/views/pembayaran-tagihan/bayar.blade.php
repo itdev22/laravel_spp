@@ -193,6 +193,9 @@
                 success: function(response) {
                     console.log(response)
                     nominaltagihan = response.data_tagihansiswa.nominal
+                    if (nominaltagihan == 0) {
+                        nominaltagihan = response.data.nominal
+                    }
                     var dibayar = $("#dibayar").val()
                     var total_bayar = $("#jumlah_bayar").val()
                     var hasil_bayar = (nominaltagihan - dibayar)

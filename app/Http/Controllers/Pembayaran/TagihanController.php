@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Pembayaran;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Payment\MidtrandsController;
+use App\Models\Kelas;
 use App\Models\PembayaranTagihan;
 use App\Models\Petugas;
 use App\Models\Siswa;
@@ -284,7 +285,9 @@ class TagihanController extends Controller
         // $kelas_id = $request->validate([
         //         'kelas_id' => $request->kelas_id,
         // ]);
-        return view('pembayaran-tagihan.laporan');
+        $kelass = Kelas::all();
+        $tagihans = Tagihan::all();
+        return view('pembayaran-tagihan.laporan', compact(['kelass', 'tagihans']));
     }
 
     public function printPdf(Request $request)
@@ -295,12 +298,22 @@ class TagihanController extends Controller
         ]);
 
         $tanggal['tanggal_selesai'] = Carbon::parse($request->tanggal_selesai)->endOfDay();
-        $data['pembayaran'] = PembayaranTagihan::with(['petugas', 'siswa'])
-            ->whereBetween('tanggal_bayar', $tanggal)
-            ->where('kelas_id', $request->kelas)
-            // ->where('tagihan_id', $request->kelas)
-            ->where('status', $request->status_tagihan)
-            ->get();
+        $q = PembayaranTagihan::with(['petugas', 'siswa', 'tagihansiswa'])
+            ->whereBetween('tanggal_bayar', $tanggal);
+        if ($request->kelas) {
+            $q->whereHas('siswa', function ($q) use ($request) {
+                $q->where('kelas_id', $request->kelas);
+            });
+        };
+        if ($request->nama_tagihan) {
+            $q->whereHas('tagihansiswa', function ($q) use ($request) {
+                $q->where('tagihan_id', $request->nama_tagihan);
+            });
+        };
+        if ($request->status) {
+            $q->where('status', $request->status);
+        }
+        $data['pembayaran'] = $q->get();
         //print
         if ($data['pembayaran']->count() > 0) {
             $pdf = PDF::loadView('pembayaran-tagihan.laporan-preview', $data);

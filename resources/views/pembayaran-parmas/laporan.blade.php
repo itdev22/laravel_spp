@@ -1,6 +1,6 @@
 @extends('layouts.backend.app')
-@section('title', 'Laporan')
-@section('content_title', 'Laporan')
+@section('title', 'Laporan Parmas')
+@section('content_title', 'Laporan Parmas')
 @section('content')
     <x-alert></x-alert>
 
@@ -25,7 +25,10 @@
                             <div class="m-2">
                                 <label for="kelas">Kelas</label>
                                 <select name="kelas" id="kelas" class="form-control">
-                                    <option value=""></option>
+                                    @foreach ($kelass as $kelas)
+                                        <option value="{{ $kelas->id }}">{{ $kelas->nama_kelas }}
+                                        </option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="m-2">
@@ -40,7 +43,10 @@
                             <div class="m-2">
                                 <label for="bulan">Bulan</label>
                                 <select name="bulan" id="bulan" class="form-control">
-                                    <option value=""></option>
+                                    @foreach (Universe::bulanAll() as $bulan)
+                                        <option value="{{ $bulan['nama_bulan'] }}">{{ $bulan['nama_bulan'] }}
+                                        </option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
