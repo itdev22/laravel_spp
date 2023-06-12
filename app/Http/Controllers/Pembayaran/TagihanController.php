@@ -76,7 +76,7 @@ class TagihanController extends Controller
         $tagihan = Tagihan::where('id', $id)
             ->first();
 
-        $tagihanSiswa = TagihanSiswa::where('tagihan_id', $id)->where('siswa_id', $idsiswa)
+        $tagihanSiswa = TagihanSiswa::where('id', $id)->where('siswa_id', $idsiswa)
             ->first();
 
         return response()->json([
@@ -312,8 +312,8 @@ class TagihanController extends Controller
                 $q->where('tagihan_id', $request->nama_tagihan);
             });
         };
-        if ($request->status) {
-            $q->where('status', $request->status);
+        if ($request->status_tagihan) {
+            $q->where('status', $request->status_tagihan);
         }
         $data['pembayaran'] = $q->get();
         //print
