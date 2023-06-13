@@ -73,11 +73,10 @@ class TagihanController extends Controller
 
     public function tagihan($id, $idsiswa)
     {
-        $tagihan = Tagihan::where('id', $id)
+        $tagihanSiswa = TagihanSiswa::where('id', $id)->where('siswa_id', $idsiswa)->first();
+        $tagihan = Tagihan::where('id', $tagihanSiswa->tagihan_id)
             ->first();
 
-        $tagihanSiswa = TagihanSiswa::where('tagihan_id', $id)->where('siswa_id', $idsiswa)
-            ->first();
 
         return response()->json([
             'data' => $tagihan,
