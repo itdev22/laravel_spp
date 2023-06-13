@@ -302,8 +302,8 @@ class TagihanController extends Controller
     public function printPdf(Request $request)
     {
         $tanggal = $request->validate([
-            'tanggal_mulai' => 'required',
-            'tanggal_selesai' => 'required',
+            'tanggal_mulai' => '',
+            'tanggal_selesai' => '',
         ]);
 
         $tanggal['tanggal_selesai'] = Carbon::parse($request->tanggal_selesai)->endOfDay();
