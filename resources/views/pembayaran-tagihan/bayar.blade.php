@@ -211,42 +211,42 @@
                     $("#total_kekurangan").val(formatter.format(hasil_bayar))
 
                     //datable
-                    // $(function() {
-                    var table = $("#dataTable2").DataTable({
-                        searching: false,
-                        paging: false,
-                        info: false,
-                        processing: true,
-                        serverSide: true,
-                        "responsive": true,
-                        ajax: "{{ url('pembayaran/tagihan/list-pembayaran-tagihan') }}" +
-                            "/" +
-                            nisn +
-                            "/" + tagihansiswa_id,
-                        columns: [{
-                                data: 'DT_RowIndex',
-                                name: 'id'
-                            },
-                            {
-                                data: 'tanggal_bayar',
-                                name: 'tanggal_bayar'
-                            },
-                            {
-                                data: 'nominal',
-                                name: 'nominal'
-                            },
-                            {
-                                data: 'metode',
-                                name: 'metode'
-                            },
-                            {
-                                data: 'status',
-                                name: 'status'
-                            },
-                        ]
-                    });
+                    $(function() {
+                        var table = $("#dataTable2").DataTable({
+                            searching: false,
+                            paging: false,
+                            info: false,
+                            processing: true,
+                            serverSide: true,
+                            "responsive": true,
+                            ajax: "{{ url('pembayaran/tagihan/list-pembayaran-tagihan') }}" +
+                                "/" +
+                                nisn +
+                                "/" + tagihansiswa_id,
+                            columns: [{
+                                    data: 'DT_RowIndex',
+                                    name: 'id'
+                                },
+                                {
+                                    data: 'tanggal_bayar',
+                                    name: 'tanggal_bayar'
+                                },
+                                {
+                                    data: 'nominal',
+                                    name: 'nominal'
+                                },
+                                {
+                                    data: 'metode',
+                                    name: 'metode'
+                                },
+                                {
+                                    data: 'status',
+                                    name: 'status'
+                                },
+                            ]
+                        });
 
-                    // });
+                    });
                 }
             })
         })
