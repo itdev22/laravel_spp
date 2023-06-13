@@ -76,6 +76,7 @@ Route::prefix('pembayaran')->middleware(['auth', 'role:admin|petugas'])->group(f
         Route::get('bayar', [TagihanController::class, 'index'])->name('pembayaran.index');
         Route::get('detailtagihan/{tagihanid}', [TagihanController::class, 'detailsiswa'])->name('pembayaran.detailtagihan');
         Route::get('bayar/{nisn}', [TagihanController::class, 'bayar'])->name('pembayaran.bayar');
+        Route::get('list-pembayaran-tagihan/{nisn}/{tagihansiswa_id}', [TagihanController::class, 'listPembayaranTagihan'])->name('list.pembayaran.tagihan');
         Route::get('tagihan/{id}/{idtagihansiswa}', [TagihanController::class, 'tagihan'])->name('pembayaran.tagihan');
         Route::post('bayar/{nisn}', [TagihanController::class, 'prosesBayar'])->name('pembayaran.proses-bayar');
         Route::get('status-pembayaran', [TagihanController::class, 'statusPembayaran'])

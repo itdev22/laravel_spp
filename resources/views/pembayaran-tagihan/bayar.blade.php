@@ -121,12 +121,42 @@
                             </button>
                         </div>
                     </form>
+                    <table id="dataTable2" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Tanggal Bayar</th>
+                                <th>Jumlah Bayar</th>
+                                <th>Metode</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
 @stop
 @push('js')
+    <!-- DataTables  & Plugins -->
+    <script src="{{ asset('templates/backend/AdminLTE-3.1.0') }}/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="{{ asset('templates/backend/AdminLTE-3.1.0') }}/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js">
+    </script>
+    <script
+        src="{{ asset('templates/backend/AdminLTE-3.1.0') }}/plugins/datatables-responsive/js/dataTables.responsive.min.js">
+    </script>
+    <script
+        src="{{ asset('templates/backend/AdminLTE-3.1.0') }}/plugins/datatables-responsive/js/responsive.bootstrap4.min.js">
+    </script>
     <!-- Select2 -->
     <script src="{{ asset('templates/backend/AdminLTE-3.1.0') }}/plugins/select2/js/select2.full.min.js"></script>
     <script>
@@ -177,6 +207,41 @@
                         currency: 'idr',
                     })
                     $("#total_kekurangan").val(formatter.format(hasil_bayar))
+
+                    //datable
+                    // $(function() {
+                    var table = $("#dataTable2").DataTable({
+                        searching: false,
+                        paging: false,
+                        info: false,
+                        processing: true,
+                        serverSide: true,
+                        "responsive": true,
+                        ajax: "{{ route('tagihan.list.pembayaran.tagihan', ["$siswa->nisn", 3]) }}",
+                        columns: [{
+                                data: 'DT_RowIndex',
+                                name: 'id'
+                            },
+                            {
+                                data: 'tanggal_bayar',
+                                name: 'tanggal_bayar'
+                            },
+                            {
+                                data: 'nominal',
+                                name: 'nominal'
+                            },
+                            {
+                                data: 'metode',
+                                name: 'metode'
+                            },
+                            {
+                                data: 'status',
+                                name: 'status'
+                            },
+                        ]
+                    });
+
+                    // });
                 }
             })
         })
@@ -208,4 +273,6 @@
             })
         })
     </script>
+
+    <script></script>
 @endpush
