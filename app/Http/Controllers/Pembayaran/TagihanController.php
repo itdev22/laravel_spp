@@ -88,7 +88,7 @@ class TagihanController extends Controller
     public function listPembayaranTagihan($nisn, $tagihansiswa_id)
     {
         // return response()->json($tagihansiswa_id);
-        $data = PembayaranTagihan::where('nisn', $nisn)->where('tagihansiswa_id', $tagihansiswa_id);
+        $data = PembayaranTagihan::where('nisn', strval($nisn))->where('tagihansiswa_id', $tagihansiswa_id);
         return DataTables::of($data)
             ->addIndexColumn()
             ->make(true);

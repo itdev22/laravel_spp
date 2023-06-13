@@ -180,6 +180,7 @@
         $(document).on("change", "#tagihansiswa_id", function() {
             var id = $(this).val()
             var idSiswa = $("#siswa_id").val()
+            var nisn = $("#nisn").val()
 
             $.ajax({
                 url: "/pembayaran/tagihan/tagihan/" + id + "/" + idSiswa,
@@ -217,7 +218,10 @@
                         processing: true,
                         serverSide: true,
                         "responsive": true,
-                        ajax: "{{ route('tagihan.list.pembayaran.tagihan', ["$siswa->nisn", 3]) }}",
+                        ajax: "{{ url('pembayaran/tagihan/list-pembayaran-tagihan') }}" +
+                            "/" +
+                            nisn +
+                            "/" + id,
                         columns: [{
                                 data: 'DT_RowIndex',
                                 name: 'id'
