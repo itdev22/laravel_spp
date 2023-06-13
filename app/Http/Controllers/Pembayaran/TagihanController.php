@@ -76,7 +76,7 @@ class TagihanController extends Controller
         $tagihan = Tagihan::where('id', $id)
             ->first();
 
-        $tagihanSiswa = TagihanSiswa::where('id', $id)->where('siswa_id', $idsiswa)
+        $tagihanSiswa = TagihanSiswa::where('tagihan_id', $id)->where('siswa_id', $idsiswa)
             ->first();
 
         return response()->json([
@@ -300,8 +300,10 @@ class TagihanController extends Controller
         ]);
 
         $tanggal['tanggal_selesai'] = Carbon::parse($request->tanggal_selesai)->endOfDay();
-        $q = PembayaranTagihan::with(['petugas', 'siswa', 'tagihansiswa'])
-            ->whereBetween('tanggal_bayar', $tanggal);
+        $q = PembayaranTagihan::with(['petugas', 'siswa', 'tagihansiswa']);
+        if ($request->tanggal_mulai && $request->tanggal_selesai) {
+            $q->whereBetween('tanggal_bayar', $tanggal);
+        }
         if ($request->kelas) {
             $q->whereHas('siswa', function ($q) use ($request) {
                 $q->where('kelas_id', $request->kelas);

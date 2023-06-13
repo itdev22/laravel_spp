@@ -75,7 +75,7 @@
                                         <option disabled="" selected="">- PILIH TAGIHAN -</option>
                                         {{ $tagihansiswas }}
                                         @foreach ($tagihansiswas as $tagihansiswa)
-                                            <option value="{{ $tagihansiswa->id }}">
+                                            <option value="{{ $tagihansiswa->tagihan->id }}">
                                                 {{ $tagihansiswa->tagihan->nama_tagihan }}
                                             </option>
                                         @endforeach

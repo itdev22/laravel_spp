@@ -13,18 +13,17 @@
                         @csrf
                         <div class="form-group">
                             <label for="tanggal_mulai">Tanggal Mulai</label>
-                            <input type="date" name="tanggal_mulai" required="" class="form-control"
-                                id="tanggal_mulai">
+                            <input type="date" name="tanggal_mulai" class="form-control" id="tanggal_mulai">
                         </div>
                         <div class="form-group">
                             <label for="tanggal_selesai">Tanggal Selesai</label>
-                            <input type="date" name="tanggal_selesai" required="" class="form-control"
-                                id="tanggal_selesai">
+                            <input type="date" name="tanggal_selesai" class="form-control" id="tanggal_selesai">
                         </div>
                         <div class="row align-items-start">
                             <div class="m-2">
                                 <label for="kelas">Kelas</label>
                                 <select name="kelas" id="kelas" class="form-control">
+                                    <option value=""></option>
                                     @foreach ($kelass as $kelas)
                                         <option value="{{ $kelas->id }}">{{ $kelas->nama_kelas }}
                                         </option>
@@ -34,6 +33,7 @@
                             <div class="m-2">
                                 <label for="tahun">Tahun</label>
                                 <select name="tahun" id="tahun" class="form-control">
+                                    <option value=""></option>
                                     <option value="2020">2020</option>
                                     <option value="2021">2021</option>
                                     <option value="2022">2022</option>
@@ -43,6 +43,7 @@
                             <div class="m-2">
                                 <label for="bulan">Bulan</label>
                                 <select name="bulan" id="bulan" class="form-control">
+                                    <option value=""></option>
                                     @foreach (Universe::bulanAll() as $bulan)
                                         <option value="{{ $bulan['nama_bulan'] }}">{{ $bulan['nama_bulan'] }}
                                         </option>

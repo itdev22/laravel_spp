@@ -22,6 +22,7 @@
                 <th scope="col" style="font-family: sans-serif;">Kelas</th>
                 <th scope="col" style="font-family: sans-serif;">Tanggal Bayar</th>
                 <th scope="col" style="font-family: sans-serif;">Bulan</th>
+                <th scope="col" style="font-family: sans-serif;">Tahun</th>
                 <th scope="col" style="font-family: sans-serif;">Petugas</th>
                 <th scope="col" style="font-family: sans-serif;">Jumlah Bayar</th>
             </tr>
@@ -37,6 +38,7 @@
                         {{ \Carbon\Carbon::parse($row->tanggal_bayar)->format('d-m-Y') }}
                     </td>
                     <td style="font-family: sans-serif;">{{ $row->bulan_bayar }}</td>
+                    <td style="font-family: sans-serif;">{{ $row->tahun_bayar }}</td>
                     <td style="font-family: sans-serif;">{{ $row->petugas->nama_petugas }}</td>
                     <td style="font-family: sans-serif;">{{ $row->jumlah_bayar }}</td>
                 </tr>

@@ -25,6 +25,7 @@
                             <div class="m-2">
                                 <label for="kelas">Kelas</label>
                                 <select name="kelas" id="kelas" class="form-control">
+                                    <option value=""></option>
                                     @foreach ($kelass as $kelas)
                                         <option value="{{ $kelas->id }}">{{ $kelas->nama_kelas }}</option>
                                     @endforeach
@@ -33,6 +34,7 @@
                             <div class="m-2">
                                 <label for="nama_tagihan">Nama Tagihan</label>
                                 <select name="nama_tagihan" id="nama_tagihan" class="form-control">
+                                    <option value=""></option>
                                     @foreach ($tagihans as $tagihan)
                                         <option value="{{ $tagihan->id }}">{{ $tagihan->nama_tagihan }}</option>
                                     @endforeach
@@ -41,6 +43,7 @@
                             <div class="m-2">
                                 <label for="status_tagihan">Status Tagihan</label>
                                 <select name="status_tagihan" id="status_tagihan" class="form-control">
+                                    <option value=""></option>
                                     <option value="finish">Finish</option>
                                     <option value="pending">Pending</option>
                                 </select>

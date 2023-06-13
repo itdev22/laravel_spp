@@ -235,24 +235,25 @@ class ParmasController extends Controller
     public function printPdf(Request $request)
     {
         $tanggal = $request->validate([
-            'tanggal_mulai' => 'required',
-            'tanggal_selesai' => 'required',
+            'tanggal_mulai' => '',
+            'tanggal_selesai' => '',
         ]);
-        // dd($request);
-        // $tanggal['tanggal_mulai'] = Carbon::parse($request->tanggal_mulai)->addDays(-1);
+
+        $tanggal['tanggal_mulai'] = Carbon::parse($request->tanggal_mulai);
         $tanggal['tanggal_selesai'] = Carbon::parse($request->tanggal_selesai)->endOfDay();
-        $q = Pembayaran::with(['petugas', 'siswa'])
-            ->whereBetween('tanggal_bayar', $tanggal);
-        if ($request->kelas) {
-            // $q->where('kelas_id', $request->kelas);
+        $q = Pembayaran::with(['petugas', 'siswa']);
+        if ($request->tanggal_mulai && $request->tanggal_selesai) {
+            $q->whereBetween('tanggal_bayar', $tanggal);
+        }
+        if ($request->kelas != '') {
             $q->whereHas('siswa', function ($q) use ($request) {
                 $q->where('kelas_id', $request->kelas);
             });
         };
-        if ($request->tahun) {
+        if ($request->tahun != '') {
             $q->where('tahun_bayar', $request->tahun);
         };
-        if ($request->bulan) {
+        if ($request->bulan != '') {
             $q->where('bulan_bayar', $request->bulan);
         };
         $data['pembayaran'] =  $q->get();
