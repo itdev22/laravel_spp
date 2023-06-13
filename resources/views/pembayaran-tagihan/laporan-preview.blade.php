@@ -8,7 +8,7 @@
 <body>
     <br><br>
     <center>
-        <h2 style="font-family: sans-serif;">Laporan Pembayaran Parmas</h2>
+        <h2 style="font-family: sans-serif;">Laporan Pembayaran Tagihan</h2>
     </center>
     <br>
     <b>Dari tanggal {{ \Carbon\Carbon::parse(request()->tanggal_mulai)->format('d-m-Y') }} -
@@ -17,6 +17,7 @@
         <thead>
             <tr>
                 <th scope="col" style="font-family: sans-serif;">No</th>
+                <th scope="col" style="font-family: sans-serif;">Nama Tagihan</th>
                 <th scope="col" style="font-family: sans-serif;">Nama Siswa</th>
                 <th scope="col" style="font-family: sans-serif;">Nisn</th>
                 <th scope="col" style="font-family: sans-serif;">Kelas</th>
@@ -30,6 +31,7 @@
             @foreach ($pembayaran as $row)
                 <tr>
                     <th scope="row" style="font-family: sans-serif;">{{ $loop->iteration }}</th>
+                    <td style="font-family: sans-serif;">{{ $row->tagihansiswa->tagihan->nama_tagihan }}</td>
                     <td style="font-family: sans-serif;">{{ $row->siswa->nama_siswa }}</td>
                     <td style="font-family: sans-serif;">{{ $row->nisn }}</td>
                     <td style="font-family: sans-serif;">{{ $row->siswa->kelas->nama_kelas }}</td>
