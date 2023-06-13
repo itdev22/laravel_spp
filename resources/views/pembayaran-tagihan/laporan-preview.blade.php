@@ -38,7 +38,7 @@
                     </td>
                     <td style="font-family: sans-serif;">{{ $row->petugas->nama_petugas }}</td>
                     <td style="font-family: sans-serif;">{{ $row->nominal }}</td>
-                    <td style="font-family: sans-serif;">{{ $row->status }}</td>
+                    <td style="font-family: sans-serif;">{{ $row->tagihansiswa->status }}</td>
                 </tr>
             @endforeach
         </tbody>

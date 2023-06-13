@@ -308,7 +308,7 @@ class TagihanController extends Controller
 
         $tanggal['tanggal_mulai'] = Carbon::parse($request->tanggal_mulai);
         $tanggal['tanggal_selesai'] = Carbon::parse($request->tanggal_selesai)->endOfDay();
-        $q = PembayaranTagihan::with(['petugas', 'siswa', 'tagihansiswa']);
+        $q = PembayaranTagihan::with(['petugas', 'siswa', 'tagihansiswa.tagihan']);
         if ($request->tanggal_mulai && $request->tanggal_selesai) {
             $q->whereBetween('tanggal_bayar', $tanggal);
         }
@@ -323,7 +323,9 @@ class TagihanController extends Controller
             });
         };
         if ($request->status_tagihan) {
-            $q->where('status', $request->status_tagihan);
+            $q->whereHas('tagihansiswa', function ($q) use ($request) {
+                $q->where('status', $request->status_tagihan);
+            });
         }
         $data['pembayaran'] = $q->get();
         //print

@@ -42,8 +42,9 @@
                                 <label for="status_tagihan">Status Tagihan</label>
                                 <select name="status_tagihan" id="status_tagihan" class="form-control">
                                     <option value=""></option>
-                                    <option value="finish">Finish</option>
-                                    <option value="pending">Pending</option>
+                                    <option value="lunas">Lunas</option>
+                                    <option value="belum lunas">Belum Lunas</option>
+                                    <option value="dicicil">Dicicil</option>
                                 </select>
                             </div>
                         </div>
