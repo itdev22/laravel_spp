@@ -32,7 +32,7 @@
                                 <th>Nominal</th>
                                 <th>Metode</th>
                                 <th>Status</th>
-                                <th>Url Payment</th>
+                                <th>Payment</th>
                                 <th>Print</th>
                             </tr>
                         </thead>
