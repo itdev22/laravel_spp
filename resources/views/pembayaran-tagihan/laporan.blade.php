@@ -13,13 +13,11 @@
                         @csrf
                         <div class="form-group">
                             <label for="tanggal_mulai">Tanggal Mulai</label>
-                            <input type="date" name="tanggal_mulai" required="" class="form-control"
-                                id="tanggal_mulai">
+                            <input type="date" name="tanggal_mulai" class="form-control" id="tanggal_mulai">
                         </div>
                         <div class="form-group">
                             <label for="tanggal_selesai">Tanggal Selesai</label>
-                            <input type="date" name="tanggal_selesai" required="" class="form-control"
-                                id="tanggal_selesai">
+                            <input type="date" name="tanggal_selesai" class="form-control" id="tanggal_selesai">
                         </div>
                         <div class="row align-items-start">
                             <div class="m-2">

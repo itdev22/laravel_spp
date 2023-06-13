@@ -306,6 +306,7 @@ class TagihanController extends Controller
             'tanggal_selesai' => '',
         ]);
 
+        $tanggal['tanggal_mulai'] = Carbon::parse($request->tanggal_mulai);
         $tanggal['tanggal_selesai'] = Carbon::parse($request->tanggal_selesai)->endOfDay();
         $q = PembayaranTagihan::with(['petugas', 'siswa', 'tagihansiswa']);
         if ($request->tanggal_mulai && $request->tanggal_selesai) {
