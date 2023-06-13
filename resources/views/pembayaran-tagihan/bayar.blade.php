@@ -178,10 +178,10 @@
         }
 
         $(document).on("change", "#tagihansiswa_id", function() {
+            // $("#dataTable2").DataTable().ajax.reload(null, false);
             var id = $(this).val()
             var idSiswa = $("#siswa_id").val()
             var nisn = $("#nisn").val()
-            var tagihansiswa_id = $("#tagihansiswa_id").val()
 
             $.ajax({
                 url: "/pembayaran/tagihan/tagihan/" + id + "/" + idSiswa,
@@ -212,7 +212,10 @@
 
                     //datable
                     $(function() {
+                        var tagihansiswa_id = $("#tagihansiswa_id").val()
+                        $("#dataTable2").DataTable().destroy();
                         var table = $("#dataTable2").DataTable({
+                            // retrieve: true,
                             searching: false,
                             paging: false,
                             info: false,
