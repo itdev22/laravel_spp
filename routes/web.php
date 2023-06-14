@@ -167,8 +167,10 @@ Route::prefix('siswa')->middleware(['auth', 'role:siswa'])->group(function () {
     Route::prefix('tagihan')->group(function () {
 
         Route::prefix('pembayaran')->group(function () {
-            Route::get('bayar/{nisn}', [PembayaranTagihanController::class, 'bayar'])->name('pembayaran.bayar');
-            Route::post('bayar/{nisn}', [PembayaranTagihanController::class, 'prosesBayar'])->name('pembayaran.proses-bayar');
+            Route::get('bayar/{nisn}', [PembayaranTagihanController::class, 'bayar'])->name('siswa.pembayaran-tagihan.bayar');
+            Route::post('bayar/{nisn}', [PembayaranTagihanController::class, 'prosesBayar'])->name('siswa.pembayaran-tagihan.proses-bayar');
+            Route::get('tagihan/{id}/{idtagihansiswa}', [PembayaranTagihanController::class, 'tagihan'])->name('siswa.pembayaran-tagihan.tagihan');
+            Route::get('list-pembayaran-tagihan/{nisn}/{tagihansiswa_id}', [PembayaranTagihanController::class, 'listPembayaranTagihan'])->name('list.pembayaran.tagihan');
             Route::get('/', [PembayaranTagihanController::class, 'pembayaran'])->name('siswa.pembayaran-tagihan.index');
             Route::get('{spp:tahun}', [PembayaranTagihanController::class, 'pembayaranShow'])->name('siswa.pembayaran-tagihan.show');
         });

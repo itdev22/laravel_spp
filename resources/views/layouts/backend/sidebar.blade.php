@@ -387,7 +387,7 @@
                         </ul>
                     </li>
 
-                    <li class="nav-header">BUKTI PEMBAYARAN</li>
+                    {{-- <li class="nav-header">BUKTI PEMBAYARAN</li>
                     <li class="nav-item">
                         <a href="{{ route('siswa.pembayaran-spp') }}"
                             class="nav-link {{ Request::segment(2) == 'pembayaran-spp' ? 'active' : '' }}">
@@ -414,7 +414,7 @@
                                 Laporan
                             </p>
                         </a>
-                    </li>
+                    </li> --}}
                 @endrole
 
                 {{-- @role('admin')
