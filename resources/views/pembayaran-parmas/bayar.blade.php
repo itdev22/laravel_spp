@@ -117,7 +117,6 @@
                                         <option value="offline" class="form-control">Offline</option>
                                         <option value="online" class="form-control">Online</option>
                                     </select>
-                                    <img id="gambar_menu" src="" width="100%" alt="">
                                 </div>
                             </div>
                         </div>
@@ -152,18 +151,6 @@
 
             return formatter.format(number)
         }
-
-        $(document).on("change", "#metode_pembayaran", function() {
-            var tahun = $(this).val()
-            var nisn = $('#metode_pembayaran').val()
-
-            console.log(nisn);
-            document.getElementById("gambar_menu").src = ""
-            if (nisn != "offline") {
-                document.getElementById("gambar_menu").src =
-                    "https://berita.99.co/wp-content/uploads/2021/10/contoh-gambar-pemandangan-alam-yang-mudah-ditiru.jpg";
-            }
-        })
 
         $(document).on("change", "#tahun_bayar", function() {
             var tahun = $(this).val()
