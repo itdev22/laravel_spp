@@ -3,6 +3,9 @@
 use App\Http\Controllers\Pembayaran\ParmasController;
 use App\Http\Controllers\Pembayaran\TagihanController;
 use App\Http\Controllers\PembayaranController;
+use App\Http\Controllers\PembayaranPermasController;
+use App\Http\Controllers\PembayaranTagihanController;
+use App\Models\Pembayaran;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -143,8 +146,11 @@ Route::prefix('siswa')->middleware(['auth', 'role:siswa'])->group(function () {
     Route::prefix('permas')->group(function () {
 
         Route::prefix('pembayaran')->group(function () {
-            Route::get('/', 'PembayaranPermasController@pembayaran')->name('siswa.pembayaran-permas.index');
-            Route::get('{spp:tahun}', 'PembayaranPermasController@pembayaranShow')->name('siswa.pembayaran-permas.show');
+            Route::get('bayar/{nisn}', [PembayaranPermasController::class, 'bayar'])->name('siswa.pembayaran-permas.bayar');
+            Route::post('bayar/{nisn}', [PembayaranPermasController::class, 'prosesBayar'])->name('siswa.pembayaran-permas.proses-bayar');
+            Route::get('spp/{tahun}/{nisn}', [PembayaranPermasController::class, 'spp'])->name('siswa.pembayaran-permas.spp');
+            Route::get('/', [PembayaranPermasController::class, 'pembayaran'])->name('siswa.pembayaran-permas.index');
+            Route::get('{spp:tahun}', [PembayaranPermasController::class, 'pembayaranShow'])->name('siswa.pembayaran-permas.show');
         });
 
         Route::prefix('history')->group(function () {
@@ -161,8 +167,10 @@ Route::prefix('siswa')->middleware(['auth', 'role:siswa'])->group(function () {
     Route::prefix('tagihan')->group(function () {
 
         Route::prefix('pembayaran')->group(function () {
-            Route::get('/', 'PembayaranTagihanController@pembayaran')->name('siswa.pembayaran-tagihan.index');
-            Route::get('{spp:tahun}', 'PembayaranTagihanController@pembayaranShow')->name('siswa.pembayaran-tagihan.show');
+            Route::get('bayar/{nisn}', [PembayaranTagihanController::class, 'bayar'])->name('pembayaran.bayar');
+            Route::post('bayar/{nisn}', [PembayaranTagihanController::class, 'prosesBayar'])->name('pembayaran.proses-bayar');
+            Route::get('/', [PembayaranTagihanController::class, 'pembayaran'])->name('siswa.pembayaran-tagihan.index');
+            Route::get('{spp:tahun}', [PembayaranTagihanController::class, 'pembayaranShow'])->name('siswa.pembayaran-tagihan.show');
         });
 
         Route::prefix('history')->group(function () {

@@ -2,21 +2,109 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Universe;
+use App\Http\Controllers\Payment\MidtrandsController;
 use App\Models\Pembayaran;
+use App\Models\Petugas;
 use App\Models\Siswa;
 use App\Models\Spp;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use DataTables;
 use PDF;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PembayaranPermasController extends Controller
 {
+    public function bayar($nisn)
+    {
+        $siswa = Siswa::with(['kelas'])
+            ->where('nisn', $nisn)
+            ->first();
+
+        $spp = Spp::all();
+
+        return view('siswa.pembayaran.permas.pembayaran.bayar', compact('siswa', 'spp'));
+    }
+
+    public function prosesBayar(Request $request, $nisn)
+    {
+        $request->validate([
+            'jumlah_bayar' => 'required',
+        ], [
+            'jumlah_bayar.required' => 'Jumlah bayar tidak boleh kosong!'
+        ]);
+
+        $petugas = Petugas::where('user_id', Auth::user()->id)
+            ->first();
+
+        $pembayaran = Pembayaran::whereIn('bulan_bayar', $request->bulan_bayar)
+            ->where('tahun_bayar', $request->tahun_bayar)
+            ->where('siswa_id', $request->siswa_id)
+            ->pluck('bulan_bayar')
+            ->toArray();
+
+        if (!$pembayaran) {
+            if ($request->metode_pembayaran == 'online') {
+                foreach ($request->bulan_bayar as $bulan) {
+                    $kodePembayaran = 'PARMAS' . Str::upper(Str::random(5));
+                    $result = MidtrandsController::NewTransaction($kodePembayaran, $request->jumlah_bayar);
+                    $data = json_decode($result, true);
+                    Pembayaran::create([
+                        'kode_pembayaran' => $kodePembayaran,
+                        'petugas_id' => 1,
+                        'siswa_id' => $request->siswa_id,
+                        'nisn' => $request->nisn,
+                        'tanggal_bayar' => Carbon::now('Asia/Jakarta'),
+                        'tahun_bayar' => $request->tahun_bayar,
+                        'bulan_bayar' => $bulan,
+                        'jumlah_bayar' => $request->jumlah_bayar,
+                        'metode' => 'online',
+                        'status' => 'pending',
+                        'url_payment' => $data["redirect_url"]
+                    ]);
+                }
+                return back()
+                    ->with('success', 'Pembayaran berhasil disimpan!');
+            }
+        } else {
+            return back()
+                ->with('error', 'Siswa Dengan Nama : ' . $request->nama_siswa . ' , NISN : ' .
+                    $request->nisn . ' Sudah Membayar PARTISIPASI MASYARAKAT di bulan yang diinput (' .
+                    implode($pembayaran, ',') . ")" . ' , di Tahun : ' . $request->tahun_bayar . ' , Pembayaran Dibatalkan');
+        }
+    }
+
+    public function spp($tahun, $nisn)
+    {
+        $spp = Spp::where('tahun', $tahun)
+            ->first();
+
+
+        $bulans = Universe::bulanAll();
+
+        $bulan_bayar = '';
+        foreach ($bulans as $key => $bulan) {
+            if (!Pembayaran::where('bulan_bayar', $bulan['nama_bulan'])->where('tahun_bayar', $tahun)->where('nisn', $nisn)->first()) {
+                $bulan_bayar .= '<option value="' . $bulan['nama_bulan'] . '">' . $bulan['nama_bulan'] . '</option>';
+            }
+        }
+
+        // $bulan_bayar = 'asd';
+        return response()->json([
+            'data' => $spp,
+            'nominal_rupiah' => 'Rp ' . number_format($spp->nominal, 0, 2, '.'),
+            'bulan_bayar' => $bulan_bayar
+        ]);
+    }
+
     public function pembayaran()
     {
         $spp = Spp::all();
-        return view('siswa.pembayaran.permas.pembayaran.index', compact('spp'));
+        $user = Siswa::where('user_id', Auth::user()->id)->first();
+        return view('siswa.pembayaran.permas.pembayaran.index', compact(['spp', 'user']));
     }
 
     public function pembayaranShow(Spp $spp)
@@ -94,7 +182,7 @@ class PembayaranPermasController extends Controller
         $data['data_siswa'] = $siswa;
 
         if ($data['pembayaran']->count() > 0) {
-            $pdf = PDF::loadView('siswa.permas.laporan.show', $data);
+            $pdf = PDF::loadView('siswa.pembayaran.permas.laporan.show', $data);
             return $pdf->download('pembayaran-parmas-' . $siswa->nama_siswa . '-' .
                 $siswa->nisn . '-' .
                 $request->tahun_bayar . '-' .
