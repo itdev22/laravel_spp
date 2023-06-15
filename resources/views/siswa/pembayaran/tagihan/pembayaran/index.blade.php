@@ -66,12 +66,12 @@
                         name: 'id'
                     },
                     {
-                        data: 'nama_tagihan',
-                        name: 'nama_tagihan'
+                        data: 'tagihan.nama_tagihan',
+                        name: 'tagihan.nama_tagihan'
                     },
                     {
-                        data: 'nominal',
-                        name: 'nominal'
+                        data: 'tagihan.nominal',
+                        name: 'tagihan.nominal'
                     },
                     {
                         data: 'action',

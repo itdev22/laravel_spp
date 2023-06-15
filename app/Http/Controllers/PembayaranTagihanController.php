@@ -250,8 +250,8 @@ class PembayaranTagihanController extends Controller
     {
         $spp = Spp::all();
         if ($request->ajax()) {
-            $data = Tagihan::with(['tagihan_siswa.siswa'])->latest();
             $siswa = Siswa::where('user_id', Auth::user()->id)->first();
+            $data = TagihanSiswa::with(['tagihan'])->where('siswa_id', $siswa->id)->latest();
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) use ($siswa) {
