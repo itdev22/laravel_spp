@@ -159,7 +159,7 @@ class PembayaranPermasController extends Controller
             ->where('siswa_id', $data['siswa']->id)
             ->first();
 
-        $pdf = PDF::loadView('siswa.history-permas.show', $data);
+        $pdf = PDF::loadView('siswa.pembayaran.permas.history.show', $data);
         return $pdf->stream();
     }
 

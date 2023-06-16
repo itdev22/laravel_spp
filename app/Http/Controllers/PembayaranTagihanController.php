@@ -312,12 +312,12 @@ class PembayaranTagihanController extends Controller
         $data['siswa'] = Siswa::where('user_id', Auth::user()->id)
             ->first();
 
-        $data['pembayaran'] = Pembayaran::with(['petugas', 'siswa'])
+        $data['pembayaran'] = PembayaranTagihan::with(['tagihansiswa.tagihan', 'petugas', 'siswa'])
             ->where('id', $id)
             ->where('siswa_id', $data['siswa']->id)
             ->first();
 
-        $pdf = PDF::loadView('siswa.history-tagihan.show', $data);
+        $pdf = PDF::loadView('siswa.pembayaran.tagihan.history.show', $data);
         return $pdf->stream();
     }
 
