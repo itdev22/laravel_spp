@@ -129,7 +129,19 @@ Route::prefix('admin')
             Route::post('user-permission/create/{id}', 'UserPermissionController@store')->name('user-permission.store');
         });
 
-        Route::middleware(['role:admin|petugas'])->group(function () {
+        // Route::middleware(['role:petugas'])->group(function () {
+        //     Route::get('dashboard', 'DashboardController@index')->name('dashboard.index');
+        //     Route::get('admin-list', 'AdminListController@index')->name('admin-list.index');
+        //     Route::get('admin-list/create', 'AdminListController@create')->name('admin-list.create');
+        //     Route::post('admin-list', 'AdminListController@store')->name('admin-list.store');
+        //     Route::get('admin-list/{id}/edit', 'AdminListController@edit')->name('admin-list.edit');
+        //     Route::patch('admin-list/{id}', 'AdminListController@update')->name('admin-list.update');
+        //     Route::delete('admin-list/{id}', 'AdminListController@destroy')->name('admin-list.destroy');
+        //     Route::resource('user', 'UserController');
+        //     Route::resource('petugas', 'PetugasController');
+        // });
+
+        Route::middleware(['role:petugas'])->group(function () {
             Route::resource('spp', 'SppController');
             // tambahan tagihan
             Route::resource('tagihan', 'TagihanController');

@@ -25,7 +25,7 @@
                 <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
                 @role('admin')
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a href="{{ route('dashboard.index') }}"
                             class="nav-link {{ Request::segment(2) == 'dashboard' ? 'active' : '' }}">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -33,7 +33,7 @@
                                 Dashboard
                             </p>
                         </a>
-                    </li>
+                    </li> --}}
                     <li class="nav-item">
                         <a href="{{ route('home.index') }}"
                             class="nav-link {{ Request::segment(1) == 'home' ? 'active' : '' }}">
@@ -105,7 +105,7 @@
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a href="{{ route('user.index') }}"
                             class="nav-link {{ Request::segment(2) == 'user' ? 'active' : '' }}">
                             <i class="nav-icon fas fa-users"></i>
@@ -113,7 +113,7 @@
                                 User
                             </p>
                         </a>
-                    </li>
+                    </li> --}}
                     <li class="nav-item">
                         <a href="{{ route('petugas.index') }}"
                             class="nav-link {{ Request::segment(2) == 'petugas' ? 'active' : '' }}">
@@ -123,6 +123,11 @@
                             </p>
                         </a>
                     </li>
+                @endrole
+
+                @role('admin|petugas')
+                <li class="nav-header">DATA PEMBAYARAN</li>
+                <li class="nav-item">
                     <li class="nav-item">
                         <a href="{{ route('spp.index') }}"
                             class="nav-link {{ Request::segment(2) == 'spp' ? 'active' : '' }}">
@@ -143,7 +148,7 @@
                     </li>
                 @endrole
 
-                @role('petugas')
+                {{-- @role('petugas')
                     <li class="nav-header">MANAJEMEN DATA</li>
                     <li class="nav-item">
                         <a href="{{ route('siswa.index') }}"
@@ -190,9 +195,9 @@
                             </p>
                         </a>
                     </li>
-                @endrole
+                @endrole --}}
 
-                @role('admin|petugas')
+                @role('petugas')
                     <li class="nav-header">PEMBAYARAN</li>
                     <li
                         class="nav-item {{ Request::segment(2) == 'parmas' && Request::segment(3) != 'laporan' ? 'menu-is-opening menu-open' : '' }}">
@@ -200,7 +205,7 @@
                             class="nav-link {{ Request::segment(2) == 'parmas' && Request::segment(3) != 'laporan' ? 'active' : '' }}">
                             <i class="nav-icon fas fa-money-check"></i>
                             <p>
-                                Permas
+                                Parmas
                                 <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
@@ -283,7 +288,7 @@
                     {{-- <li class="nav-header">PEMBAYARAN TAGIHAN</li> --}}
                 @endrole
 
-                @role('admin|petugas')
+                @role('petugas')
                     <li class="nav-header">LAPORAN</li>
                     <li class="nav-item">
                         <a href="{{ route('parmas.pembayaran.laporan') }}"
@@ -311,7 +316,7 @@
                         <a href="#" class="nav-link {{ Request::segment(2) == 'permas' ? 'active' : '' }}">
                             <i class="nav-icon fas fa-money-check"></i>
                             <p>
-                                Permas
+                                Parmas
                                 <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
