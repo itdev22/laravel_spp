@@ -141,7 +141,7 @@ Route::prefix('admin')
         //     Route::resource('petugas', 'PetugasController');
         // });
 
-        Route::middleware(['role:petugas'])->group(function () {
+        Route::middleware(['role:admin|petugas'])->group(function () {
             Route::resource('spp', 'SppController');
             // tambahan tagihan
             Route::resource('tagihan', 'TagihanController');
