@@ -33,8 +33,8 @@
                                 <th>Nama Tagihan</th>
                                 <th>Nominal</th>
                                 <th>Kelas</th>
-                                <th>Created</th>
-                                <th>Updated</th>
+                                {{-- <th>Created</th>
+                                <th>Updated</th> --}}
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -44,8 +44,8 @@
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td></td>
-                                <td></td>
+                                {{-- <td></td>
+                                <td></td> --}}
                                 <td></td>
                             </tr>
                         </tbody>
