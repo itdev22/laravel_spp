@@ -21,14 +21,14 @@
                     data: 'kelas.nama_kelas',
                     name: 'kelas.nama_kelas'
                 },
-                // {
-                //     data: 'created_at',
-                //     name: 'created_at'
-                // },
-                // {
-                //     data: 'updated_at',
-                //     name: 'updated_at'
-                // },
+                {
+                    data: 'created_at',
+                    name: 'created_at'
+                },
+                {
+                    data: 'updated_at',
+                    name: 'updated_at'
+                },
                 {
                     data: 'action',
                     name: 'action',
