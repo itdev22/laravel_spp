@@ -31,7 +31,7 @@
                             <tr>
                                 <th>No</th>
                                 <th>Nama Tagihan</th>
-                                <th>Nominal</th>
+                                <th>Nominal Tagihan</th>
                                 <th>Kelas</th>
                                 {{-- <th>Created</th>
                                 <th>Updated</th> --}}
@@ -80,7 +80,7 @@
                             <input required="" type="text" name="nama_tagihan" id="nama_tagihan" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="nominal">Nominal:</label>
+                            <label for="nominal">Nominal Tagihan:</label>
                             <input required="" type="text" name="nominal" id="nominal" class="form-control">
                         </div>
                         <div class="col-lg-5">
@@ -131,7 +131,7 @@
                                 class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="nominal_edit">Nominal:</label>
+                            <label for="nominal_edit">Nominal Tagihan:</label>
                             <input required="" type="text" name="nominal" id="nominal_edit" class="form-control">
                         </div>
                     </div>

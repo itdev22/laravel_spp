@@ -19,7 +19,7 @@
                             <tr>
                                 <th>No</th>
                                 <th>Nama Siswa</th>
-                                <th>Nominal</th>
+                                <th>Nominal Terbayar</th>
                                 <th>Status</th>
                                 <th>Detail</th>
                             </tr>

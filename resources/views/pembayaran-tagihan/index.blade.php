@@ -19,7 +19,7 @@
                             <tr>
                                 <th>No</th>
                                 <th>Nama Tagihan</th>
-                                <th>Nominal</th>
+                                <th>Nominal Tagihan</th>
                                 <th>Detail</th>
                             </tr>
                         </thead>

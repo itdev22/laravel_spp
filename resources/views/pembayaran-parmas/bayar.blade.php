@@ -36,7 +36,7 @@
                             </div>
                             <div class="col-lg-3">
                                 <div class="form-group">
-                                    <label for="nisn">Nisn</label>
+                                    <label for="nisn">Nisn:</label>
                                     <input required="" type="text" name="nisn" value="{{ $siswa->nisn }}" readonly
                                         id="nisn" class="form-control">
                                     @error('nisn')

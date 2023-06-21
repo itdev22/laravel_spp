@@ -36,7 +36,7 @@
                             </div>
                             <div class="col-lg-3">
                                 <div class="form-group">
-                                    <label for="nisn">Nisn</label>
+                                    <label for="nisn">Nisn:</label>
                                     <input required="" type="text" name="nisn" value="{{ $siswa->nisn }}" readonly
                                         id="nisn" class="form-control">
                                     @error('nisn')
@@ -94,7 +94,7 @@
                             </div>
                             <div class="col-lg-3">
                                 <div class="form-group select2-purple">
-                                    <label for="dibayar">Dibayar :</label>
+                                    <label for="dibayar">Dibayar:</label>
                                     <input required="" type="number" name="dibayar" id="dibayar" class="form-control">
                                 </div>
                             </div>
