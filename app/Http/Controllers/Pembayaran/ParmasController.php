@@ -261,6 +261,7 @@ class ParmasController extends Controller
         //print
         if ($data['pembayaran']->count() > 0) {
             $pdf = PDF::loadView('pembayaran-parmas.laporan-preview', $data);
+            return $pdf->stream();
             return $pdf->download('pembayaran-parmas-' .
                 Carbon::parse($request->tanggal_mulai)->format('d-m-Y') . '-' .
                 Carbon::parse($request->tanggal_selesai)->format('d-m-Y') .
