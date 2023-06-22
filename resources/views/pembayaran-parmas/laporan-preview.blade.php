@@ -28,9 +28,9 @@
 
         }
 
-        h3 {
+        /* h3 {
             margin: auto;
-        }
+        } */
 
         /* h5 {
             padding: 0px;
