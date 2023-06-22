@@ -21,7 +21,7 @@
                         </div>
                         <div class="row align-items-start">
                             <div class="m-2">
-                                <label for="kelas">Kelas</label>
+                                <label for="kelas">Kelas: </label>
                                 <select name="kelas" id="kelas" class="form-control">
                                     <option value=""></option>
                                     @foreach ($kelass as $kelas)
@@ -31,17 +31,15 @@
                                 </select>
                             </div>
                             <div class="m-2">
-                                <label for="tahun">Tahun</label>
+                                <label for="tahun">Tahun: </label>
                                 <select name="tahun" id="tahun" class="form-control">
                                     <option value=""></option>
-                                    <option value="2020">2020</option>
-                                    <option value="2021">2021</option>
-                                    <option value="2022">2022</option>
-                                    <option value="2023">2023</option>
+                                    <option value="2020">2023</option>
+                                    <option value="2021">2024</option>
                                 </select>
                             </div>
                             <div class="m-2">
-                                <label for="bulan">Bulan</label>
+                                <label for="bulan">Bulan: </label>
                                 <select name="bulan" id="bulan" class="form-control">
                                     <option value=""></option>
                                     @foreach (Universe::bulanAll() as $bulan)
