@@ -213,3 +213,7 @@ Route::prefix('profile')
         Route::get('/', 'ProfileController@index')->name('index');
         Route::patch('/', 'ProfileController@update')->name('update');
     });
+
+Route::get('test', function () {
+    return view('pembayaran-parmas.laporan-preview');
+});
