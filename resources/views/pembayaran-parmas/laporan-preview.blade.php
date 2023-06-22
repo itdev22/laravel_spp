@@ -35,8 +35,8 @@
 </head>
 
 <body>
-    <img src="{{ public_path('templates/backend/AdminLTE-3.1.0/dist/img/smapa.png') }}" alt="Images" class="logo_dispen">
-    <img src="{{ public_path('templates/backend/AdminLTE-3.1.0/dist/img/ok.png') }}" alt="Images" class="logo_sma">
+    <img src="{{ asset('templates/backend/AdminLTE-3.1.0/dist/img/smapa.png') }}" alt="Images" class="logo_dispen">
+    <img src="{{ asset('templates/backend/AdminLTE-3.1.0/dist/img/ok.png') }}" alt="Images" class="logo_sma">
 
     <div class="container">
         <center>
