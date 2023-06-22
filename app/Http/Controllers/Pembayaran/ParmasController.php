@@ -260,6 +260,7 @@ class ParmasController extends Controller
 
         //print
         if ($data['pembayaran']->count() > 0) {
+            return view('pembayaran-parmas.laporan-preview', $data);
             $pdf = PDF::loadView('pembayaran-parmas.laporan-preview', $data);
             return $pdf->stream();
             return $pdf->download('pembayaran-parmas-' .
