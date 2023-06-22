@@ -22,11 +22,10 @@
 
         }
         h3{
-            margin:auto;
+
         }
         h5{
-            padding: 0px;
-            margin-top:auto;
+
         }
 
     </style>
@@ -38,9 +37,9 @@
 
     <div class="container">
         <center>
-        <h3 style="font-family: sans-serif;">PEMERINTAH PROVINSI JAWA TIMUR <br> <b>DINAS PENDIDIKAN <br>
+        <h3 style="font-family: sans-serif; margin:auto;">PEMERINTAH PROVINSI JAWA TIMUR <br> <b>DINAS PENDIDIKAN <br>
             SEKOLAH MENENGAH ATAS NEGERI 4 KOTA KEDIRI</b> </h3>
-            <h5>JL. Sersan Suharmaji IX/52, Manisrenggo, Telp/Fax. (0354) 688864, KP.64128 Kediri
+            <h5 style="padding:0px; margin-top:auto;">JL. Sersan Suharmaji IX/52, Manisrenggo, Telp/Fax. (0354) 688864, KP.64128 Kediri
             <br> Website : http://.sman4-kdr.sch.id Email : sman4.info@gmail.com</h5><hr>
 
             <br> <h2 style="font-family: sans-serif;">Laporan Pembayaran Parmas</h2>
