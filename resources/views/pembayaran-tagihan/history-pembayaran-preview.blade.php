@@ -55,7 +55,7 @@
             <hr>
 
             <br>
-        <h2 style="font-family: sans-serif;">History Pembayaran Tagihan</h2>
+        <h2 style="font-family: sans-serif;">History Pembayaran Parmas</h2>
     </center>
     <br>
     <div style="float: left;">
