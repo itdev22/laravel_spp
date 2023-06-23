@@ -6,7 +6,7 @@
 <body>
 <br><br>
 <center>
-  <h2 style="font-family: sans-serif;">History Pembayaran SPP</h2>
+  <h2 style="font-family: sans-serif;">History Pembayaran PARMAS</h2>
 </center>
 <br>
 <div style="float: left;">
