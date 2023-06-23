@@ -15,14 +15,14 @@
     <div class="callout callout-danger">
         <h5>Pemberitahuan!</h5>
 
-        <p>Admin adalah petugas yang memiliki akses penuh aplikasi, 
-        mengakses data Admin sama dengan mengakses data petugas yang bersangkutan.</p>
+        <p>Admin adalah petugas yang memiliki akses pada aplikasi,
+        Admin memiliki akses pada manajemen data sekolah dan data pembayaran.</p>
       </div>
   </div>
   <div class="col-12">
     <div class="card">
       <div class="card-header">
-      	<a href="javascript:void(0)" class="btn btn-primary btn-sm" 
+      	<a href="javascript:void(0)" class="btn btn-primary btn-sm"
         data-toggle="modal" data-target="#createModal">
           <i class="fas fa-plus fa-fw"></i> Tambah Data
         </a>
