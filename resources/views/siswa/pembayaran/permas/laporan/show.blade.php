@@ -61,10 +61,9 @@
             <b style="font-family: sans-serif;">Nama Siswa : {{ $data_siswa->nama_siswa }}</b><br>
             <b style="font-family: sans-serif;">NISN : {{ $data_siswa->nisn }}</b><br>
             <b style="font-family: sans-serif;">Kelas : {{ $data_siswa->kelas->nama_kelas }}</b><br>
-
-
-<br><br>
-<br><b>Untuk Tahun : {{ request()->tahun_bayar }}</b><br><br>
+            <b style="font-family: sans-serif;">Untuk Tahun : {{ request()->tahun_bayar }}</b><br><br>
+{{-- <br><br>
+<br><b>Untuk Tahun : {{ request()->tahun_bayar }}</b><br><br> --}}
 </div>
 <table style="" border="1" cellspacing="0" cellpadding="10" width="100%">
   <thead>
