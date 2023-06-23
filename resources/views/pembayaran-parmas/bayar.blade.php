@@ -113,10 +113,8 @@
                             <div class="col-lg-3">
                                 <div class="form-group">
                                     <label for="metode_pembayaran">Metode Pembayaran:</label>
-                                    <select name="metode_pembayaran" id="metode_pembayaran" class="form-control">
-                                        <option value="offline" class="form-control">Offline</option>
-                                        <option value="online" class="form-control">Online</option>
-                                    </select>
+                                    <input required="" type="" name="metode_pembayaran" readonly=""
+                                        id="metode_pembayaran" class="form-control" value="offline">
                                 </div>
                             </div>
                         </div>
