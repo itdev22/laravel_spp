@@ -9,7 +9,7 @@ class SiswaDataTable
 {
     public function data()
     {
-        $data = Siswa::with(['kelas', 'user'])->latest();
+        $data = Siswa::with(['kelas', 'user'])->get();
         return DataTables::of($data)
             ->addIndexColumn()
             ->addColumn('action', function ($row) {
