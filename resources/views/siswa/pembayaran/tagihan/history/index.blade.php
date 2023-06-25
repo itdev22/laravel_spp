@@ -29,12 +29,14 @@
                                 <th>Nama Petugas</th>
                                 <th>Metode</th>
                                 <th>Nominal</th>
+                                <th>Status</th>
                                 <th>Payment</th>
                                 <th>Print</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
+                                <td></td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -107,6 +109,10 @@
                     {
                         data: 'nominal',
                         name: 'nominal'
+                    },
+                    {
+                        data: 'status',
+                        name: 'status'
                     },
                     {
                         data: 'url_payment',
