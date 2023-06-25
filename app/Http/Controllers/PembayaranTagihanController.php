@@ -292,6 +292,7 @@ class PembayaranTagihanController extends Controller
                 ->latest()
                 ->get();
 
+            dd($data);
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
