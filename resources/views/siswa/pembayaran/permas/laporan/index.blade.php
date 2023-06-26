@@ -7,7 +7,7 @@
 <div class="row">
 	<div class="col-lg-6">
 		<div class="card">
-			<div class="card-header">Laporan Pembayaran Permas</div>
+			<div class="card-header">Laporan Pembayaran Parmas</div>
 			<div class="card-body">
 				<form method="POST" action="{{ route('siswa.laporan-permas.show') }}">
 					@csrf
