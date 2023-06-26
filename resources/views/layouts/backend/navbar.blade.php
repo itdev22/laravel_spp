@@ -14,7 +14,7 @@
       </a>
       <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
         <a href="{{ route('profile.index') }}" class="dropdown-item">
-          <i class="fas fa-fw fa-user mr-2"></i> Profile
+          <i class="fas fa-fw fa-user mr-2"></i> Profil
         </a>
         <div class="dropdown-divider"></div>
         <a href="javascript:void(0)" class="dropdown-item" data-toggle="modal" data-target="#modal-default">
