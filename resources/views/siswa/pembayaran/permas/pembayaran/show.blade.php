@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="{{ asset('templates/backend/AdminLTE-3.1.0') }}/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
 <link rel="stylesheet" href="{{ asset('templates/backend/AdminLTE-3.1.0') }}/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
 @endpush
-@section('content_title', 'Pembayaran Permas Tahun '.$spp->tahun)
+@section('content_title', 'Pembayaran Parmas Tahun '.$spp->tahun)
 @section('content')
 <x-alert></x-alert>
 <div class="row">
@@ -56,7 +56,7 @@
         @else
         <div class="alert alert-danger" role="alert">
           <h4 class="alert-heading">Data Pembayaran Tidak Tersedia!</h4>
-          <p>Pembayaran Permas Anda di Tahun {{ $spp->tahun }} tidak tersedia.</p>
+          <p>Pembayaran Parmas Anda di Tahun {{ $spp->tahun }} tidak tersedia.</p>
         </div>
         @endif
       </div>
@@ -108,7 +108,7 @@
         @else
         <div class="alert alert-danger" role="alert">
           <h4 class="alert-heading">Data Status Pembayaran Tidak Tersedia!</h4>
-          <p>Status Pembayaran Permas Anda di Tahun {{ $spp->tahun }} tidak tersedia.</p>
+          <p>Status Pembayaran Parmas Anda di Tahun {{ $spp->tahun }} tidak tersedia.</p>
         </div>
         @endif
       </div>

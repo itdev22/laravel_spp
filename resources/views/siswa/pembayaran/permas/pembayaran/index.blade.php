@@ -1,6 +1,6 @@
 @extends('layouts.backend.app')
-@section('title', 'Pembayaran Permas')
-@section('content_title', 'Pembayaran Permas')
+@section('title', 'Pembayaran Parmas')
+@section('content_title', 'Pembayaran Parmas')
 @section('content')
     <div class="row">
         <div class="col-lg-6">
