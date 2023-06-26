@@ -56,7 +56,7 @@
         @else
         <div class="alert alert-danger" role="alert">
           <h4 class="alert-heading">Data Pembayaran Tidak Tersedia!</h4>
-          <p>Pembayaran Spp {{ $siswa->nama_siswa }} di Tahun {{ $spp->tahun }} tidak tersedia.</p>
+          <p>Pembayaran Parmas {{ $siswa->nama_siswa }} di Tahun {{ $spp->tahun }} tidak tersedia.</p>
         </div>
         @endif
       </div>
@@ -92,11 +92,11 @@
             <td>{{ $value['nama_bulan'] }}</td>
             <td>
               @if(Universe::statusPembayaran($siswa->id, $spp->tahun, $value['nama_bulan']) == 'DIBAYAR')
-                <a href="javascript:(0)" class="btn btn-success btn-sm"><i class=""></i> 
+                <a href="javascript:(0)" class="btn btn-success btn-sm"><i class=""></i>
                   {{ Universe::statusPembayaran($siswa->id, $spp->tahun, $value['nama_bulan']) }}
                 </a>
               @else
-                <a href="javascript:(0)" class="btn btn-danger btn-sm"><i class=""></i> 
+                <a href="javascript:(0)" class="btn btn-danger btn-sm"><i class=""></i>
                   {{ Universe::statusPembayaran($siswa->id, $spp->tahun, $value['nama_bulan']) }}
                 </a>
               @endif
