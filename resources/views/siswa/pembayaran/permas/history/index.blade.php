@@ -22,11 +22,11 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Nama Siswa</th>
-                                <th>Kelas</th>
+                                {{-- <th>Nama Siswa</th>
+                                <th>Kelas</th> --}}
                                 <th>Nisn</th>
                                 <th>Tanggal Bayar</th>
-                                <th>Nama Petugas</th>
+                                {{-- <th>Nama Petugas</th> --}}
                                 <th>Untuk Bulan</th>
                                 <th>Untuk Tahun</th>
                                 <th>Nominal</th>
@@ -37,11 +37,11 @@
                         <tbody>
                             <tr>
                                 <td></td>
+                                {{-- <td></td>
+                                <td></td> --}}
                                 <td></td>
                                 <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                {{-- <td></td> --}}
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -82,14 +82,14 @@
                         data: 'DT_RowIndex',
                         name: 'id'
                     },
-                    {
-                        data: 'siswa.nama_siswa',
-                        name: 'siswa.nama_siswa'
-                    },
-                    {
-                        data: 'siswa.kelas.nama_kelas',
-                        name: 'siswa.kelas.nama_kelas'
-                    },
+                    // {
+                    //     data: 'siswa.nama_siswa',
+                    //     name: 'siswa.nama_siswa'
+                    // },
+                    // {
+                    //     data: 'siswa.kelas.nama_kelas',
+                    //     name: 'siswa.kelas.nama_kelas'
+                    // },
                     {
                         data: 'siswa.nisn',
                         name: 'siswa.nisn'
@@ -98,10 +98,10 @@
                         data: 'tanggal_bayar',
                         name: 'tanggal_bayar'
                     },
-                    {
-                        data: 'petugas.nama_petugas',
-                        name: 'petugas.nama_petugas'
-                    },
+                    // {
+                    //     data: 'petugas.nama_petugas',
+                    //     name: 'petugas.nama_petugas'
+                    // },
                     {
                         data: 'bulan_bayar',
                         name: 'bulan_bayar'

@@ -18,7 +18,7 @@
                         <div class="row">
                             <div class="col-lg-3">
                                 <div class="form-group">
-                                    <label for="nama_siswa">Nama Siswa:</label>
+                                    <label for="nama_siswa">Nama Siswa :</label>
                                     <input required="" type="hidden" name="siswa_id" value="{{ $siswa->id }}"
                                         readonly id="siswa_id" class="form-control">
                                     <input required="" type="text" name="nama_siswa" value="{{ $siswa->nama_siswa }}"
@@ -30,7 +30,7 @@
                             </div>
                             <div class="col-lg-3">
                                 <div class="form-group">
-                                    <label for="nisn">Nisn</label>
+                                    <label for="nisn">Nisn :</label>
                                     <input required="" type="text" name="nisn" value="{{ $siswa->nisn }}" readonly
                                         id="nisn" class="form-control">
                                     @error('nisn')
@@ -40,7 +40,7 @@
                             </div>
                             <div class="col-lg-3">
                                 <div class="form-group">
-                                    <label for="nis">Nis:</label>
+                                    <label for="nis">Nis :</label>
                                     <input required="" type="text" name="nis" value="{{ $siswa->nis }}" readonly
                                         id="nis" class="form-control">
                                     @error('nis')
@@ -50,7 +50,7 @@
                             </div>
                             <div class="col-lg-3">
                                 <div class="form-group">
-                                    <label for="kelas">Kelas:</label>
+                                    <label for="kelas">Kelas :</label>
                                     <input required="" type="text" name="kelas"
                                         value="{{ $siswa->kelas->nama_kelas }}" readonly id="kelas"
                                         class="form-control">
@@ -63,7 +63,7 @@
                         <div class="row">
                             <div class="col-lg-3">
                                 <div class="form-group">
-                                    <label for="tagihansiswa_id">Untuk Tagihan:</label>
+                                    <label for="tagihansiswa_id">Untuk Tagihan :</label>
                                     <select required="" name="tagihansiswa_id" id="tagihansiswa_id"
                                         class="form-control select2bs4">
                                         <option disabled="" selected="">- PILIH TAGIHAN -</option>
@@ -77,7 +77,7 @@
                             </div>
                             <div class="col-lg-3">
                                 <div class="form-group">
-                                    <label for="jumlah_bayar" id="nominal_spp_label">Nominal Tagihan:</label>
+                                    <label for="jumlah_bayar" id="nominal_spp_label">Nominal Tagihan :</label>
                                     <input type="" name="nominal" readonly="" id="nominal" class="form-control">
                                     <input required="" type="hidden" name="jumlah_bayar" readonly=""
                                         id="jumlah_bayar" class="form-control">
@@ -94,14 +94,14 @@
                             </div>
                             <div class="col-lg-3">
                                 <div class="form-group">
-                                    <label for="total_kekurangan">Total Kekurangan:</label>
+                                    <label for="total_kekurangan">Total Kekurangan :</label>
                                     <input required="" type="" name="total_kekurangan" readonly=""
                                         id="total_kekurangan" class="form-control">
                                 </div>
                             </div>
                             <div class="col-lg-3">
                                 <div class="form-group">
-                                    <label for="metode_pembayaran">Metode Pembayaran:</label>
+                                    <label for="metode_pembayaran">Metode Pembayaran :</label>
                                     <input required="" type="" name="metode_pembayaran" readonly=""
                                         id="metode_pembayaran" class="form-control" value="Online">
                                 </div>

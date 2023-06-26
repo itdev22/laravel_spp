@@ -22,11 +22,11 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Nama Siswa</th>
-                                <th>Untuk Tagihan</th>
+                                {{-- <th>Nama Siswa</th> --}}
                                 <th>Nisn</th>
+                                <th>Untuk Tagihan</th>
                                 <th>Tanggal Bayar</th>
-                                <th>Nama Petugas</th>
+                                {{-- <th>Nama Petugas</th> --}}
                                 <th>Metode</th>
                                 <th>Nominal</th>
                                 <th>Status</th>
@@ -37,11 +37,11 @@
                         <tbody>
                             <tr>
                                 <td></td>
+                                {{-- <td></td> --}}
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td></td>
-                                <td></td>
+                                {{-- <td></td> --}}
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -82,26 +82,26 @@
                         data: 'DT_RowIndex',
                         name: 'id'
                     },
+                    // {
+                    //     data: 'siswa.nama_siswa',
+                    //     name: 'siswa.nama_siswa'
+                    // },
                     {
-                        data: 'siswa.nama_siswa',
-                        name: 'siswa.nama_siswa'
+                        data: 'siswa.nisn',
+                        name: 'siswa.nisn'
                     },
                     {
                         data: 'tagihansiswa.tagihan.nama_tagihan',
                         name: 'tagihansiswa.tagihan.nama_tagihan'
                     },
                     {
-                        data: 'siswa.nisn',
-                        name: 'siswa.nisn'
-                    },
-                    {
                         data: 'tanggal_bayar',
                         name: 'tanggal_bayar'
                     },
-                    {
-                        data: 'petugas.nama_petugas',
-                        name: 'petugas.nama_petugas'
-                    },
+                    // {
+                    //     data: 'petugas.nama_petugas',
+                    //     name: 'petugas.nama_petugas'
+                    // },
                     {
                         data: 'metode',
                         name: 'metode'

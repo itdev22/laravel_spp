@@ -14,7 +14,7 @@
                         <div class="form-group">
                             <label for="tagihan_id">Tagihan</label>
                             <select name="tagihan_id" required="" class="form-control" id="tagihan_id">
-                                <option disabled="" selected="">- PILIH Tagihan -</option>
+                                <option disabled="" selected="">- PILIH TAGIHAN -</option>
                                 @foreach ($spp as $row)
                                     <option value="{{ $row->tagihan->id }}">{{ $row->tagihan->nama_tagihan }}
                                     </option>
