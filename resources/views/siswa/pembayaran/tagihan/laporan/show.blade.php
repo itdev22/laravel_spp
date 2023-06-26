@@ -63,7 +63,7 @@
         <b style="font-family: sans-serif;">Nama Siswa : {{ $data_siswa->nama_siswa }}</b><br>
         <b style="font-family: sans-serif;">NISN : {{ $data_siswa->nisn }}</b><br>
         <b style="font-family: sans-serif;">Kelas : {{ $data_siswa->kelas->nama_kelas }}</b><br>
-        <b style="font-family: sans-serif;">Nama Tagihan : {{ request()->tagihansiswa->tagihan->nama_tagihan }}</b><br>
+        <b style="font-family: sans-serif;">Nama Tagihan : {{ request()->nama_tagihan }}</b><br>
     </div>
     <br><br>
     <b style="font-family: sans-serif;"></b><br><br>
