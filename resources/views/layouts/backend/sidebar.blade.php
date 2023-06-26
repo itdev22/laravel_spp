@@ -126,8 +126,8 @@
                 @endrole
 
                 @role('admin|petugas')
-                <li class="nav-header">DATA PEMBAYARAN</li>
-                <li class="nav-item">
+                    <li class="nav-header">DATA PEMBAYARAN</li>
+                    <li class="nav-item">
                     <li class="nav-item">
                         <a href="{{ route('spp.index') }}"
                             class="nav-link {{ Request::segment(2) == 'spp' ? 'active' : '' }}">
@@ -242,9 +242,9 @@
                     </li>
 
                     <li
-                        class="nav-item {{ Request::segment(2) == 'tagihan' && Request::segment(3) != 'laporan' ? 'menu-is-opening menu-open' : '' }}">
+                        class="nav-item {{ Request::segment(1) == 'pembayaran' && Request::segment(2) == 'tagihan' && Request::segment(3) != 'laporan' ? 'menu-is-opening menu-open' : '' }}">
                         <a href="#"
-                            class="nav-link {{ Request::segment(2) == 'tagihan' && Request::segment(3) != 'laporan' ? 'active' : '' }}">
+                            class="nav-link {{ Request::segment(1) == 'pembayaran' && Request::segment(2) == 'tagihan' && Request::segment(3) != 'laporan' ? 'active' : '' }}">
                             <i class="nav-icon fas fa-money-check"></i>
                             <p>
                                 Tagihan
