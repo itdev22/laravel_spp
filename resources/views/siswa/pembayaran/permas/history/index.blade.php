@@ -30,6 +30,7 @@
                                 <th>Untuk Bulan</th>
                                 <th>Untuk Tahun</th>
                                 <th>Nominal</th>
+                                <th>Status</th>
                                 <th>Payment</th>
                                 <th>Print</th>
                             </tr>
@@ -42,6 +43,7 @@
                                 <td></td>
                                 <td></td>
                                 {{-- <td></td> --}}
+                                <td></td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -113,6 +115,10 @@
                     {
                         data: 'jumlah_bayar',
                         name: 'jumlah_bayar'
+                    },
+                    {
+                        data: 'status',
+                        name: 'status'
                     },
                     {
                         data: 'url_payment',
