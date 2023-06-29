@@ -24,6 +24,11 @@ class PembayaranTagihan extends Model
         'url_payment'
     ];
 
+    public function getJumlahBayarAttribute($value)
+    {
+        return "Rp " . number_format($value, 0, 2, '.');
+    }
+
     public function petugas()
     {
         return $this->belongsTo(Petugas::class, 'petugas_id');
