@@ -72,9 +72,6 @@
                     {
                         data: 'nominal',
                         name: 'nominal',
-                        render: function(data, type, row) {
-                            return "Rp ".number_format($data, 0, 2, '.');;
-                        }
                     },
                     {
                         data: 'action',
