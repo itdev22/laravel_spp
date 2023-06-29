@@ -9,7 +9,7 @@ class PembayaranDataTable
 {
     public function data()
     {
-        $data = Pembayaran::with(['siswa.kelas', 'petugas'])->get();
+        $data = Pembayaran::with(['siswa', 'petugas'])->get();
         return DataTables::of($data)
             ->addIndexColumn()
             ->addColumn('action', function ($row) {
