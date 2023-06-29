@@ -102,8 +102,9 @@ class PembayaranTagihanController extends Controller
             ->where('status', '=', 'pending')
             ->get();
 
-        // dd(123);
+        dd($pembayaran->count());
         if ($pembayaran->count() == 0) {
+
             if ($request->metode_pembayaran == 'Online') {
                 DB::beginTransaction();
                 try {
