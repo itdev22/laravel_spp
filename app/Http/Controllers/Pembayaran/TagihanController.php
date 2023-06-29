@@ -163,7 +163,7 @@ class TagihanController extends Controller
                 } catch (\Throwable $th) {
                     throw $th;
                     DB::rollback();
-                    // return back()->with('error', 'Pembayaran gagal disimpan!');
+                    return back()->with('error', 'Pembayaran gagal disimpan!');
                 }
             } else if ($request->type_pembayaran == 'Online') {
                 DB::beginTransaction();
