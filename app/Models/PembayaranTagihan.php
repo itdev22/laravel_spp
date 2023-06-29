@@ -24,7 +24,7 @@ class PembayaranTagihan extends Model
         'url_payment'
     ];
 
-    public function getJumlahBayarAttribute($value)
+    public function getNominalAttribute($value)
     {
         return "Rp " . number_format($value, 0, 2, '.');
     }
