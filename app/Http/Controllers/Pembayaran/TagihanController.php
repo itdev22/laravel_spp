@@ -114,7 +114,6 @@ class TagihanController extends Controller
 
         if ($pembayaran->count() == 0) {
             if ($request->type_pembayaran == 'offline') {
-                dd('halo');
                 DB::beginTransaction();
                 try {
                     //code..

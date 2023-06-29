@@ -108,8 +108,8 @@
                             <div class="col-lg-3">
                                 <div class="form-group">
                                     <label for="type_pembayaran">Type Pembayaran:</label>
-                                    <input required="" type="" name="metode_pembayaran" readonly=""
-                                        id="metode_pembayaran" class="form-control" value="offline">
+                                    <input required="" type="" name="type_pembayaran" readonly=""
+                                        id="type_pembayaran" class="form-control" value="offline">
                                 </div>
                             </div>
                         </div>
