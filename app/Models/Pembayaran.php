@@ -35,7 +35,7 @@ class Pembayaran extends Model
 
     public function getJumlahBayarAttribute($value)
     {
-        return "Rps " . number_format($value, 0, 2, '.');
+        return "Rp " . number_format($value, 0, 2, '.');
     }
 
     public function petugas()
