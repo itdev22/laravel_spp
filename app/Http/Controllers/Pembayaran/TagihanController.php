@@ -113,7 +113,7 @@ class TagihanController extends Controller
             ->get();
 
         if ($pembayaran->count() == 0) {
-            if ($request->type_pembayaran == 'Offline') {
+            if ($request->type_pembayaran == 'offline') {
                 DB::beginTransaction();
                 try {
                     //code..
