@@ -29,7 +29,7 @@ class TagihanController extends Controller
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->editColumn('nominal', function ($item) {
-                    return number_format($item->nominal);
+                    return "Rp " . number_format($item->nominal, 0, 2, '.');
                 })
                 ->addColumn('action', function ($row) {
                     $btn = '<div class="row"><a href="' . route('tagihan.pembayaran.detailtagihan', $row->id) . '"class="btn btn-primary btn-sm ml-2">
