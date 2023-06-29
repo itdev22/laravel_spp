@@ -28,7 +28,7 @@ class ParmasController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = Siswa::with(['kelas'])->latest();
+            $data = Siswa::with(['kelas'])->get();
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
