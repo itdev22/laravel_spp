@@ -44,7 +44,7 @@ class TagihanController extends Controller
     public function detailsiswa(Request $request, $tagihanid)
     {
         if ($request->ajax()) {
-            $data = TagihanSiswa::with(['siswa', 'tagihan'])->where('tagihan_id', $tagihanid)->latest();
+            $data = TagihanSiswa::with(['siswa', 'tagihan'])->where('tagihan_id', $tagihanid)->get();
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {

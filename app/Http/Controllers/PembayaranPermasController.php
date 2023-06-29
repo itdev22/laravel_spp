@@ -66,8 +66,7 @@ class PembayaranPermasController extends Controller
                         'url_payment' => $data["redirect_url"]
                     ]);
                 }
-                return back()
-                    ->with('success', 'Pembayaran berhasil disimpan!');
+                return redirect()->route('siswa.history-permas.index')->with('success', 'Pembayaran berhasil disimpan!');
             }
         } else {
             return back()
