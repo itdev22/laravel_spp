@@ -132,7 +132,7 @@ class PembayaranTagihanController extends Controller
                 }
             }
 
-            return redirect()->route('siswa.history-permas.index')->with('success', 'Pembayaran berhasil disimpan!');
+            return redirect()->route('siswa.history-tagihan.index')->with('success', 'Pembayaran berhasil disimpan!');
         } else {
             return back()->with('error', 'Pembayaran gagal disimpan!');
         }
