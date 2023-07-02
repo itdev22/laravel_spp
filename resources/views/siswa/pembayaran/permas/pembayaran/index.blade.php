@@ -35,7 +35,7 @@
         </div>
         <div class="card-body">
 
-            <a href="{{ route('siswa.pembayaran-permas.bayar', $user->nisn) }}" class="btn btn-primary"><i class="fas fa-money-bill-wave-alt"></i> Bayar Parmas</a>
+            <a href="{{ route('siswa.pembayaran-permas.bayar', $user->nisn) }}" class="btn btn-primary">Bayar</a>
         </div>
     </div>
 @endsection
