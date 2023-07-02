@@ -34,8 +34,8 @@
                                 <label for="tahun">Tahun: </label>
                                 <select name="tahun" id="tahun" class="form-control">
                                     <option value=""></option>
-                                    <option value="2020">2023</option>
-                                    <option value="2021">2024</option>
+                                    <option value="2023">2023</option>
+                                    <option value="2024">2024</option>
                                 </select>
                             </div>
                             <div class="m-2">
