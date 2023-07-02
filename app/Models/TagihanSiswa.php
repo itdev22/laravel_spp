@@ -18,11 +18,6 @@ class TagihanSiswa extends Model
         'status',
     ];
 
-    public function getNominalAttribute($value)
-    {
-        return "Rp " . number_format($value, 0, 2, '.');
-    }
-
     public function siswa()
     {
         return $this->belongsTo(Siswa::class);

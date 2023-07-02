@@ -102,7 +102,7 @@
                     },
                     {
                         data: 'nominal',
-                        name: 'nominal'
+                        name: 'nominal',
                     },
                     {
                         data: 'metode',

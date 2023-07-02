@@ -28,6 +28,9 @@ class TagihanController extends Controller
             $data = Tagihan::with([])->latest();
             return DataTables::of($data)
                 ->addIndexColumn()
+                ->editColumn('nominal', function ($item) {
+                    return "Rp " . number_format($item->nominal, 0, 2, '.');
+                })
                 ->addColumn('action', function ($row) {
                     $btn = '<div class="row"><a href="' . route('tagihan.pembayaran.detailtagihan', $row->id) . '"class="btn btn-primary btn-sm ml-2">
                 <i class="fas fa-money-check"></i> Detail Siswa
