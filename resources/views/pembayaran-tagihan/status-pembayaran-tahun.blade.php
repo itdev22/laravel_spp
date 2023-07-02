@@ -1,6 +1,6 @@
 @extends('layouts.backend.app')
 @section('title', 'Pembayaran Spp ' . $siswa->nama_siswa)
-@section('content_title', 'Pembayaran Parmas ' . $siswa->nama_siswa)
+@section('content_title', 'Pembayaran Tagihan ' . $siswa->nama_siswa)
 @section('content')
     <div class="row">
         <div class="col-lg-6">
