@@ -340,8 +340,6 @@ class PembayaranTagihanController extends Controller
             })
             ->get();
 
-        dd($data);
-
         $data['data_siswa'] = $siswa;
 
         if ($data['pembayaran']->count() > 0) {
