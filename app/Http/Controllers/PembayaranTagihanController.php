@@ -336,7 +336,7 @@ class PembayaranTagihanController extends Controller
         $data['pembayaran'] = PembayaranTagihan::with(['petugas', 'siswa', 'tagihansiswa.tagihan'])
             ->where('siswa_id', $siswa->id)
             ->whereHas('tagihansiswa', function ($q) use ($request) {
-                $q->where('id', $request->tagihan_id);
+                $q->where('tagihan_id', $request->tagihan_id);
             })
             ->get();
 
