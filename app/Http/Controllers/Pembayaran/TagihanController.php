@@ -25,7 +25,7 @@ class TagihanController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = Tagihan::with([])->latest();
+            $data = Tagihan::with([])->get();
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->editColumn('nominal', function ($item) {
