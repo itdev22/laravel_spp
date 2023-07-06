@@ -125,7 +125,7 @@
                     </li>
                 @endrole
 
-                @role('admin|petugas')
+                @role('petugas')
                     <li class="nav-header">DATA PEMBAYARAN</li>
                     <li class="nav-item">
                     <li class="nav-item">
