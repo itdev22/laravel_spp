@@ -30,8 +30,8 @@
                                 <th>No</th>
                                 <th>Username Petugas</th>
                                 <th>Nama Petugas</th>
-                                {{-- <th>Jenis Kelamin</th>
-                                <th>Kode Petugas</th> --}}
+                                <th>Jenis Kelamin</th>
+                                <th>Kode Petugas</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -40,8 +40,8 @@
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                {{-- <td></td>
-                                <td></td> --}}
+                                <td></td>
+                                <td></td>
                                 <td></td>
                             </tr>
                         </tbody>
@@ -79,14 +79,14 @@
                             <label for="nama_petugas">Nama Petugas:</label>
                             <input required="" type="text" name="nama_petugas" id="nama_petugas" class="form-control">
                         </div>
-                        {{-- <div class="form-group">
+                        <div class="form-group">
                             <label for="jenis_kelamin">Jenis Kelamin:</label>
                             <select required="" name="jenis_kelamin" id="jenis_kelamin" class="form-control">
                                 <option disabled="" selected="">- PILIH JENIS KELAMIN -</option>
                                 <option value="Laki-laki">Laki-laki</option>
                                 <option value="Perempuan">Perempuan</option>
                             </select>
-                        </div> --}}
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
