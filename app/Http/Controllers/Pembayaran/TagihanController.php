@@ -25,7 +25,7 @@ class TagihanController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = Tagihan::with([])->latest();
+            $data = Tagihan::with([])->get();
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->editColumn('nominal', function ($item) {
@@ -168,7 +168,9 @@ class TagihanController extends Controller
                     DB::rollback();
                     return back()->with('error', 'Pembayaran gagal disimpan!');
                 }
-            } else if ($request->type_pembayaran == 'Online') {
+            }
+
+            if ($request->type_pembayaran == 'online') {
                 DB::beginTransaction();
                 try {
                     //code..

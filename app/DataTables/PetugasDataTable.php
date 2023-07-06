@@ -9,7 +9,7 @@ class PetugasDataTable
 {
     public function data()
     {
-        $data = Petugas::get();
+        $data = Petugas::with('user')->get();
         return DataTables::of($data)
             ->addIndexColumn()
             ->addColumn('action', function ($row) {

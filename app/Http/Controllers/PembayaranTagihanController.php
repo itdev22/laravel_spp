@@ -28,7 +28,7 @@ class PembayaranTagihanController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = Siswa::with(['kelas'])->latest();
+            $data = Siswa::with(['kelas'])->get();
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
@@ -336,7 +336,7 @@ class PembayaranTagihanController extends Controller
         $data['pembayaran'] = PembayaranTagihan::with(['petugas', 'siswa', 'tagihansiswa.tagihan'])
             ->where('siswa_id', $siswa->id)
             ->whereHas('tagihansiswa', function ($q) use ($request) {
-                $q->where('id', $request->tagihan_id);
+                $q->where('tagihan_id', $request->tagihan_id);
             })
             ->get();
 
