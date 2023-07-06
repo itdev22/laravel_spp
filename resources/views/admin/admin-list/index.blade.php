@@ -34,7 +34,7 @@
           <tr>
             <th>No</th>
             <th>Username</th>
-            <th>Nama Admin</th>
+            <th>Nama Petugas</th>
             <th>Aksi</th>
           </tr>
           </thead>
@@ -76,7 +76,7 @@
             <input required="" type="text" name="username" id="username" class="form-control">
           </div>
           <div class="form-group">
-            <label for="nama_petugas">Nama Admin:</label>
+            <label for="nama_petugas">Nama Petugas:</label>
             <input required="" type="text" name="nama_petugas" id="nama_petugas" class="form-control">
           </div>
       </div>
@@ -97,7 +97,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="editModalLabel">Edit Data</h5>
+        <h5 class="modal-title" id="editModalLabel">Tambah Data</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -108,7 +108,7 @@
             <ul></ul>
           </div>
           <div class="form-group">
-            <label for="nama_petugas_edit">Nama Admin:</label>
+            <label for="nama_petugas_edit">Nama Petugas:</label>
             <input required="" type="hidden" readonly="" name="id" id="id_edit" class="form-control">
             <input required="" type="text" name="nama_petugas" id="nama_petugas_edit" class="form-control">
           </div>
