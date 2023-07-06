@@ -124,14 +124,14 @@
                             <input required="" type="text" name="nama_petugas" id="nama_petugas_edit"
                                 class="form-control">
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="jenis_kelamin_edit">Jenis Kelamin:</label>
                             <select required="" name="jenis_kelamin" id="jenis_kelamin_edit" class="form-control">
                                 <option disabled="" selected="">- PILIH JENIS KELAMIN -</option>
                                 <option value="Laki-laki">Laki-laki</option>
                                 <option value="Perempuan">Perempuan</option>
                             </select>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
