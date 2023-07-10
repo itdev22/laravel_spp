@@ -16,7 +16,7 @@
         <h5>Pemberitahuan!</h5>
 
         <p>Admin adalah petugas yang memiliki akses pada aplikasi,
-        Admin memiliki akses pada manajemen data sekolah dan data pembayaran.</p>
+        Admin memiliki akses pada manajemen data sekolah.</p>
       </div>
   </div>
   <div class="col-12">
