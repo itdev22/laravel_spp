@@ -70,6 +70,36 @@
     </div>
   </div>
 </div>
+<div class="row">
+    <div class="col-lg-6 col-6">
+      <!-- small box -->
+      <div class="small-box bg-info">
+        <div class="inner">
+          <h3>Rp {{ number_format($total_pembayaran, 0, ',', '.') }}</h3>
+
+          <p>Total Pembayaran Parmas</p>
+        </div>
+        <div class="icon">
+          <i class="fas fa-money-bill-wave fa-2x"></i>
+        </div>
+        <!--<a href="{{ route('siswa.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>-->
+      </div>
+    </div>
+    <div class="col-lg-6 col-6">
+      <!-- small box -->
+      <div class="small-box bg-danger">
+        <div class="inner">
+          <h3>Rp {{ number_format($total_tagihan, 0, ',', '.') }}</h3>
+
+          <p>Total Tagihan</p>
+        </div>
+        <div class="icon">
+          <i class="fas fa-file-invoice-dollar fa-2x"></i>
+        </div>
+        <!--<a href="{{ route('siswa.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>-->
+      </div>
+    </div>
+  </div>
 <!-- /.row -->
 
 <div class="container mt-5">
