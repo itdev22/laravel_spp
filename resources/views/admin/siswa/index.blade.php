@@ -47,6 +47,27 @@
                                 <th>Nama Siswa</th>
                                 <th>Nisn</th>
                                 <th>Kelas</th>
+                                <div class="dropdown">
+                                    <button class="btn btn-primary dropdown-toggle float-right" type="button" data-toggle="dropdown" aria-expanded="false">
+                                        Filter
+                                    </button>
+
+                                        <div class="dropdown-menu">
+                                        <a class="dropdown-item filter-item" href="#" data-filter="" >Semua</a>
+                                        <a class="dropdown-item filter-item" href="#" data-filter="X IPS 1" >X IPS 1</a>
+                                        <a class="dropdown-item filter-item" href="#" data-filter="X IPA 1" >X IPA 1</a>
+                                        <a class="dropdown-item filter-item" href="#" data-filter="XI IPS 1" >XI IPS 1</a>
+                                        <a class="dropdown-item filter-item" href="#" data-filter="XI IPA 1" >XI IPA 1</a>
+                                        <a class="dropdown-item filter-item" href="#" data-filter="XI IPS 2" >XI IPS 2</a>
+                                        <a class="dropdown-item filter-item" href="#" data-filter="X IPS 2">X IPS 2</a>
+                                        <a class="dropdown-item filter-item" href="#" data-filter="X IPA 3">X IPA 2</a>
+                                        <div class="dropdown-pagination">
+                                            <button class="btn btn-link previous-page">&lt; Prev</button>
+                                            <button class="btn btn-link next-page">Next &gt;</button>
+                                        </div>
+
+                                        </div>
+                                    </div>
                                 <th>Jenis Kelamin</th>
                                 <th>No Telepon</th>
                                 <th>Aksi</th>

@@ -42,7 +42,15 @@
                 },
             ]
         });
+        $(".filter-item").on("click", function() {
+        var filterValue = $(this).data("filter");
 
+        if (filterValue === "") {
+            table.column(4).search("").draw(); // Hapus filter kelas
+        } else {
+            table.column(4).search(filterValue).draw(); // Terapkan filter kelas
+        }
+    });
     });
 
     // Reset Form
