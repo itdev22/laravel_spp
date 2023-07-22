@@ -45,7 +45,17 @@
                     </li>
                 @endrole
 
+
                 @role('petugas')
+                <li class="nav-item">
+                    <a href="{{ route('dashboard.index') }}"
+                        class="nav-link {{ Request::segment(2) == 'dashboard' ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            Dashboard
+                        </p>
+                    </a>
+                </li>
                     <li class="nav-item">
                         <a href="{{ route('home.index') }}"
                             class="nav-link {{ Request::segment(1) == 'home' ? 'active' : '' }}">

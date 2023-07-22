@@ -87,7 +87,7 @@
     </div>
     <div class="col-lg-6 col-6">
       <!-- small box -->
-      <div class="small-box bg-danger">
+      <div class="small-box bg-success">
         <div class="inner">
           <h3>Rp {{ number_format($total_tagihan, 0, ',', '.') }}</h3>
 
