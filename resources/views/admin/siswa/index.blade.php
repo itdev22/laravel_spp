@@ -30,6 +30,15 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
+                    <div class="card-body">
+                        <form id="importForm" action="{{ route('siswa.import') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <input type="file" name="file">
+                            <button type="submit" class="btn btn-primary">Import</button>
+                        </form>
+
+                        <!-- ... -->
+                    </div>
                     <table id="dataTable2" class="table table-bordered table-striped">
                         <thead>
                             <tr>
@@ -145,6 +154,7 @@
                                     </select>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -216,7 +226,9 @@
                                     <label for="kelas_id_edit">Kelas:</label>
                                     <select required="" name="kelas_id" id="kelas_id_edit" class="form-control">
                                         @foreach ($kelas as $row)
+
                                             <option value="{{ $row->id }}">{{ $row->nama_kelas }}</option>
+
                                         @endforeach
                                     </select>
                                 </div>

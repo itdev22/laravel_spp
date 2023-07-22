@@ -148,6 +148,7 @@ Route::prefix('admin')
             Route::resource('pembayaran-spp', 'PembayaranController');
             Route::resource('kelas', 'KelasController');
             Route::resource('siswa', 'SiswaController');
+            Route::post('siswa/import', 'SiswaController@importExcel')->name('siswa.import');
             Route::delete('delete-all-siswa', 'CheckBoxDeleteController@deleteAllSiswa')
                 ->name('delete-all-siswa');
         });

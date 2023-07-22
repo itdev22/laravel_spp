@@ -10,6 +10,8 @@ use App\Models\Spp;
 use App\Models\Petugas;
 use App\Models\tagihan;
 use App\Models\Pembayaran;
+use App\Imports\Siswa as SiswaImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class Siswa extends Model
 {
@@ -57,4 +59,14 @@ class Siswa extends Model
     {
         return $this->hasMany(Pembayaran::class);
     }
+
+    public static function importDataFromExcel($file)
+    {
+    try {
+        Excel::import(new SiswaImport, $file);
+        return true;
+    } catch (\Exception $e) {
+        return $e->getMessage();
+    }
+}
 }

@@ -148,6 +148,38 @@
         })
     })
 
+ //import
+ $(document).ready(function() {
+        $('#importForm').on('submit', function(e) {
+            e.preventDefault();
+
+            var formData = new FormData(this);
+
+            // Tambahkan token CSRF ke formData
+            formData.append('_token', '{{ csrf_token() }}');
+
+            $.ajax({
+                type: 'POST',
+                url: '{{ route('siswa.import') }}', // Sesuaikan dengan URL dari fungsi importExcel
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(response) {
+                    // Tampilkan pesan sukses jika berhasil di-import
+                    alert('Data berhasil di-import');
+                    location.reload();
+                },
+                error: function(xhr, status, error) {
+                    // Tampilkan pesan error jika terjadi kesalahan
+                    alert('Terjadi kesalahan: ' + xhr.responseText);
+                }
+            });
+        });
+    });
+
+
+
+
     // delete
     $("body").on("click", ".btn-delete", function() {
         var id = $(this).attr("id")
