@@ -18,6 +18,27 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle float-right" type="button" data-toggle="dropdown" aria-expanded="false">
+                            Filter
+                        </button>
+
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item filter-item" href="#" data-filter="" >Semua</a>
+                            <a class="dropdown-item filter-item" href="#" data-filter="X IPS 1" >X IPS 1</a>
+                            <a class="dropdown-item filter-item" href="#" data-filter="X IPA 1" >X IPA 1</a>
+                            <a class="dropdown-item filter-item" href="#" data-filter="XI IPS 1" >XI IPS 1</a>
+                            <a class="dropdown-item filter-item" href="#" data-filter="XI IPA 1" >XI IPA 1</a>
+                            <a class="dropdown-item filter-item" href="#" data-filter="XI IPS 2" >XI IPS 2</a>
+                            <a class="dropdown-item filter-item" href="#" data-filter="X IPS 2">X IPS 2</a>
+                            <a class="dropdown-item filter-item" href="#" data-filter="X IPA 2">X IPA 2</a>
+                            <div class="dropdown-pagination">
+                                <button class="btn btn-link previous-page">&lt; Prev</button>
+                                <button class="btn btn-link next-page">Next &gt;</button>
+                            </div>
+
+                            </div>
+                        </div>
                     <table id="dataTable2" class="table table-bordered table-striped">
                         <thead>
                             <tr>
@@ -143,7 +164,61 @@
                     },
                 ]
             });
+            $(".filter-item").on("click", function() {
+                var filterValue = $(this).data("filter");
 
+                if (filterValue === "") {
+                    table.column(3).search("").draw(); // Hapus filter kelas
+                } else {
+                    table.column(3).search(filterValue).draw(); // Terapkan filter kelas
+                }
+            });
+
+            $(function() {
+    var itemsPerPage = 5; // Jumlah item yang ditampilkan per halaman
+    var currentPage = 1; // Halaman saat ini
+
+    // Fungsi untuk menampilkan item-item pada halaman yang diinginkan
+    function showItemsByPage(page) {
+        var startIndex = (page - 1) * itemsPerPage;
+        var endIndex = startIndex + itemsPerPage;
+
+        $(".filter-item").hide();
+        $(".filter-item").slice(startIndex, endIndex).show();
+
+        // Menampilkan/menyembunyikan tombol navigasi halaman sesuai dengan halaman saat ini
+        if (page === 1) {
+            $(".previous-page").hide();
+        } else {
+            $(".previous-page").show();
+        }
+
+        if (endIndex >= $(".filter-item").length) {
+            $(".next-page").hide();
+        } else {
+            $(".next-page").show();
+        }
+    }
+
+    // Menampilkan halaman pertama saat halaman dimuat
+    showItemsByPage(currentPage);
+
+    // Event handler untuk tombol navigasi halaman sebelumnya
+    $(".previous-page").on("click", function() {
+        if (currentPage > 1) {
+            currentPage--;
+            showItemsByPage(currentPage);
+        }
+    });
+
+    // Event handler untuk tombol navigasi halaman berikutnya
+    $(".next-page").on("click", function() {
+        if (currentPage < Math.ceil($(".filter-item").length / itemsPerPage)) {
+            currentPage++;
+            showItemsByPage(currentPage);
+        }
+    });
+});
         });
     </script>
 @endpush
